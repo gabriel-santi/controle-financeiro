@@ -6,8 +6,9 @@ class TextWidget extends StatelessWidget {
   final double? size;
   final FontWeight? weight;
   final int? maxLines;
+  final Color? color;
 
-  const TextWidget({super.key, required this.text, this.size, this.weight, this.maxLines});
+  const TextWidget({super.key, required this.text, this.size, this.weight, this.maxLines, this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,10 @@ class TextWidget extends StatelessWidget {
       overflow: TextOverflow.ellipsis,
       maxLines: maxLines ?? 2,
       style: TextStyle(
-          fontSize: size ?? MainTheme.fontSizeMedium, fontWeight: weight ?? FontWeight.w300, color: Theme.of(context).colorScheme.onPrimary),
+        fontSize: size ?? MainTheme.fontSizeMedium,
+        fontWeight: weight ?? FontWeight.w300,
+        color: color ?? Theme.of(context).colorScheme.onPrimary,
+      ),
     );
   }
 }

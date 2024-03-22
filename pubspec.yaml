@@ -1,6 +1,6 @@
 name: finapp
 description: A new Flutter project.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: 'none'
 
 version: 1.0.0+1
 
@@ -11,6 +11,8 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
+  intl: ^0.19.0
+  currency_text_input_formatter: ^2.1.13
 
 dev_dependencies:
   flutter_test:
@@ -20,12 +22,12 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   fonts:
-      - family: Montserrat
-        fonts:
-          - asset: assets/fonts/Montserrat-Light.ttf
-            weight: 300
-          - asset: assets/fonts/Montserrat-Medium.ttf
-            weight: 400
-          - asset: assets/fonts/Montserrat-SemiBold.ttf
-            weight: 600
+    - family: Montserrat
+      fonts:
+        - asset: assets/fonts/Montserrat-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Montserrat-Medium.ttf
+          weight: 400
+        - asset: assets/fonts/Montserrat-SemiBold.ttf
+          weight: 600
 #  assets:
