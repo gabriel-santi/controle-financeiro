@@ -1,3 +1,4 @@
+import 'package:finapp/interfaces/page/parameter/edit_limit.parameter.dart';
 import 'package:finapp/interfaces/theme/theme.dart';
 import 'package:finapp/interfaces/widget/bottom_bar.widget.dart';
 import 'package:finapp/interfaces/widget/button/add_button.widget.dart';
@@ -12,6 +13,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final double _limit = 1000;
+  final double _currentValue = 800;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -68,8 +72,8 @@ class _HomePageState extends State<HomePage> {
           onClick: _onClickAdd,
         ),
         bottomNavigationBar: BottomBarWidget(
-          maxValue: 1000,
-          currentValue: 800,
+          maxValue: _limit,
+          currentValue: _currentValue,
           onClick: _onClickBar,
         ),
       ),
@@ -85,6 +89,6 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _onClickBar() {
-    //  TODO
+    Navigator.pushNamed(context, '/limit', arguments: EditLimitParameters(_limit, _currentValue));
   }
 }
