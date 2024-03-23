@@ -1,6 +1,6 @@
 import 'package:finapp/interfaces/theme/theme.dart';
-import 'package:finapp/interfaces/widget/button/add_button.widget.dart';
 import 'package:finapp/interfaces/widget/bottom_bar.widget.dart';
+import 'package:finapp/interfaces/widget/button/add_button.widget.dart';
 import 'package:finapp/interfaces/widget/transaction_card.widget.dart';
 import 'package:flutter/material.dart';
 
@@ -58,7 +58,7 @@ class _HomePageState extends State<HomePage> {
                           description: "Transaction $index",
                           date: DateTime.now().toLocal().toString(),
                           value: "R\$${index * 10},00",
-                          onClick: _onClickCard,
+                          onClick: () => _onClickCard(index),
                         )),
               ],
             ),
@@ -80,8 +80,8 @@ class _HomePageState extends State<HomePage> {
     Navigator.pushNamed(context, '/transaction/create');
   }
 
-  void _onClickCard() {
-    //  TODO
+  void _onClickCard(int id) {
+    Navigator.pushNamed(context, '/transaction/edit', arguments: id);
   }
 
   void _onClickBar() {
