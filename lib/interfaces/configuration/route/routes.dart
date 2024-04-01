@@ -2,7 +2,7 @@ import 'package:finapp/interfaces/page/add_transaction.page.dart';
 import 'package:finapp/interfaces/page/edit_limit.page.dart';
 import 'package:finapp/interfaces/page/edit_transaction.page.dart';
 import 'package:finapp/interfaces/page/home.page.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class Routes {
   static Map<String, Widget Function(BuildContext)> routes = {

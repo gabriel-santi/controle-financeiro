@@ -1,8 +1,14 @@
+import 'package:finapp/application/component/transaction.component.dart';
+import 'package:finapp/application/state/transaction.state.dart';
+import 'package:finapp/domain/monetary_value.dart';
+import 'package:finapp/domain/payment.dart';
+import 'package:finapp/interfaces/configuration/module/app.module.dart';
 import 'package:finapp/interfaces/theme/theme.dart';
 import 'package:finapp/interfaces/widget/button/back_button.widget.dart';
 import 'package:finapp/interfaces/widget/text.widget.dart';
 import 'package:finapp/interfaces/widget/transaction_form.widget.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class EditTransactionPage extends StatefulWidget {
   const EditTransactionPage({super.key});
@@ -12,7 +18,8 @@ class EditTransactionPage extends StatefulWidget {
 }
 
 class _EditTransactionPageState extends State<EditTransactionPage> {
-  late int transactionId;
+  final TransactionComponent _component = TransactionComponent();
+  final TransactionState _state = TransactionState.instance;
 
   final TextEditingController _valueController = TextEditingController();
 
@@ -23,9 +30,11 @@ class _EditTransactionPageState extends State<EditTransactionPage> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      transactionId = ModalRoute.of(context)!.settings.arguments as int;
-    });
+    _component.initialize(AppModule.transactionRepo, _state, update);
+  }
+
+  void update() {
+    if (mounted) setState(() {});
   }
 
   @override
@@ -76,14 +85,18 @@ class _EditTransactionPageState extends State<EditTransactionPage> {
     );
   }
 
-  void _onSave() {
+  void _onSave() async {
     if (_formKey.currentState!.validate() == false) return;
 
-    final double value = double.tryParse(_valueController.text.replaceAll(RegExp(r'[^\d]'), '')) ?? 0;
-    final String description = _descriptionController.text;
-
-    if (value == 0 || description.isEmpty) {
-      return;
+    try {
+      final formatter = NumberFormat.currency(locale: 'pt-br', symbol: 'R\$');
+      final double value = formatter.parse(_valueController.text).toDouble();
+      final String description = _descriptionController.text;
+      Payment paymentSelected = _state.transactionSelected as Payment;
+      Payment paymentUpdated = paymentSelected.copyWith(value: MonetaryValue(value), description: description, lastUpdate: DateTime.now());
+      await _component.savePayment(paymentUpdated);
+    } catch (e) {
+      print(e);
     }
   }
 }

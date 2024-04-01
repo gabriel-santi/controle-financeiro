@@ -1,4 +1,7 @@
-import 'package:finapp/interfaces/page/parameter/edit_limit.parameter.dart';
+import 'package:finapp/application/component/transaction.component.dart';
+import 'package:finapp/application/state/transaction.state.dart';
+import 'package:finapp/domain/transaction.dart';
+import 'package:finapp/interfaces/configuration/module/app.module.dart';
 import 'package:finapp/interfaces/theme/theme.dart';
 import 'package:finapp/interfaces/widget/bottom_bar.widget.dart';
 import 'package:finapp/interfaces/widget/button/add_button.widget.dart';
@@ -13,6 +16,20 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final TransactionComponent _component = TransactionComponent();
+  final TransactionState _state = TransactionState.instance;
+
+  @override
+  void initState() {
+    super.initState();
+    _component.initialize(AppModule.transactionRepo, _state, update);
+    _getTransactions();
+  }
+
+  void update() {
+    if (mounted) setState(() {});
+  }
+
   final double _limit = 1000;
   final double _currentValue = 800;
 
@@ -55,15 +72,19 @@ class _HomePageState extends State<HomePage> {
                 ListView.separated(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    itemCount: 20,
+                    itemCount: _state.transactions.length,
                     padding: EdgeInsets.symmetric(vertical: MainTheme.spacing),
                     separatorBuilder: (_, __) => SizedBox(height: MainTheme.spacing),
-                    itemBuilder: (_, index) => TransactionCardWidget(
-                          description: "Transaction $index",
-                          date: DateTime.now().toLocal().toString(),
-                          value: "R\$${index * 10},00",
-                          onClick: () => _onClickCard(index),
-                        )),
+                    itemBuilder: (_, index) {
+                      Transaction item = _state.transactions[index];
+
+                      return TransactionCardWidget(
+                        description: item.description,
+                        date: item.createdAtFormatted,
+                        value: item.value.formattedValue(),
+                        onClick: () => _onClickCard(item),
+                      );
+                    }),
               ],
             ),
           ),
@@ -80,15 +101,25 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  void _getTransactions() async {
+    try {
+      _component.getTransactions();
+    } catch (e) {
+      print("Error ao buscar transações");
+    }
+  }
+
   void _onClickAdd() {
     Navigator.pushNamed(context, '/transaction/create');
   }
 
-  void _onClickCard(int id) {
-    Navigator.pushNamed(context, '/transaction/edit', arguments: id);
+  void _onClickCard(Transaction transaction) {
+    _component.selectTransaction(transaction);
+    Navigator.pushNamed(context, '/transaction/edit', arguments: transaction.id);
   }
 
   void _onClickBar() {
-    Navigator.pushNamed(context, '/limit', arguments: EditLimitParameters(_limit, _currentValue));
+    _getTransactions();
+    // Navigator.pushNamed(context, '/limit', arguments: EditLimitParameters(_limit, _currentValue));
   }
 }

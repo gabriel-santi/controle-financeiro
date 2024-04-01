@@ -35,7 +35,6 @@ class TransactionFormWidget extends StatelessWidget {
             formatters: [_formatter],
             validator: (_) {
               if (valueController.text.trim().isEmpty) return "*Campo obrigatório";
-              if (_formatter.getUnformattedValue() == 0) return "*Valor inválido";
               return null;
             },
           ),
