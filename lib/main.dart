@@ -1,4 +1,4 @@
-import 'package:finapp/interfaces/route/routes.dart';
+import 'package:finapp/interfaces/configuration/route/routes.dart';
 import 'package:finapp/interfaces/theme/theme.dart';
 import 'package:flutter/material.dart';
 
@@ -16,15 +16,14 @@ class MyApp extends StatelessWidget {
       routes: Routes.routes,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        useMaterial3: true,
-        fontFamily: "Montserrat",
-        textTheme: TextTheme(
-          bodyLarge: TextStyle(fontSize: MainTheme.fontSizeLarge),
-          bodyMedium: TextStyle(fontSize: MainTheme.fontSizeMedium),
-          bodySmall: TextStyle(fontSize: MainTheme.fontSizeSmall),
-        ),
-        colorScheme: MainTheme.lightTheme
-      ),
+          useMaterial3: true,
+          fontFamily: "Montserrat",
+          textTheme: TextTheme(
+            bodyLarge: TextStyle(fontSize: MainTheme.fontSizeLarge),
+            bodyMedium: TextStyle(fontSize: MainTheme.fontSizeMedium),
+            bodySmall: TextStyle(fontSize: MainTheme.fontSizeSmall),
+          ),
+          colorScheme: MainTheme.lightTheme),
     );
   }
 }
