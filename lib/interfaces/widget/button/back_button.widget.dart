@@ -2,12 +2,14 @@ import 'package:finapp/interfaces/theme/theme.dart';
 import 'package:flutter/material.dart';
 
 class BackButtonWidget extends StatelessWidget {
-  const BackButtonWidget({super.key});
+  final Function()? onPressed;
+
+  const BackButtonWidget({super.key, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
     return IconButton(
-        onPressed: () => Navigator.pop(context),
+        onPressed: () => onPressed != null ? onPressed!.call() : Navigator.pushReplacementNamed(context, '/'),
         padding: EdgeInsets.all(MainTheme.spacing + 2),
         style: ButtonStyle(
             backgroundColor: MaterialStateProperty.resolveWith((states) => Theme.of(context).colorScheme.secondary),

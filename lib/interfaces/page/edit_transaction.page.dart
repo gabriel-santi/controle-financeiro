@@ -10,6 +10,8 @@ import 'package:finapp/interfaces/widget/transaction_form.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+// ignore_for_file: build_context_synchronously
+
 class EditTransactionPage extends StatefulWidget {
   const EditTransactionPage({super.key});
 
@@ -31,6 +33,8 @@ class _EditTransactionPageState extends State<EditTransactionPage> {
   void initState() {
     super.initState();
     _component.initialize(AppModule.transactionRepo, _state, update);
+    _valueController.text = _state.transactionSelected!.value.formattedValue();
+    _descriptionController.text = _state.transactionSelected!.description;
   }
 
   void update() {
@@ -61,21 +65,37 @@ class _EditTransactionPageState extends State<EditTransactionPage> {
                   formKey: _formKey,
                 ),
                 SizedBox(height: MainTheme.spacing * 4),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: ElevatedButton(
-                    onPressed: _onSave,
-                    style: ButtonStyle(
-                        padding: MaterialStateProperty.resolveWith(
-                            (states) => EdgeInsets.symmetric(vertical: MainTheme.spacing, horizontal: MainTheme.spacing * 4)),
-                        backgroundColor: MaterialStateProperty.resolveWith((states) => Theme.of(context).colorScheme.primary),
-                        shape: MaterialStateProperty.resolveWith(
-                            (states) => RoundedRectangleBorder(borderRadius: BorderRadius.circular(MainTheme.radiusMedium)))),
-                    child: TextWidget(
-                      text: 'Salvar',
-                      color: Theme.of(context).colorScheme.secondary,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    ElevatedButton(
+                      onPressed: _onDelete,
+                      style: ButtonStyle(
+                          padding: MaterialStateProperty.resolveWith(
+                              (states) => EdgeInsets.symmetric(vertical: MainTheme.spacing, horizontal: MainTheme.spacing * 4)),
+                          backgroundColor: MaterialStateProperty.resolveWith((states) => Theme.of(context).colorScheme.error),
+                          shape: MaterialStateProperty.resolveWith(
+                              (states) => RoundedRectangleBorder(borderRadius: BorderRadius.circular(MainTheme.radiusMedium)))),
+                      child: TextWidget(
+                        text: 'Excluir',
+                        color: Theme.of(context).colorScheme.onError,
+                      ),
                     ),
-                  ),
+                    SizedBox(width: MainTheme.spacing * 2),
+                    ElevatedButton(
+                      onPressed: _onSave,
+                      style: ButtonStyle(
+                          padding: MaterialStateProperty.resolveWith(
+                              (states) => EdgeInsets.symmetric(vertical: MainTheme.spacing, horizontal: MainTheme.spacing * 4)),
+                          backgroundColor: MaterialStateProperty.resolveWith((states) => Theme.of(context).colorScheme.primary),
+                          shape: MaterialStateProperty.resolveWith(
+                              (states) => RoundedRectangleBorder(borderRadius: BorderRadius.circular(MainTheme.radiusMedium)))),
+                      child: TextWidget(
+                        text: 'Salvar',
+                        color: Theme.of(context).colorScheme.secondary,
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -89,14 +109,24 @@ class _EditTransactionPageState extends State<EditTransactionPage> {
     if (_formKey.currentState!.validate() == false) return;
 
     try {
-      final formatter = NumberFormat.currency(locale: 'pt-br', symbol: 'R\$');
+      final NumberFormat formatter = NumberFormat.currency(locale: 'pt-br', symbol: 'R\$');
       final double value = formatter.parse(_valueController.text).toDouble();
       final String description = _descriptionController.text;
       Payment paymentSelected = _state.transactionSelected as Payment;
       Payment paymentUpdated = paymentSelected.copyWith(value: MonetaryValue(value), description: description, lastUpdate: DateTime.now());
       await _component.savePayment(paymentUpdated);
+      Navigator.pushReplacementNamed(context, '/');
     } catch (e) {
-      print(e);
+      print(e); // TODO
+    }
+  }
+
+  void _onDelete() async {
+    try {
+      await _component.deletePayment(_state.transactionSelected!.id);
+      Navigator.pushReplacementNamed(context, '/');
+    } catch (e) {
+      print(e); // TODO
     }
   }
 }

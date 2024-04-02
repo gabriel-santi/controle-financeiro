@@ -92,7 +92,7 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
       final String description = _descriptionController.text.trim();
       Payment payment = Payment.create(description, MonetaryValue(value), null, false);
       await _component.savePayment(payment);
-      Navigator.pushNamed(context, '/');
+      Navigator.pushReplacementNamed(context, '/');
     } catch (e) {
       print(e);
     }
