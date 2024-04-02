@@ -21,7 +21,7 @@ class TransactionQueries {
       "account, "
       "credit) FROM payment WHERE id = $id";
 
-  static String addPaymentQuery(Payment payment) => "INSERT INTO payment (description, created_at, value, source, credit) "
+  static String addPaymentQuery(Payment payment) => "INSERT INTO payment (description, created_at, value, account, credit) "
       "VALUES ('${payment.description}', "
       "'${payment.createdAt.toString()}', "
       "${payment.value.amount}, "
@@ -32,7 +32,7 @@ class TransactionQueries {
       "description = '${payment.description}', "
       "last_update = '${payment.lastUpdate}', "
       "value = ${payment.value.amount}, "
-      "source = ${payment.account}, "
+      "account = ${payment.account}, "
       "credit = ${payment.credit} "
       "WHERE id = ${payment.id}";
 
