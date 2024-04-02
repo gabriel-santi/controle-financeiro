@@ -11,6 +11,8 @@ class MainTheme {
 
   static double get radiusMedium => 12;
 
+  static double get radiusSmall => 8;
+
   static ColorScheme get lightTheme => const ColorScheme(
         background: Color(0xFFDFF5FF),
         brightness: Brightness.light,
@@ -25,6 +27,7 @@ class MainTheme {
         onSurface: Color(0xFF161A30),
         surfaceTint: Color(0xFFFAFAFA),
         tertiary: Color(0xFFFFD54F),
+        inversePrimary: Color(0xFF6EFF4C),
         shadow: Color(0x50000000),
       );
 }
