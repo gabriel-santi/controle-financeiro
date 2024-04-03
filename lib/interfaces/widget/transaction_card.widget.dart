@@ -16,17 +16,10 @@ class TransactionCardWidget extends StatelessWidget {
       onTap: onClick,
       child: Container(
         decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.surfaceTint,
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black12.withOpacity(.15),
-                blurRadius: 4,
-                offset: const Offset(0, 2),
-                spreadRadius: 0.8,
-              )
-            ],
-            borderRadius: BorderRadius.circular(8)),
-        padding: EdgeInsets.symmetric(horizontal: MainTheme.spacing+5, vertical: MainTheme.spacing*2),
+          color: Theme.of(context).colorScheme.surfaceTint,
+          borderRadius: BorderRadius.circular(MainTheme.radiusMedium),
+        ),
+        padding: EdgeInsets.symmetric(horizontal: MainTheme.spacing + 5, vertical: MainTheme.spacing * 2),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

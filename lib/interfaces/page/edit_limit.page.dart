@@ -1,5 +1,5 @@
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
-import 'package:finapp/interfaces/page/parameter/edit_limit.parameter.dart';
+import 'package:finapp/domain/monetary_value.dart';
 import 'package:finapp/interfaces/theme/theme.dart';
 import 'package:finapp/interfaces/widget/button/back_button.widget.dart';
 import 'package:finapp/interfaces/widget/input/currency_input.widget.dart';
@@ -15,8 +15,8 @@ class EditLimitPage extends StatefulWidget {
 }
 
 class _EditLimitPageState extends State<EditLimitPage> {
-  double _currentAmount = 0;
-  double _currentLimit = 0;
+  // double _currentAmount = 0;
+  // double _currentLimit = 0;
 
   final TextEditingController _valueController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -29,16 +29,14 @@ class _EditLimitPageState extends State<EditLimitPage> {
     });
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      EditLimitParameters params = ModalRoute.of(context)!.settings.arguments as EditLimitParameters;
-      _currentAmount = params.currentValue;
-      _currentLimit = params.limitValue;
+      // EditLimitParameters params = ModalRoute.of(context)!.settings.arguments as EditLimitParameters;
+      // _currentAmount = params.currentValue;
+      // _currentLimit = params.limitValue;
 
-      _valueController.text = _formatter.format(_currentLimit.toStringAsFixed(2));
-      setState(() {});
+      // _valueController.text = _formatter.format(_currentLimit.toStringAsFixed(2));
+      // setState(() {});
     });
   }
-
-  double get _limit => _formatter.getUnformattedValue().toDouble();
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +71,7 @@ class _EditLimitPageState extends State<EditLimitPage> {
                   ),
                 ),
                 SizedBox(height: MainTheme.spacing * 2),
-                ProgressBarWidget(maxValue: _limit, currentValue: _currentAmount),
+                ProgressBarWidget(maxValue: MonetaryValue.zero, currentValue: MonetaryValue.zero),
                 SizedBox(height: MainTheme.spacing * 4),
                 Align(
                   alignment: Alignment.centerRight,
@@ -101,7 +99,5 @@ class _EditLimitPageState extends State<EditLimitPage> {
 
   void _onSave() {
     if (_formKey.currentState!.validate() == false) return;
-
-    final double value = double.tryParse(_valueController.text.replaceAll(RegExp(r'[^\d]'), '')) ?? 0;
   }
 }

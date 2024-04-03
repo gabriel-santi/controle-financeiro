@@ -1,12 +1,15 @@
 import 'package:finapp/application/component/transaction.component.dart';
 import 'package:finapp/application/state/transaction.state.dart';
+import 'package:finapp/domain/monetary_value.dart';
 import 'package:finapp/domain/transaction.dart';
 import 'package:finapp/interfaces/configuration/module/app.module.dart';
 import 'package:finapp/interfaces/page/parameter/edit_limit.parameter.dart';
 import 'package:finapp/interfaces/theme/theme.dart';
-import 'package:finapp/interfaces/widget/bottom_bar.widget.dart';
 import 'package:finapp/interfaces/widget/button/add_button.widget.dart';
 import 'package:finapp/interfaces/widget/notification.widget.dart';
+import 'package:finapp/interfaces/widget/resume_card.widget.dart';
+import 'package:finapp/interfaces/widget/select_month.widget.dart';
+import 'package:finapp/interfaces/widget/text.widget.dart';
 import 'package:finapp/interfaces/widget/transaction_card.widget.dart';
 import 'package:flutter/material.dart';
 
@@ -41,13 +44,12 @@ class _HomePageState extends State<HomePage> {
       child: Scaffold(
         body: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: MainTheme.spacing, vertical: MainTheme.spacing * 2),
+            padding: EdgeInsets.symmetric(horizontal: MainTheme.spacing + 4, vertical: MainTheme.spacing * 2),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
-                  height: MainTheme.spacing * 2,
-                ),
+                const Center(child: SelectMonthWidget()),
+                SizedBox(height: MainTheme.spacing * 4),
                 RichText(
                   textAlign: TextAlign.left,
                   text: TextSpan(
@@ -71,6 +73,10 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                 ),
+                SizedBox(height: MainTheme.spacing),
+                ResumeCardWidget(limit: MonetaryValue(5000), currentValue: MonetaryValue(2000), onCLick: _onClickResume),
+                SizedBox(height: MainTheme.spacing * 4),
+                const TextWidget(text: "Histórico"),
                 ListView.separated(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
@@ -94,11 +100,6 @@ class _HomePageState extends State<HomePage> {
         floatingActionButton: AddButtonWidget(
           onClick: _onClickAdd,
         ),
-        bottomNavigationBar: BottomBarWidget(
-          maxValue: _limit,
-          currentValue: _currentValue,
-          onClick: _onClickBar,
-        ),
       ),
     );
   }
@@ -120,7 +121,7 @@ class _HomePageState extends State<HomePage> {
     Navigator.pushReplacementNamed(context, '/transaction/edit', arguments: transaction.id);
   }
 
-  void _onClickBar() {
+  void _onClickResume() {
     Navigator.pushReplacementNamed(context, '/limit', arguments: EditLimitParameters(_limit, _currentValue));
   }
 }
