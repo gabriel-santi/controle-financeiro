@@ -5,6 +5,8 @@ class MonetaryValue {
 
   MonetaryValue(this.amount);
 
+  static MonetaryValue get zero => MonetaryValue(0);
+
   String formattedValue({String symbol = 'R\$', String locale = 'pt_BR'}) {
     final formatter = NumberFormat.currency(locale: locale, symbol: symbol);
     return formatter.format(amount);
