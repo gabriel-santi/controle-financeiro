@@ -5,6 +5,7 @@ import 'package:finapp/domain/payment.dart';
 import 'package:finapp/interfaces/configuration/module/app.module.dart';
 import 'package:finapp/interfaces/theme/theme.dart';
 import 'package:finapp/interfaces/widget/button/back_button.widget.dart';
+import 'package:finapp/interfaces/widget/notification.widget.dart';
 import 'package:finapp/interfaces/widget/text.widget.dart';
 import 'package:finapp/interfaces/widget/transaction_form.widget.dart';
 import 'package:flutter/material.dart';
@@ -92,9 +93,10 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
       final String description = _descriptionController.text.trim();
       Payment payment = Payment.create(description, MonetaryValue(value), null, false);
       await _component.savePayment(payment);
+      showNotification("Transação salva com sucesso!", NotificationType.SUCCESS);
       Navigator.pushReplacementNamed(context, '/');
     } catch (e) {
-      print(e);
+      showNotification("Não foi possível adicionar a transação!", NotificationType.ERROR);
     }
   }
 }

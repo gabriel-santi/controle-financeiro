@@ -5,6 +5,7 @@ import 'package:finapp/domain/payment.dart';
 import 'package:finapp/interfaces/configuration/module/app.module.dart';
 import 'package:finapp/interfaces/theme/theme.dart';
 import 'package:finapp/interfaces/widget/button/back_button.widget.dart';
+import 'package:finapp/interfaces/widget/notification.widget.dart';
 import 'package:finapp/interfaces/widget/text.widget.dart';
 import 'package:finapp/interfaces/widget/transaction_form.widget.dart';
 import 'package:flutter/material.dart';
@@ -115,18 +116,20 @@ class _EditTransactionPageState extends State<EditTransactionPage> {
       Payment paymentSelected = _state.transactionSelected as Payment;
       Payment paymentUpdated = paymentSelected.copyWith(value: MonetaryValue(value), description: description, lastUpdate: DateTime.now());
       await _component.savePayment(paymentUpdated);
+      showNotification("Transação salva com sucesso!", NotificationType.SUCCESS);
       Navigator.pushReplacementNamed(context, '/');
     } catch (e) {
-      print(e); // TODO
+      showNotification("Não foi possível salvar a transação!", NotificationType.ERROR);
     }
   }
 
   void _onDelete() async {
     try {
       await _component.deletePayment(_state.transactionSelected!.id);
+      showNotification("Transação excluída com sucesso!", NotificationType.SUCCESS);
       Navigator.pushReplacementNamed(context, '/');
     } catch (e) {
-      print(e); // TODO
+      showNotification("Não foi possível salvar a transação!", NotificationType.ERROR);
     }
   }
 }

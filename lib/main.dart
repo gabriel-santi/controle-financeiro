@@ -1,5 +1,6 @@
 import 'package:finapp/interfaces/configuration/route/routes.dart';
 import 'package:finapp/interfaces/theme/theme.dart';
+import 'package:finapp/interfaces/widget/notification.widget.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -16,6 +17,12 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: Routes.routes,
       debugShowCheckedModeBanner: false,
+      builder: (context, child) {
+        return NotificationWidget(
+          key: notificationKey,
+          child: child!,
+        );
+      },
       theme: ThemeData(
           useMaterial3: true,
           fontFamily: "Montserrat",

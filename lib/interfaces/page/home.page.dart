@@ -6,6 +6,7 @@ import 'package:finapp/interfaces/page/parameter/edit_limit.parameter.dart';
 import 'package:finapp/interfaces/theme/theme.dart';
 import 'package:finapp/interfaces/widget/bottom_bar.widget.dart';
 import 'package:finapp/interfaces/widget/button/add_button.widget.dart';
+import 'package:finapp/interfaces/widget/notification.widget.dart';
 import 'package:finapp/interfaces/widget/transaction_card.widget.dart';
 import 'package:flutter/material.dart';
 
@@ -52,7 +53,7 @@ class _HomePageState extends State<HomePage> {
                   text: TextSpan(
                     children: [
                       TextSpan(
-                        text: 'Seja bem vindo(a), ',
+                        text: 'Seja bem-vindo(a), ',
                         style: TextStyle(
                           fontSize: MainTheme.fontSizeSmall,
                           fontWeight: FontWeight.w300,
@@ -106,7 +107,7 @@ class _HomePageState extends State<HomePage> {
     try {
       await _component.getTransactions();
     } catch (e) {
-      print("Error ao buscar transações");
+      showNotification("Não foi possível buscar transações", NotificationType.ERROR);
     }
   }
 
