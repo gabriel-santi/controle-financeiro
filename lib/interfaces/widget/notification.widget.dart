@@ -113,8 +113,8 @@ class NotificationWidgetState extends State<NotificationWidget> with TickerProvi
                     borderRadius: BorderRadius.circular(MainTheme.radiusSmall),
                     boxShadow: [
                       BoxShadow(
-                        color: Theme.of(context).colorScheme.shadow,
-                        blurRadius: 8,
+                        color: Theme.of(context).colorScheme.shadow.withOpacity(.2),
+                        blurRadius: 4,
                         offset: const Offset(0, 2),
                         spreadRadius: 1,
                       ),
