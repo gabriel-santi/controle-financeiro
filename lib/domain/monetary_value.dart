@@ -1,30 +1,95 @@
 import 'package:intl/intl.dart';
 
 class MonetaryValue {
-  final double amount;
+  final double value;
 
-  MonetaryValue(this.amount);
+  MonetaryValue(this.value);
 
   static MonetaryValue get zero => MonetaryValue(0);
 
   String formattedValue({String symbol = 'R\$', String locale = 'pt_BR'}) {
     final formatter = NumberFormat.currency(locale: locale, symbol: symbol);
-    return formatter.format(amount);
+    return formatter.format(value);
   }
 
-  MonetaryValue operator +(num other) => MonetaryValue(amount + other);
+  MonetaryValue operator +(dynamic other) {
+    if (other is MonetaryValue) {
+      return MonetaryValue(value + other.value);
+    } else if (other is num) {
+      return MonetaryValue(value + other);
+    }
+    throw ArgumentError('Invalid type');
+  }
 
-  MonetaryValue operator -(num other) => MonetaryValue(amount - other);
+  MonetaryValue operator -(dynamic other) {
+    if (other is MonetaryValue) {
+      return MonetaryValue(value - other.value);
+    } else if (other is num) {
+      return MonetaryValue(value - other);
+    }
+    throw ArgumentError('Invalid type');
+  }
 
-  MonetaryValue operator *(num other) => MonetaryValue(amount * other);
+  MonetaryValue operator *(dynamic other) {
+    if (other is MonetaryValue) {
+      return MonetaryValue(value * other.value);
+    } else if (other is num) {
+      return MonetaryValue(value * other);
+    }
+    throw ArgumentError('Invalid type');
+  }
 
-  MonetaryValue operator /(num other) => MonetaryValue(amount / other);
+  MonetaryValue operator /(dynamic other) {
+    if (other is MonetaryValue) {
+      return MonetaryValue(value / other.value);
+    } else if (other is num) {
+      return MonetaryValue(value / other);
+    }
+    throw ArgumentError('Invalid type');
+  }
 
-  bool operator <(num other) => amount < other;
+  MonetaryValue operator %(dynamic other) {
+    if (other is MonetaryValue) {
+      return MonetaryValue(value % other.value);
+    } else if (other is num) {
+      return MonetaryValue(value % other);
+    }
+    throw ArgumentError('Invalid type');
+  }
 
-  bool operator <=(num other) => amount <= other;
+  bool operator <(dynamic other) {
+    if (other is MonetaryValue) {
+      return value < other.value;
+    } else if (other is num) {
+      return value < other;
+    }
+    throw ArgumentError('Invalid type');
+  }
 
-  bool operator >(num other) => amount > other;
+  bool operator <=(dynamic other) {
+    if (other is MonetaryValue) {
+      return value <= other.value;
+    } else if (other is num) {
+      return value <= other;
+    }
+    throw ArgumentError('Invalid type');
+  }
 
-  bool operator >=(num other) => amount >= other;
+  bool operator >(dynamic other) {
+    if (other is MonetaryValue) {
+      return value > other.value;
+    } else if (other is num) {
+      return value > other;
+    }
+    throw ArgumentError('Invalid type');
+  }
+
+  bool operator >=(dynamic other) {
+    if (other is MonetaryValue) {
+      return value >= other.value;
+    } else if (other is num) {
+      return value >= other;
+    }
+    throw ArgumentError('Invalid type');
+  }
 }
