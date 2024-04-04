@@ -34,8 +34,8 @@ class _EditTransactionPageState extends State<EditTransactionPage> {
   void initState() {
     super.initState();
     _component.initialize(AppModule.transactionRepo, _state, update);
-    _valueController.text = _state.transactionSelected!.value.formattedValue();
-    _descriptionController.text = _state.transactionSelected!.description;
+    _valueController.text = _state.selectedTransaction!.value.formattedValue();
+    _descriptionController.text = _state.selectedTransaction!.description;
   }
 
   void update() {
@@ -113,7 +113,7 @@ class _EditTransactionPageState extends State<EditTransactionPage> {
       final NumberFormat formatter = NumberFormat.currency(locale: 'pt-br', symbol: 'R\$');
       final double value = formatter.parse(_valueController.text).toDouble();
       final String description = _descriptionController.text;
-      Payment paymentSelected = _state.transactionSelected as Payment;
+      Payment paymentSelected = _state.selectedTransaction as Payment;
       Payment paymentUpdated = paymentSelected.copyWith(value: MonetaryValue(value), description: description, lastUpdate: DateTime.now());
       await _component.savePayment(paymentUpdated);
       showNotification("Transação salva com sucesso!", NotificationType.SUCCESS);
@@ -125,7 +125,7 @@ class _EditTransactionPageState extends State<EditTransactionPage> {
 
   void _onDelete() async {
     try {
-      await _component.deletePayment(_state.transactionSelected!.id);
+      await _component.deletePayment(_state.selectedTransaction!.id);
       showNotification("Transação excluída com sucesso!", NotificationType.SUCCESS);
       Navigator.pushReplacementNamed(context, '/');
     } catch (e) {

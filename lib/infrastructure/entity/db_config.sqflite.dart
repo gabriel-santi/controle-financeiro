@@ -15,8 +15,18 @@ class DatabaseConfig {
   Future<Database> getDatabase() async {
     final String path = join(await getDatabasesPath(), 'finapp.db');
 
-    return openDatabase(path, onCreate: (db, version) async {
-      await db.execute(TransactionQueries.createPaymentTableQuery());
-    }, version: 1);
+    return openDatabase(
+      path,
+      onCreate: (db, version) async {
+        await db.execute(TransactionQueries.createPaymentTableQuery());
+      },
+      onUpgrade: (db, oldVersion, newVersion) async {
+        if (oldVersion < newVersion) {
+          await db.execute('DROP TABLE IF EXISTS payment');
+          await db.execute(TransactionQueries.createPaymentTableQuery());
+        }
+      },
+      version: 3,
+    );
   }
 }

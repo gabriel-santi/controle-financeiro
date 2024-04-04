@@ -2,7 +2,8 @@ import 'package:finapp/domain/transaction.dart';
 
 class TransactionState {
   List<Transaction> transactions = [];
-  Transaction? transactionSelected;
+  Transaction? selectedTransaction;
+  int selectedMonth = DateTime.now().month;
 
   static TransactionState? _instance;
 

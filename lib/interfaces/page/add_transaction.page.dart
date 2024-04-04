@@ -96,7 +96,7 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
       showNotification("Transação salva com sucesso!", NotificationType.SUCCESS);
       Navigator.pushReplacementNamed(context, '/');
     } catch (e) {
-      showNotification("Não foi possível adicionar a transação!", NotificationType.ERROR);
+      showNotification("Não foi possível salvar transação!", NotificationType.ERROR);
     }
   }
 }

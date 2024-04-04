@@ -4,13 +4,13 @@ class TransactionQueries {
   static String createPaymentTableQuery() => "CREATE TABLE payment ("
       "id INTEGER PRIMARY KEY AUTOINCREMENT, "
       "description TEXT NOT NULL, "
-      "created_at TEXT NOT NULL, "
-      "last_update TEXT, "
+      "created_at DATETIME NOT NULL, "
+      "last_update DATETIME, "
       "value REAL NOT NULL, "
       "account INTEGER, "
       "credit INTEGER)";
 
-  static String getAllPaymentsQuery() => "SELECT * FROM payment";
+  static String getPaymentsByMonthQuery() => "SELECT * FROM payment WHERE strftime('%m', created_at) = ? ORDER BY created_at DESC";
 
   static String getPaymentQuery(int id) => "SELECT ("
       "id, "
@@ -23,7 +23,7 @@ class TransactionQueries {
 
   static String addPaymentQuery(Payment payment) => "INSERT INTO payment (description, created_at, value, account, credit) "
       "VALUES ('${payment.description}', "
-      "'${payment.createdAt.toString()}', "
+      "'${payment.createdAt}', "
       "${payment.value.value}, "
       "${payment.account}, "
       "${payment.credit})";

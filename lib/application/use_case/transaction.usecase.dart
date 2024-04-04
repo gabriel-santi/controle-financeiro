@@ -10,11 +10,11 @@ class TransactionUseCase {
   TransactionUseCase(this._repo, this._state);
 
   Future<void> getPaymentById(int id) async {
-    _state.transactionSelected = await _repo.getPayment(id);
+    _state.selectedTransaction = await _repo.getPayment(id);
   }
 
   Future<void> getTransactions() async {
-    _state.transactions = await _repo.getTransactions();
+    _state.transactions = await _repo.getTransactionsByMonth(_state.selectedMonth);
   }
 
   Future<void> savePayment(Payment transaction) async {
@@ -26,6 +26,6 @@ class TransactionUseCase {
   }
 
   void selectTransaction(Transaction? transaction) {
-    _state.transactionSelected = transaction;
+    _state.selectedTransaction = transaction;
   }
 }
