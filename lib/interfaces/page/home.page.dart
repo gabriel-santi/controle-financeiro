@@ -7,9 +7,9 @@ import 'package:finapp/interfaces/page/parameter/edit_limit.parameter.dart';
 import 'package:finapp/interfaces/theme/theme.dart';
 import 'package:finapp/interfaces/widget/button/add_button.widget.dart';
 import 'package:finapp/interfaces/widget/notification.widget.dart';
+import 'package:finapp/interfaces/widget/overlay/month_selector.widget.dart';
 import 'package:finapp/interfaces/widget/resume_card.widget.dart';
 import 'package:finapp/interfaces/widget/select_month.widget.dart';
-import 'package:finapp/interfaces/widget/text.widget.dart';
 import 'package:finapp/interfaces/widget/transaction_card.widget.dart';
 import 'package:flutter/material.dart';
 
@@ -38,6 +38,32 @@ class _HomePageState extends State<HomePage> {
   final double _limit = 1000;
   final double _currentValue = 800;
 
+  void _getTransactions() async {
+    try {
+      await _component.getTransactions();
+    } catch (e) {
+      showNotification("Não foi possível buscar transações", NotificationType.ERROR);
+    }
+  }
+
+  void _onClickAdd() {
+    Navigator.pushReplacementNamed(context, '/transaction/create');
+  }
+
+  void _onClickCard(Transaction transaction) {
+    _component.selectTransaction(transaction);
+    Navigator.pushReplacementNamed(context, '/transaction/edit', arguments: transaction.id);
+  }
+
+  void _onClickResume() {
+    Navigator.pushReplacementNamed(context, '/limit', arguments: EditLimitParameters(_limit, _currentValue));
+  }
+
+  void _selectMonth(int month) {
+    _component.selectMonth(month);
+    _getTransactions();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -48,8 +74,7 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Center(child: SelectMonthWidget()),
-                SizedBox(height: MainTheme.spacing * 4),
+                SizedBox(height: MainTheme.spacing),
                 RichText(
                   textAlign: TextAlign.left,
                   text: TextSpan(
@@ -76,7 +101,13 @@ class _HomePageState extends State<HomePage> {
                 SizedBox(height: MainTheme.spacing),
                 ResumeCardWidget(limit: MonetaryValue(5000), currentValue: MonetaryValue(2000), onCLick: _onClickResume),
                 SizedBox(height: MainTheme.spacing * 4),
-                const TextWidget(text: "Histórico"),
+                Center(
+                  child: SelectMonthWidget(
+                    selectedMonth: _state.selectedMonth,
+                    onClick: _openMonthSelector,
+                  ),
+                ),
+                SizedBox(height: MainTheme.spacing),
                 ListView.separated(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
@@ -104,24 +135,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void _getTransactions() async {
-    try {
-      await _component.getTransactions();
-    } catch (e) {
-      showNotification("Não foi possível buscar transações", NotificationType.ERROR);
-    }
-  }
-
-  void _onClickAdd() {
-    Navigator.pushReplacementNamed(context, '/transaction/create');
-  }
-
-  void _onClickCard(Transaction transaction) {
-    _component.selectTransaction(transaction);
-    Navigator.pushReplacementNamed(context, '/transaction/edit', arguments: transaction.id);
-  }
-
-  void _onClickResume() {
-    Navigator.pushReplacementNamed(context, '/limit', arguments: EditLimitParameters(_limit, _currentValue));
+  void _openMonthSelector() {
+    showModalBottomSheet(context: context, builder: (_) => MonthSelectorWidget(selectedMonth: _state.selectedMonth, onSelect: _selectMonth));
   }
 }
