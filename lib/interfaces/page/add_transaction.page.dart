@@ -5,6 +5,7 @@ import 'package:finapp/domain/payment.dart';
 import 'package:finapp/interfaces/configuration/module/app.module.dart';
 import 'package:finapp/interfaces/theme/theme.dart';
 import 'package:finapp/interfaces/widget/button/back_button.widget.dart';
+import 'package:finapp/interfaces/widget/category_selector.widget.dart';
 import 'package:finapp/interfaces/widget/notification.widget.dart';
 import 'package:finapp/interfaces/widget/text.widget.dart';
 import 'package:finapp/interfaces/widget/transaction_form.widget.dart';
@@ -40,8 +41,9 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        extendBody: true,
         body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: MainTheme.spacing, vertical: MainTheme.spacing * 2),
+          padding: EdgeInsets.only(left: MainTheme.spacing, right: MainTheme.spacing, top: MainTheme.spacing * 2),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -60,6 +62,13 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
                   formKey: _formKey,
                 ),
                 SizedBox(height: MainTheme.spacing * 4),
+                CategorySelectorWidget(
+                  categorySelected: 1,
+                  categories: [],
+                  onSelectCategory: (int id) {},
+                  onAddCategory: () {},
+                ),
+                SizedBox(height: MainTheme.spacing * 6),
                 Align(
                   alignment: Alignment.centerRight,
                   child: ElevatedButton(

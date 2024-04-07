@@ -38,7 +38,7 @@ class TransactionFormWidget extends StatelessWidget {
               return null;
             },
           ),
-          SizedBox(height: MainTheme.spacing * 4),
+          SizedBox(height: MainTheme.spacing * 2),
           TextFormField(
             onTapOutside: (event) {
               FocusScope.of(context).unfocus();

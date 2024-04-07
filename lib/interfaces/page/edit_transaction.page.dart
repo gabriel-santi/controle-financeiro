@@ -5,6 +5,7 @@ import 'package:finapp/domain/payment.dart';
 import 'package:finapp/interfaces/configuration/module/app.module.dart';
 import 'package:finapp/interfaces/theme/theme.dart';
 import 'package:finapp/interfaces/widget/button/back_button.widget.dart';
+import 'package:finapp/interfaces/widget/category_selector.widget.dart';
 import 'package:finapp/interfaces/widget/notification.widget.dart';
 import 'package:finapp/interfaces/widget/text.widget.dart';
 import 'package:finapp/interfaces/widget/transaction_form.widget.dart';
@@ -66,6 +67,13 @@ class _EditTransactionPageState extends State<EditTransactionPage> {
                   formKey: _formKey,
                 ),
                 SizedBox(height: MainTheme.spacing * 4),
+                CategorySelectorWidget(
+                  categorySelected: 1,
+                  categories: [],
+                  onSelectCategory: (int id) {},
+                  onAddCategory: () {},
+                ),
+                SizedBox(height: MainTheme.spacing * 6),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
