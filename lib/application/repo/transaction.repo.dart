@@ -2,7 +2,7 @@ import 'package:finapp/domain/payment.dart';
 import 'package:finapp/domain/transaction.dart';
 
 abstract class TransactionRepo {
-  Future<List<Transaction>> getTransactionsByMonth(int month);
+  Future<List<Transaction>> getTransactionsByDate(int month, int year);
 
   Future<Transaction> getPayment(int idPayment);
 

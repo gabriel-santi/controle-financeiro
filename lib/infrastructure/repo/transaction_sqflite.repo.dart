@@ -27,8 +27,8 @@ class TransactionSqfliteRepo implements TransactionRepo {
   }
 
   @override
-  Future<List<Transaction>> getTransactionsByMonth(int month) async {
-    return _dao.getPaymentsByMonth(month);
+  Future<List<Transaction>> getTransactionsByDate(int month, int year) async {
+    return _dao.getPaymentsByDate(month, year);
   }
 
   @override

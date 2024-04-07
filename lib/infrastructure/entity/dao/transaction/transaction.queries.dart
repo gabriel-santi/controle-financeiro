@@ -10,7 +10,8 @@ class TransactionQueries {
       "account INTEGER, "
       "credit INTEGER)";
 
-  static String getPaymentsByMonthQuery() => "SELECT * FROM payment WHERE strftime('%m', created_at) = ? ORDER BY created_at DESC";
+  static String getPaymentsByMonthQuery() =>
+      "SELECT * FROM payment WHERE strftime('%m', created_at) = ? AND strftime('%Y', created_at) = ? ORDER BY created_at DESC";
 
   static String getPaymentQuery(int id) => "SELECT ("
       "id, "

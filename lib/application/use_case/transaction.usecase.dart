@@ -14,7 +14,7 @@ class TransactionUseCase {
   }
 
   Future<void> getTransactions() async {
-    _state.transactions = await _repo.getTransactionsByMonth(_state.selectedMonth);
+    _state.transactions = await _repo.getTransactionsByDate(_state.selectedMonth, _state.selectedYear);
   }
 
   Future<void> savePayment(Payment transaction) async {
@@ -27,5 +27,9 @@ class TransactionUseCase {
 
   void selectTransaction(Transaction? transaction) {
     _state.selectedTransaction = transaction;
+  }
+
+  void selectMonth(int month) {
+    _state.selectedMonth = month;
   }
 }

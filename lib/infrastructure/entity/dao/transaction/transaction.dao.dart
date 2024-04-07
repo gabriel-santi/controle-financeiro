@@ -9,9 +9,10 @@ class TransactionDao {
 
   TransactionDao();
 
-  Future<List<Transaction>> getPaymentsByMonth(int selectedMonth) async {
+  Future<List<Transaction>> getPaymentsByDate(int selectedMonth, int selectedYear) async {
     db ??= await DatabaseConfig.instance.getDatabase();
-    List<Map<String, dynamic>> rows = await db!.rawQuery(TransactionQueries.getPaymentsByMonthQuery(), [selectedMonth.toString().padLeft(2, '0')]);
+    List<Map<String, dynamic>> rows =
+        await db!.rawQuery(TransactionQueries.getPaymentsByMonthQuery(), [selectedMonth.toString().padLeft(2, '0'), selectedYear.toString()]);
     List<Payment> transactions = rows.map((mapTransaction) => Payment.fromMap(mapTransaction)).toList();
     return transactions;
   }

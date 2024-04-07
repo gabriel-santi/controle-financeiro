@@ -21,6 +21,10 @@ class TransactionComponent extends Component {
     _useCase.selectTransaction(transaction);
   }
 
+  void selectMonth(int month) {
+    _useCase.selectMonth(month);
+  }
+
   Future<void> getPaymentById(int id) async {
     return execute(() => _useCase.getPaymentById(id));
   }
