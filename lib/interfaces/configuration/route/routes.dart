@@ -1,4 +1,5 @@
 import 'package:finapp/interfaces/page/add_transaction.page.dart';
+import 'package:finapp/interfaces/page/category.page.dart';
 import 'package:finapp/interfaces/page/edit_limit.page.dart';
 import 'package:finapp/interfaces/page/edit_transaction.page.dart';
 import 'package:finapp/interfaces/page/home.page.dart';
@@ -10,5 +11,6 @@ class Routes {
     '/transaction/create': (_) => const AddTransactionPage(),
     '/transaction/edit': (_) => const EditTransactionPage(),
     '/limit': (_) => const EditLimitPage(),
+    '/category': (_) => const CategoryPage(),
   };
 }

@@ -22,7 +22,7 @@ class MainTheme {
         primary: Color(0xFF7152EE),
         onSecondary: Color(0xFFDFF5FF),
         secondary: Color(0xFFFCFCFC),
-        error: Color(0xFFFFA18A),
+        error: Color(0xFFF68576),
         onError: Color(0xFFFFF3E2),
         onBackground: Color(0xFF161A30),
         surface: Color(0xFFADAEFF),

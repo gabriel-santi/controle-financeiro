@@ -66,7 +66,7 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
                   categorySelected: 1,
                   categories: [],
                   onSelectCategory: (int id) {},
-                  onAddCategory: () {},
+                  onAddCategory: _navigateToCategories,
                 ),
                 SizedBox(height: MainTheme.spacing * 6),
                 Align(
@@ -107,5 +107,9 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
     } catch (e) {
       showNotification("Não foi possível salvar transação!", NotificationType.ERROR);
     }
+  }
+
+  void _navigateToCategories() {
+    Navigator.pushNamed(context, '/categories');
   }
 }
