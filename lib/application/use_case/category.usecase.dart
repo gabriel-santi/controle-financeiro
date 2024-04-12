@@ -17,6 +17,7 @@ class CategoryUseCase {
   }
 
   Future<void> saveCategory(Category category) async {
+    _state.selectedCategory = null;
     return await _repository.saveCategory(category);
   }
 
