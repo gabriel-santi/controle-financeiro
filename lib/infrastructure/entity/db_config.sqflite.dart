@@ -1,3 +1,4 @@
+import 'package:finapp/infrastructure/entity/dao/category/category.queries.dart';
 import 'package:finapp/infrastructure/entity/dao/transaction/transaction.queries.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
@@ -19,14 +20,9 @@ class DatabaseConfig {
       path,
       onCreate: (db, version) async {
         await db.execute(TransactionQueries.createPaymentTableQuery);
+        await db.execute(CategoryQueries.createCategoryTableQuery);
       },
-      onUpgrade: (db, oldVersion, newVersion) async {
-        if (oldVersion < newVersion) {
-          await db.execute('DROP TABLE IF EXISTS payment');
-          await db.execute(TransactionQueries.createPaymentTableQuery);
-        }
-      },
-      version: 3,
+      version: 1,
     );
   }
 }

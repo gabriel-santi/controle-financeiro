@@ -18,10 +18,7 @@ class MyApp extends StatelessWidget {
       routes: Routes.routes,
       debugShowCheckedModeBanner: false,
       builder: (context, child) {
-        return NotificationWidget(
-          key: notificationKey,
-          child: child!,
-        );
+        return NotificationWidget(key: notificationKey, child: child!);
       },
       theme: ThemeData(
           useMaterial3: true,
