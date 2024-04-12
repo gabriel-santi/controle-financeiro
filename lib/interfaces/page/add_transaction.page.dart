@@ -110,6 +110,6 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
   }
 
   void _navigateToCategories() {
-    Navigator.pushNamed(context, '/categories');
+    Navigator.pushNamed(context, '/category');
   }
 }
