@@ -38,7 +38,7 @@ class TransactionDao {
       payment.lastUpdate?.toIso8601String(),
       payment.value.value,
       payment.account,
-      payment.credit,
+      payment.credit ? 1 : 0,
       payment.id
     ]);
     return;
