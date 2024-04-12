@@ -1,7 +1,5 @@
-import "package:finapp/domain/payment.dart";
-
 class TransactionQueries {
-  static String createPaymentTableQuery() => "CREATE TABLE payment ("
+  static String get createPaymentTableQuery => "CREATE TABLE payment ("
       "id INTEGER PRIMARY KEY AUTOINCREMENT, "
       "description TEXT NOT NULL, "
       "created_at DATETIME NOT NULL, "
@@ -10,32 +8,28 @@ class TransactionQueries {
       "account INTEGER, "
       "credit INTEGER)";
 
-  static String getPaymentsByMonthQuery() =>
+  static String get getPaymentsByMonthQuery =>
       "SELECT * FROM payment WHERE strftime('%m', created_at) = ? AND strftime('%Y', created_at) = ? ORDER BY created_at DESC";
 
-  static String getPaymentQuery(int id) => "SELECT ("
+  static String get getPaymentQuery => "SELECT ("
       "id, "
       "description, "
       "created_at, "
       "last_update, "
       "value, "
       "account, "
-      "credit) FROM payment WHERE id = $id";
+      "credit) FROM payment WHERE id = ?";
 
-  static String addPaymentQuery(Payment payment) => "INSERT INTO payment (description, created_at, value, account, credit) "
-      "VALUES ('${payment.description}', "
-      "'${payment.createdAt}', "
-      "${payment.value.value}, "
-      "${payment.account}, "
-      "${payment.credit})";
+  static String get addPaymentQuery => "INSERT INTO payment (description, created_at, value, account, credit) "
+      "VALUES ('?', '?', ?, ?, ?)";
 
-  static String updatePaymentQuery(Payment payment) => "UPDATE payment SET "
-      "description = '${payment.description}', "
-      "last_update = '${payment.lastUpdate}', "
-      "value = ${payment.value.value}, "
-      "account = ${payment.account}, "
-      "credit = ${payment.credit} "
-      "WHERE id = ${payment.id}";
+  static String get updatePaymentQuery => "UPDATE payment SET "
+      "description = '?', "
+      "last_update = '?', "
+      "value = ?, "
+      "account = ?, "
+      "credit = ? "
+      "WHERE id = ?";
 
-  static String deletePaymentQuery(int id) => "DELETE FROM payment WHERE id = $id";
+  static String get deletePaymentQuery => "DELETE FROM payment WHERE id = ?";
 }

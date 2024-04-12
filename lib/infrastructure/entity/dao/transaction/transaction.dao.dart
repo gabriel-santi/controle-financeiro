@@ -11,34 +11,36 @@ class TransactionDao {
 
   Future<List<Transaction>> getPaymentsByDate(int selectedMonth, int selectedYear) async {
     db ??= await DatabaseConfig.instance.getDatabase();
-    List<Map<String, dynamic>> rows =
-        await db!.rawQuery(TransactionQueries.getPaymentsByMonthQuery(), [selectedMonth.toString().padLeft(2, '0'), selectedYear.toString()]);
+    List<Map<String, dynamic>> rows = await db!.rawQuery(
+        TransactionQueries.getPaymentsByMonthQuery, [selectedMonth.toString().padLeft(2, '0'), selectedYear.toString()]);
     List<Payment> transactions = rows.map((mapTransaction) => Payment.fromMap(mapTransaction)).toList();
     return transactions;
   }
 
   Future<Payment> getPayment(int idPayment) async {
     db ??= await DatabaseConfig.instance.getDatabase();
-    List<Map<String, dynamic>> rows = await db!.rawQuery(TransactionQueries.getPaymentQuery(idPayment));
+    List<Map<String, dynamic>> rows = await db!.rawQuery(TransactionQueries.getPaymentQuery, [idPayment]);
     Payment payment = Payment.fromMap(rows.first);
     return payment;
   }
 
   Future<void> addPayment(Payment payment) async {
     db ??= await DatabaseConfig.instance.getDatabase();
-    await db!.rawQuery(TransactionQueries.addPaymentQuery(payment));
+    await db!.rawQuery(TransactionQueries.addPaymentQuery,
+        [payment.description, payment.createdAt, payment.value.value, payment.account, payment.credit]);
     return;
   }
 
   Future<void> updatePayment(Payment payment) async {
     db ??= await DatabaseConfig.instance.getDatabase();
-    await db!.rawQuery(TransactionQueries.updatePaymentQuery(payment));
+    await db!.rawQuery(TransactionQueries.updatePaymentQuery,
+        [payment.description, payment.lastUpdate, payment.value.value, payment.account, payment.credit, payment.id]);
     return;
   }
 
   Future<void> deletePayment(int idPayment) async {
     db ??= await DatabaseConfig.instance.getDatabase();
-    await db!.rawQuery(TransactionQueries.deletePaymentQuery(idPayment));
+    await db!.rawQuery(TransactionQueries.deletePaymentQuery, [idPayment]);
     return;
   }
 }

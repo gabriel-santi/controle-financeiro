@@ -18,12 +18,12 @@ class DatabaseConfig {
     return openDatabase(
       path,
       onCreate: (db, version) async {
-        await db.execute(TransactionQueries.createPaymentTableQuery());
+        await db.execute(TransactionQueries.createPaymentTableQuery);
       },
       onUpgrade: (db, oldVersion, newVersion) async {
         if (oldVersion < newVersion) {
           await db.execute('DROP TABLE IF EXISTS payment');
-          await db.execute(TransactionQueries.createPaymentTableQuery());
+          await db.execute(TransactionQueries.createPaymentTableQuery);
         }
       },
       version: 3,
