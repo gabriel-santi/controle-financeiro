@@ -24,13 +24,13 @@ class CategoryDao {
 
   Future<void> addCategory(Category category) async {
     db ??= await DatabaseConfig.instance.getDatabase();
-    await db!.rawQuery(CategoryQueries.createCategoryQuery, [category.description, category.color]);
+    await db!.rawQuery(CategoryQueries.createCategoryQuery, [category.description, category.color.value.toString()]);
     return;
   }
 
   Future<void> updateCategory(Category category) async {
     db ??= await DatabaseConfig.instance.getDatabase();
-    await db!.rawQuery(CategoryQueries.updateCategoryQuery, [category.description, category.color, category.id]);
+    await db!.rawQuery(CategoryQueries.updateCategoryQuery, [category.description, category.color.value.toString(), category.id]);
     return;
   }
 

@@ -9,6 +9,7 @@ class CategoryComponent extends Component {
 
   void initialize(CategoryRepo repo, CategoryState state, Function() updateScreen) {
     useCase = CategoryUseCase(repo, state);
+    super.updateScreen = updateScreen;
   }
 
   Future<void> getCategories() async {
@@ -20,7 +21,10 @@ class CategoryComponent extends Component {
   }
 
   Future<void> saveCategory(Category category) async {
-    return execute(() => useCase.saveCategory(category));
+    return execute(() async {
+      await useCase.saveCategory(category);
+      await useCase.getCategories();
+    });
   }
 
   Future<void> deleteCategory(int idCategory) async {
@@ -29,5 +33,6 @@ class CategoryComponent extends Component {
 
   void selectCategory(Category? category) {
     useCase.selectCategory(category);
+    super.updateScreen();
   }
 }
