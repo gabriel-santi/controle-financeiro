@@ -11,21 +11,21 @@ class TransactionQueries {
   static String get getPaymentsByMonthQuery =>
       "SELECT * FROM payment WHERE strftime('%m', created_at) = ? AND strftime('%Y', created_at) = ? ORDER BY created_at DESC";
 
-  static String get getPaymentQuery => "SELECT ("
+  static String get getPaymentQuery => "SELECT "
       "id, "
       "description, "
       "created_at, "
       "last_update, "
       "value, "
       "account, "
-      "credit) FROM payment WHERE id = ?";
+      "credit FROM payment WHERE id = ?";
 
   static String get addPaymentQuery => "INSERT INTO payment (description, created_at, value, account, credit) "
-      "VALUES ('?', '?', ?, ?, ?)";
+      "VALUES (?, ?, ?, ?, ?)";
 
   static String get updatePaymentQuery => "UPDATE payment SET "
-      "description = '?', "
-      "last_update = '?', "
+      "description = ?, "
+      "last_update = ?, "
       "value = ?, "
       "account = ?, "
       "credit = ? "

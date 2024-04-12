@@ -27,14 +27,20 @@ class TransactionDao {
   Future<void> addPayment(Payment payment) async {
     db ??= await DatabaseConfig.instance.getDatabase();
     await db!.rawQuery(TransactionQueries.addPaymentQuery,
-        [payment.description, payment.createdAt, payment.value.value, payment.account, payment.credit]);
+        [payment.description, payment.createdAt.toIso8601String(), payment.value.value, payment.account, payment.credit ? 1 : 0]);
     return;
   }
 
   Future<void> updatePayment(Payment payment) async {
     db ??= await DatabaseConfig.instance.getDatabase();
-    await db!.rawQuery(TransactionQueries.updatePaymentQuery,
-        [payment.description, payment.lastUpdate, payment.value.value, payment.account, payment.credit, payment.id]);
+    await db!.rawQuery(TransactionQueries.updatePaymentQuery, [
+      payment.description,
+      payment.lastUpdate?.toIso8601String(),
+      payment.value.value,
+      payment.account,
+      payment.credit,
+      payment.id
+    ]);
     return;
   }
 
