@@ -67,6 +67,7 @@ class _CategoryPageState extends State<CategoryPage> {
                     onTapOutside: (event) {
                       FocusScope.of(context).unfocus();
                     },
+                    autofocus: false,
                     decoration: InputDecoration(
                       label: const TextWidget(text: "Descrição"),
                       alignLabelWithHint: true,
@@ -176,10 +177,7 @@ class _CategoryPageState extends State<CategoryPage> {
                             SizedBox(width: MainTheme.spacing),
                             Icon(Icons.edit_outlined, color: Theme.of(context).colorScheme.onPrimary),
                             SizedBox(width: MainTheme.spacing),
-                            TextWidget(
-                              text: category.description,
-                              weight: FontWeight.w500,
-                            ),
+                            TextWidget(text: category.description),
                             const Spacer(),
                             InkWell(
                                 onTap: () => _onDeleteCategory(category.id),

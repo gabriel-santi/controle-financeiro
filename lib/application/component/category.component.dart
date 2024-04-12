@@ -28,7 +28,10 @@ class CategoryComponent extends Component {
   }
 
   Future<void> deleteCategory(int idCategory) async {
-    return execute(() => useCase.deleteCategory(idCategory));
+    return execute(() async {
+      await useCase.deleteCategory(idCategory);
+      await useCase.getCategories();
+    });
   }
 
   void selectCategory(Category? category) {

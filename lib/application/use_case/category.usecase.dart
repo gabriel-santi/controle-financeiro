@@ -22,6 +22,7 @@ class CategoryUseCase {
   }
 
   Future<void> deleteCategory(int id) async {
+    _state.selectedCategory = null;
     return await _repository.deleteCategory(id);
   }
 
