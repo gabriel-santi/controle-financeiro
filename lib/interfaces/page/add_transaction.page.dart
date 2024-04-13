@@ -100,7 +100,7 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
       final formatter = NumberFormat.currency(locale: 'pt-br', symbol: 'R\$');
       final double value = formatter.parse(_valueController.text).toDouble();
       final String description = _descriptionController.text.trim();
-      Payment payment = Payment.create(description, MonetaryValue(value), null, false);
+      Payment payment = Payment.create(description, MonetaryValue(value), null, null, false);
       await _component.savePayment(payment);
       showNotification("Transação salva com sucesso!", NotificationType.SUCCESS);
       Navigator.pushReplacementNamed(context, '/');

@@ -5,6 +5,7 @@ class TransactionQueries {
       "created_at DATETIME NOT NULL, "
       "last_update DATETIME, "
       "value REAL NOT NULL, "
+      "category INTEGER, "
       "account INTEGER, "
       "credit INTEGER)";
 
@@ -17,6 +18,7 @@ class TransactionQueries {
       "created_at, "
       "last_update, "
       "value, "
+      "category, "
       "account, "
       "credit FROM payment WHERE id = ?";
 
@@ -27,6 +29,7 @@ class TransactionQueries {
       "description = ?, "
       "last_update = ?, "
       "value = ?, "
+      "category = ?, "
       "account = ?, "
       "credit = ? "
       "WHERE id = ?";
