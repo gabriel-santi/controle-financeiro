@@ -8,7 +8,9 @@ import 'package:finapp/shared/widget/text.widget.dart';
 import 'package:flutter/material.dart';
 
 class EditTransactionPage extends StatefulWidget {
-  const EditTransactionPage({super.key});
+  final int transactionId;
+
+  const EditTransactionPage({super.key, required this.transactionId});
 
   @override
   State<EditTransactionPage> createState() => _EditTransactionPageState();
@@ -31,16 +33,28 @@ class _EditTransactionPageState extends State<EditTransactionPage> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: SingleChildScrollView(
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: MainTheme.spacing, vertical: MainTheme.spacing * 2),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: MainTheme.spacing * 2),
-                const BackButtonWidget(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const BackButtonWidget(),
+                    IconButton(
+                        onPressed: _onDelete,
+                        padding: EdgeInsets.all(MainTheme.spacing + 4),
+                        icon: Icon(
+                          Icons.delete_outline,
+                          size: 26,
+                          color: MainTheme.lightTheme.error,
+                        )),
+                  ],
+                ),
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: MainTheme.spacing * 2),
                   child: Center(
@@ -54,31 +68,17 @@ class _EditTransactionPageState extends State<EditTransactionPage> {
                 ),
                 SizedBox(height: MainTheme.spacing * 4),
                 CategorySelectorWidget(),
-                SizedBox(height: MainTheme.spacing * 6),
+                SizedBox(height: MainTheme.spacing * 4),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     ElevatedButton(
-                      onPressed: _onDelete,
-                      style: ButtonStyle(
-                          padding: MaterialStateProperty.resolveWith(
-                              (states) => EdgeInsets.symmetric(vertical: MainTheme.spacing, horizontal: MainTheme.spacing * 4)),
-                          backgroundColor: MaterialStateProperty.resolveWith((states) => Theme.of(context).colorScheme.error),
-                          shape: MaterialStateProperty.resolveWith(
-                              (states) => RoundedRectangleBorder(borderRadius: BorderRadius.circular(MainTheme.radiusMedium)))),
-                      child: TextWidget(
-                        text: 'Excluir'.hardcoded,
-                        color: Theme.of(context).colorScheme.onError,
-                      ),
-                    ),
-                    SizedBox(width: MainTheme.spacing * 2),
-                    ElevatedButton(
                       onPressed: _onSave,
                       style: ButtonStyle(
-                          padding: MaterialStateProperty.resolveWith(
-                              (states) => EdgeInsets.symmetric(vertical: MainTheme.spacing, horizontal: MainTheme.spacing * 4)),
-                          backgroundColor: MaterialStateProperty.resolveWith((states) => Theme.of(context).colorScheme.primary),
-                          shape: MaterialStateProperty.resolveWith(
+                          padding: WidgetStateProperty.resolveWith(
+                              (states) => EdgeInsets.symmetric(vertical: MainTheme.spacing * 2, horizontal: MainTheme.spacing * 4)),
+                          backgroundColor: WidgetStateProperty.resolveWith((states) => Theme.of(context).colorScheme.primary),
+                          shape: WidgetStateProperty.resolveWith(
                               (states) => RoundedRectangleBorder(borderRadius: BorderRadius.circular(MainTheme.radiusMedium)))),
                       child: TextWidget(
                         text: 'Salvar'.hardcoded,

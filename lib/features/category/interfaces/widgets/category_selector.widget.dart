@@ -1,3 +1,4 @@
+import 'package:finapp/features/category/domain/category.dart';
 import 'package:finapp/features/category/interfaces/widgets/empty_state_category.widget.dart';
 import 'package:finapp/shared/extensions/string_extension.dart';
 import 'package:finapp/shared/theme/theme.dart';
@@ -8,7 +9,11 @@ import 'package:flutter/material.dart';
 class CategorySelectorWidget extends StatelessWidget {
   CategorySelectorWidget({super.key});
 
-  final categories = [];
+  final categories = [
+    Category.load(1, "Food", "#0xFF0000"),
+    Category.load(2, "Study", "#0xFF0000"),
+    Category.load(3, "Transport", "#0xFF0000"),
+  ];
   final int? categorySelected = null;
 
   @override
@@ -29,7 +34,7 @@ class CategorySelectorWidget extends StatelessWidget {
                         label: categories[i].description,
                         fontSize: MainTheme.fontSizeSmall,
                         onClick: () {},
-                        color: categories[i].id == categorySelected ? categories[i].color : Theme.of(context).colorScheme.background,
+                        color: categories[i].id == categorySelected ? categories[i].color : Theme.of(context).colorScheme.surface,
                         border: Border.all(color: categories[i].id == categorySelected ? categories[i].color : Theme.of(context).colorScheme.primary),
                         textColor: categories[i].id == categorySelected
                             ? Theme.of(context).colorScheme.onPrimary.withOpacity(.6)

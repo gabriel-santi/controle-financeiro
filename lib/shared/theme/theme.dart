@@ -7,7 +7,7 @@ class MainTheme {
 
   static double get fontSizeSmall => 14;
 
-  static double get spacing => 10;
+  static double get spacing => 8;
 
   static double get radiusBig => 20;
 

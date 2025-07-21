@@ -27,29 +27,32 @@ class CustomButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onClick,
-      child: Container(
-        padding: padding ?? const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        decoration: BoxDecoration(
-          color: color ?? Theme.of(context).colorScheme.primary,
-          borderRadius: BorderRadius.circular(borderRadius ?? 8),
-          border: border,
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            if (icon != null)
-              Padding(
-                padding: EdgeInsets.only(left: MainTheme.spacing / 2),
-                child: icon,
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
+        onTap: onClick,
+        child: Container(
+          padding: padding ?? const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          decoration: BoxDecoration(
+            color: color ?? Theme.of(context).colorScheme.primary,
+            borderRadius: BorderRadius.circular(borderRadius ?? 8),
+            border: border,
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              if (icon != null)
+                Padding(
+                  padding: EdgeInsets.only(left: MainTheme.spacing / 2),
+                  child: icon,
+                ),
+              TextWidget(
+                text: label,
+                size: fontSize,
+                color: textColor ?? Theme.of(context).colorScheme.onPrimary,
               ),
-            TextWidget(
-              text: label,
-              size: fontSize,
-              color: textColor ?? Theme.of(context).colorScheme.onPrimary,
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

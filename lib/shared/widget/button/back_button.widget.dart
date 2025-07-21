@@ -12,12 +12,13 @@ class BackButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
         onPressed: () => onPressed != null ? onPressed!.call() : context.goNamed(AppRoute.home.name),
-        padding: EdgeInsets.all(MainTheme.spacing + 2),
+        padding: EdgeInsets.all(MainTheme.spacing + 4),
         style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.resolveWith((states) => Theme.of(context).colorScheme.secondary),
-            shadowColor: MaterialStateProperty.resolveWith((states) => Theme.of(context).colorScheme.shadow),
-            elevation: MaterialStateProperty.resolveWith((states) => 2)),
+            backgroundColor: WidgetStateProperty.resolveWith((states) => Theme.of(context).colorScheme.secondary),
+            shadowColor: WidgetStateProperty.resolveWith((states) => Theme.of(context).colorScheme.shadow),
+            elevation: WidgetStateProperty.resolveWith((states) => 2)),
         icon: Icon(
+          size: 20,
           Icons.chevron_left,
           color: Theme.of(context).colorScheme.onPrimary,
         ));

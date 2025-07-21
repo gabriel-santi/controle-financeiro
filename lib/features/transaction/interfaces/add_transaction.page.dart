@@ -54,10 +54,10 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
                   child: ElevatedButton(
                     onPressed: _onSave,
                     style: ButtonStyle(
-                        padding: MaterialStateProperty.resolveWith(
-                            (states) => EdgeInsets.symmetric(vertical: MainTheme.spacing, horizontal: MainTheme.spacing * 4)),
-                        backgroundColor: MaterialStateProperty.resolveWith((states) => Theme.of(context).colorScheme.primary),
-                        shape: MaterialStateProperty.resolveWith(
+                        padding: WidgetStateProperty.resolveWith(
+                            (states) => EdgeInsets.symmetric(vertical: MainTheme.spacing * 2, horizontal: MainTheme.spacing * 4)),
+                        backgroundColor: WidgetStateProperty.resolveWith((states) => Theme.of(context).colorScheme.primary),
+                        shape: WidgetStateProperty.resolveWith(
                             (states) => RoundedRectangleBorder(borderRadius: BorderRadius.circular(MainTheme.radiusMedium)))),
                     child: TextWidget(
                       text: 'Salvar'.hardcoded,
@@ -65,6 +65,7 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
                     ),
                   ),
                 ),
+                SizedBox(height: MainTheme.spacing * 2),
               ],
             ),
           ),

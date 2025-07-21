@@ -25,14 +25,17 @@ final GoRouter appRouter = GoRouter(
       builder: (context, state) => const HomePage(),
       routes: [
         GoRoute(
-          path: 'transaction/create',
+          path: 'transaction/new',
           name: AppRoute.transactionCreate.name,
           builder: (context, state) => const AddTransactionPage(),
         ),
         GoRoute(
-          path: 'transaction/edit',
+          path: 'transaction/:id',
           name: AppRoute.transactionEdit.name,
-          builder: (context, state) => const EditTransactionPage(),
+          builder: (context, state) {
+            final transactionId = int.parse(state.pathParameters["id"]!);
+            return EditTransactionPage(transactionId: transactionId);
+          },
         ),
         GoRoute(
           path: 'limit',
