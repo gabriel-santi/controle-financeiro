@@ -1,14 +1,13 @@
-import 'package:finapp/domain/monetary_value.dart';
-import 'package:finapp/domain/payment.dart';
-import 'package:finapp/domain/transaction.dart';
-import 'package:finapp/interfaces/page/parameter/edit_limit.parameter.dart';
+import 'package:finapp/features/transaction/domain/monetary_value.dart';
+import 'package:finapp/features/transaction/domain/payment.dart';
+import 'package:finapp/features/transaction/domain/transaction.dart';
+import 'package:finapp/features/transaction/interfaces/widgets/limit_used.widget.dart';
+import 'package:finapp/features/transaction/interfaces/widgets/transaction_card.widget.dart';
 import 'package:finapp/interfaces/theme/theme.dart';
-import 'package:finapp/interfaces/widget/button/add_button.widget.dart';
-import 'package:finapp/interfaces/widget/notification.widget.dart';
-import 'package:finapp/interfaces/widget/overlay/month_selector.widget.dart';
-import 'package:finapp/interfaces/widget/resume_card.widget.dart';
-import 'package:finapp/interfaces/widget/select_month.widget.dart';
-import 'package:finapp/interfaces/widget/transaction_card.widget.dart';
+import 'package:finapp/shared/widget/button/add_button.widget.dart';
+import 'package:finapp/shared/widget/notification.widget.dart';
+import 'package:finapp/shared/widget/overlay/month_selector.widget.dart';
+import 'package:finapp/shared/widget/select_month.widget.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -28,8 +27,6 @@ class _HomePageState extends State<HomePage> {
     if (mounted) setState(() {});
   }
 
-  final double _limit = 1000;
-  final double _currentValue = 800;
   final int selectedMonth = 7;
   final transactions = [];
 
@@ -53,7 +50,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _onClickResume() {
-    Navigator.pushReplacementNamed(context, '/limit', arguments: EditLimitParameters(_limit, _currentValue));
+    // Navigator.pushReplacementNamed(context, '/limit', arguments: EditLimitParameters(_limit, _currentValue));
   }
 
   void _selectMonth(int month) {
@@ -100,7 +97,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 SizedBox(height: MainTheme.spacing),
-                ResumeCardWidget(limit: MonetaryValue(5000), currentValue: MonetaryValue(2000), onCLick: _onClickResume),
+                LimitUsedWidget(limit: MonetaryValue(5000), currentValue: MonetaryValue(2000), onClick: _onClickResume),
                 SizedBox(height: MainTheme.spacing * 4),
                 Center(
                   child: SelectMonthWidget(

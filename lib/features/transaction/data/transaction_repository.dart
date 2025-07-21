@@ -1,6 +1,6 @@
-import 'package:finapp/domain/payment.dart';
-import 'package:finapp/domain/transaction.dart';
-import 'package:finapp/infrastructure/entity/dao/transaction/transaction.dao.dart';
+import 'package:finapp/features/transaction/data/transaction.dao.dart';
+import 'package:finapp/features/transaction/domain/payment.dart';
+import 'package:finapp/features/transaction/domain/transaction.dart';
 
 abstract class TransactionRepo {
   Future<List<Transaction>> getTransactionsByDate(int month, int year);

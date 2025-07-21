@@ -1,9 +1,9 @@
 import 'package:finapp/features/category/interfaces/widgets/category_selector.widget.dart';
+import 'package:finapp/features/transaction/interfaces/widgets/transaction_form.widget.dart';
 import 'package:finapp/interfaces/theme/theme.dart';
-import 'package:finapp/interfaces/widget/button/back_button.widget.dart';
-import 'package:finapp/interfaces/widget/notification.widget.dart';
-import 'package:finapp/interfaces/widget/text.widget.dart';
-import 'package:finapp/interfaces/widget/transaction_form.widget.dart';
+import 'package:finapp/shared/widget/button/back_button.widget.dart';
+import 'package:finapp/shared/widget/notification.widget.dart';
+import 'package:finapp/shared/widget/text.widget.dart';
 import 'package:flutter/material.dart';
 
 class EditTransactionPage extends StatefulWidget {

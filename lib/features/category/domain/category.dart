@@ -1,14 +1,15 @@
-import 'package:finapp/domain/entity.dart';
 import 'package:flutter/material.dart';
 
-class Category extends Entity {
+class Category {
   final int _id;
   final String description;
   final String _color;
 
   Category._(this._id, this.description, this._color);
 
-  Category.create(this.description, this._color) : _id = -1;
+  factory Category.create(String description, String color) {
+    return Category._(-1, description, color);
+  }
 
   Category.load(this._id, this.description, this._color);
 
@@ -19,7 +20,6 @@ class Category extends Entity {
 
   Map<String, dynamic> toMap() => {'id': id, 'description': description, 'color': _color};
 
-  @override
   int get id => _id;
 
   Color get color => Color(int.parse(_color));

@@ -1,5 +1,5 @@
-import 'package:finapp/domain/monetary_value.dart';
-import 'package:finapp/domain/transaction.dart';
+import 'package:finapp/features/transaction/domain/monetary_value.dart';
+import 'package:finapp/features/transaction/domain/transaction.dart';
 
 class Payment extends Transaction {
   final int? category;
@@ -8,9 +8,7 @@ class Payment extends Transaction {
 
   Payment.create(super.description, super.value, this.category, this.account, this.credit) : super.create();
 
-  Payment.load(
-      super.id, super.description, super.createdAt, super.lastUpdate, super.value, this.category, this.account, this.credit)
-      : super.load();
+  Payment.load(super.id, super.description, super.createdAt, super.lastUpdate, super.value, this.category, this.account, this.credit) : super.load();
 
   factory Payment.fromMap(Map<String, dynamic> map) {
     return Payment.load(

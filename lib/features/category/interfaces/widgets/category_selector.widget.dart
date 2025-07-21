@@ -1,7 +1,7 @@
 import 'package:finapp/features/category/interfaces/widgets/empty_state_category.widget.dart';
 import 'package:finapp/interfaces/theme/theme.dart';
-import 'package:finapp/interfaces/widget/button/custom_button.widget.dart';
-import 'package:finapp/interfaces/widget/text.widget.dart';
+import 'package:finapp/shared/widget/button/custom_button.widget.dart';
+import 'package:finapp/shared/widget/text.widget.dart';
 import 'package:flutter/material.dart';
 
 class CategorySelectorWidget extends StatelessWidget {

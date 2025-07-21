@@ -1,7 +1,7 @@
-import 'package:finapp/domain/payment.dart';
-import 'package:finapp/domain/transaction.dart';
-import 'package:finapp/infrastructure/entity/dao/transaction/transaction.queries.dart';
-import 'package:finapp/infrastructure/entity/db_config.sqflite.dart';
+import 'package:finapp/database/db_config.sqflite.dart';
+import 'package:finapp/features/transaction/data/transaction.queries.dart';
+import 'package:finapp/features/transaction/domain/payment.dart';
+import 'package:finapp/features/transaction/domain/transaction.dart';
 import 'package:sqflite/sqflite.dart' hide Transaction;
 
 class TransactionDao {
@@ -11,8 +11,8 @@ class TransactionDao {
 
   Future<List<Transaction>> getPaymentsByDate(int selectedMonth, int selectedYear) async {
     db ??= await DatabaseConfig.instance.getDatabase();
-    List<Map<String, dynamic>> rows = await db!.rawQuery(
-        TransactionQueries.getPaymentsByMonthQuery, [selectedMonth.toString().padLeft(2, '0'), selectedYear.toString()]);
+    List<Map<String, dynamic>> rows =
+        await db!.rawQuery(TransactionQueries.getPaymentsByMonthQuery, [selectedMonth.toString().padLeft(2, '0'), selectedYear.toString()]);
     List<Payment> transactions = rows.map((mapTransaction) => Payment.fromMap(mapTransaction)).toList();
     return transactions;
   }
@@ -26,14 +26,8 @@ class TransactionDao {
 
   Future<void> addPayment(Payment payment) async {
     db ??= await DatabaseConfig.instance.getDatabase();
-    await db!.rawQuery(TransactionQueries.addPaymentQuery, [
-      payment.description,
-      payment.createdAt.toIso8601String(),
-      payment.value.value,
-      payment.category,
-      payment.account,
-      payment.credit ? 1 : 0
-    ]);
+    await db!.rawQuery(TransactionQueries.addPaymentQuery,
+        [payment.description, payment.createdAt.toIso8601String(), payment.value.value, payment.category, payment.account, payment.credit ? 1 : 0]);
     return;
   }
 

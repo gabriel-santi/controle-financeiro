@@ -1,5 +1,5 @@
 import 'package:finapp/interfaces/theme/theme.dart';
-import 'package:finapp/interfaces/widget/text.widget.dart';
+import 'package:finapp/shared/widget/text.widget.dart';
 import 'package:flutter/material.dart';
 
 class SelectMonthWidget extends StatelessWidget {

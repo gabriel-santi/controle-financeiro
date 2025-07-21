@@ -1,15 +1,15 @@
-import 'package:finapp/domain/monetary_value.dart';
+import 'package:finapp/features/transaction/domain/monetary_value.dart';
 import 'package:finapp/interfaces/theme/theme.dart';
-import 'package:finapp/interfaces/widget/progress_bar.widget.dart';
-import 'package:finapp/interfaces/widget/text.widget.dart';
+import 'package:finapp/shared/widget/progress_bar.widget.dart';
+import 'package:finapp/shared/widget/text.widget.dart';
 import 'package:flutter/material.dart';
 
-class ResumeCardWidget extends StatelessWidget {
+class LimitUsedWidget extends StatelessWidget {
   final MonetaryValue limit;
   final MonetaryValue currentValue;
-  final Function() onCLick;
+  final Function() onClick;
 
-  const ResumeCardWidget({super.key, required this.limit, required this.currentValue, required this.onCLick});
+  const LimitUsedWidget({super.key, required this.limit, required this.currentValue, required this.onClick});
 
   @override
   Widget build(BuildContext context) {

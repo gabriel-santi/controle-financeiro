@@ -1,8 +1,8 @@
 import 'package:finapp/features/category/interfaces/category.page.dart';
-import 'package:finapp/interfaces/page/add_transaction.page.dart';
+import 'package:finapp/features/transaction/interfaces/add_transaction.page.dart';
+import 'package:finapp/features/transaction/interfaces/edit_transaction.page.dart';
+import 'package:finapp/features/transaction/interfaces/home.page.dart';
 import 'package:finapp/interfaces/page/edit_limit.page.dart';
-import 'package:finapp/interfaces/page/edit_transaction.page.dart';
-import 'package:finapp/interfaces/page/home.page.dart';
 import 'package:flutter/material.dart';
 
 class Routes {

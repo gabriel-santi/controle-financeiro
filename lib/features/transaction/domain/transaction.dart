@@ -1,7 +1,6 @@
-import 'package:finapp/domain/entity.dart';
-import 'package:finapp/domain/monetary_value.dart';
+import 'package:finapp/features/transaction/domain/monetary_value.dart';
 
-abstract class Transaction extends Entity {
+abstract class Transaction {
   final int _id;
   final String description;
   final DateTime createdAt;
