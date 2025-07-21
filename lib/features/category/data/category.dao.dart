@@ -1,5 +1,5 @@
-import 'package:finapp/domain/category.dart';
-import 'package:finapp/infrastructure/entity/dao/category/category.queries.dart';
+import 'package:finapp/features/category/data/category.queries.dart';
+import 'package:finapp/features/category/domain/category.dart';
 import 'package:finapp/infrastructure/entity/db_config.sqflite.dart';
 import 'package:sqflite/sqflite.dart';
 

@@ -1,5 +1,5 @@
+import 'package:finapp/features/category/interfaces/category.page.dart';
 import 'package:finapp/interfaces/page/add_transaction.page.dart';
-import 'package:finapp/interfaces/page/category.page.dart';
 import 'package:finapp/interfaces/page/edit_limit.page.dart';
 import 'package:finapp/interfaces/page/edit_transaction.page.dart';
 import 'package:finapp/interfaces/page/home.page.dart';

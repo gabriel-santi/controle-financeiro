@@ -1,5 +1,5 @@
-import 'package:finapp/domain/category.dart';
-import 'package:finapp/infrastructure/entity/dao/category/category.dao.dart';
+import 'package:finapp/features/category/data/category.dao.dart';
+import 'package:finapp/features/category/domain/category.dart';
 
 abstract class CategoryRepo {
   Future<List<Category>> getCategories();

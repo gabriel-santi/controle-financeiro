@@ -1,6 +1,6 @@
+import 'package:finapp/features/category/interfaces/widgets/category_selector.widget.dart';
 import 'package:finapp/interfaces/theme/theme.dart';
 import 'package:finapp/interfaces/widget/button/back_button.widget.dart';
-import 'package:finapp/interfaces/widget/category_selector.widget.dart';
 import 'package:finapp/interfaces/widget/notification.widget.dart';
 import 'package:finapp/interfaces/widget/text.widget.dart';
 import 'package:finapp/interfaces/widget/transaction_form.widget.dart';
