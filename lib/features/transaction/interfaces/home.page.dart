@@ -6,6 +6,7 @@ import 'package:finapp/features/transaction/domain/transaction.dart';
 import 'package:finapp/features/transaction/interfaces/widgets/limit_used.widget.dart';
 import 'package:finapp/features/transaction/interfaces/widgets/transaction_card.widget.dart';
 import 'package:finapp/route/routes.dart';
+import 'package:finapp/shared/extensions/string_extension.dart';
 import 'package:finapp/shared/theme/theme.dart';
 import 'package:finapp/shared/widget/button/add_button.widget.dart';
 import 'package:finapp/shared/widget/notification.widget.dart';
@@ -20,15 +21,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  void update() {
-    if (mounted) setState(() {});
-  }
-
   final int selectedMonth = 7;
   final transactions = [];
 
@@ -36,7 +28,7 @@ class _HomePageState extends State<HomePage> {
     try {
       // await getTransactions();
     } catch (e) {
-      showNotification("Não foi possível buscar transações", NotificationType.ERROR);
+      showNotification("Não foi possível buscar transações".hardcoded, NotificationType.ERROR);
     }
   }
 
@@ -75,7 +67,7 @@ class _HomePageState extends State<HomePage> {
                   text: TextSpan(
                     children: [
                       TextSpan(
-                        text: 'Seja bem-vindo(a), ',
+                        text: 'Seja bem-vindo(a), '.hardcoded,
                         style: TextStyle(
                           fontSize: MainTheme.fontSizeSmall,
                           fontWeight: FontWeight.w300,
@@ -83,7 +75,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                       TextSpan(
-                        text: 'Username!',
+                        text: 'Username!'.hardcoded,
                         style: TextStyle(
                           fontSize: MainTheme.fontSizeMedium,
                           fontWeight: FontWeight.w400,

@@ -1,3 +1,4 @@
+import 'package:finapp/shared/extensions/string_extension.dart';
 import 'package:finapp/shared/theme/theme.dart';
 import 'package:finapp/shared/widget/text.widget.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +34,7 @@ class CurrencyInputWidget extends StatelessWidget {
       validator: (value) {
         if (validator != null) return validator!(value);
         if (value == null || value.trim().isEmpty) {
-          return '*Campo obrigatório';
+          return '*Campo obrigatório'.hardcoded;
         }
         return null;
       },

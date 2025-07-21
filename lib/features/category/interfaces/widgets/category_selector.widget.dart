@@ -1,4 +1,5 @@
 import 'package:finapp/features/category/interfaces/widgets/empty_state_category.widget.dart';
+import 'package:finapp/shared/extensions/string_extension.dart';
 import 'package:finapp/shared/theme/theme.dart';
 import 'package:finapp/shared/widget/button/custom_button.widget.dart';
 import 'package:finapp/shared/widget/text.widget.dart';
@@ -15,7 +16,7 @@ class CategorySelectorWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const TextWidget(text: "Categoria", weight: FontWeight.w500),
+        TextWidget(text: "Categoria".hardcoded, weight: FontWeight.w500),
         SizedBox(height: MainTheme.spacing),
         categories.isNotEmpty
             ? Wrap(
@@ -37,7 +38,7 @@ class CategorySelectorWidget extends StatelessWidget {
                     ),
                   FittedBox(
                     child: CustomButtonWidget(
-                      label: "Adicionar",
+                      label: "Adicionar".hardcoded,
                       textColor: Theme.of(context).colorScheme.onSecondary,
                       fontSize: MainTheme.fontSizeSmall,
                       icon: Icon(Icons.add, size: 16, color: Theme.of(context).colorScheme.onSecondary),

@@ -1,3 +1,4 @@
+import 'package:finapp/shared/extensions/string_extension.dart';
 import 'package:finapp/shared/theme/theme.dart';
 import 'package:finapp/shared/widget/button/custom_button.widget.dart';
 import 'package:finapp/shared/widget/text.widget.dart';
@@ -15,18 +16,18 @@ class MonthSelectorWidget extends StatefulWidget {
 
 class _MonthSelectorWidgetState extends State<MonthSelectorWidget> {
   final List<String> months = [
-    'Janeiro',
-    'Fevereiro',
-    'Março',
-    'Abril',
-    'Maio',
-    'Junho',
-    'Julho',
-    'Agosto',
-    'Setembro',
-    'Outubro',
-    'Novembro',
-    'Dezembro'
+    'Janeiro'.hardcoded,
+    'Fevereiro'.hardcoded,
+    'Março'.hardcoded,
+    'Abril'.hardcoded,
+    'Maio'.hardcoded,
+    'Junho'.hardcoded,
+    'Julho'.hardcoded,
+    'Agosto'.hardcoded,
+    'Setembro'.hardcoded,
+    'Outubro'.hardcoded,
+    'Novembro'.hardcoded,
+    'Dezembro'.hardcoded
   ];
 
   late int _selectedMonth;
@@ -68,7 +69,7 @@ class _MonthSelectorWidgetState extends State<MonthSelectorWidget> {
             ),
           ),
           SizedBox(height: MainTheme.spacing),
-          const Align(alignment: Alignment.centerLeft, child: TextWidget(text: "Mês selecionado")),
+          Align(alignment: Alignment.centerLeft, child: TextWidget(text: "Mês selecionado".hardcoded)),
           SizedBox(height: MainTheme.spacing),
           GridView.builder(
             shrinkWrap: true,
@@ -100,7 +101,7 @@ class _MonthSelectorWidgetState extends State<MonthSelectorWidget> {
           ),
           const Spacer(),
           CustomButtonWidget(
-              label: "Selecionar",
+              label: "Selecionar".hardcoded,
               borderRadius: MainTheme.radiusBig,
               padding: EdgeInsets.symmetric(horizontal: 16, vertical: MainTheme.spacing * 2),
               textColor: Theme.of(context).colorScheme.onSecondary,

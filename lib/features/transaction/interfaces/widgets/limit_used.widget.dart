@@ -1,5 +1,6 @@
 import 'package:finapp/features/transaction/domain/monetary_value.dart';
 import 'package:finapp/features/transaction/interfaces/widgets/progress_bar.widget.dart';
+import 'package:finapp/shared/extensions/string_extension.dart';
 import 'package:finapp/shared/theme/theme.dart';
 import 'package:finapp/shared/widget/text.widget.dart';
 import 'package:flutter/material.dart';
@@ -39,7 +40,7 @@ class LimitUsedWidget extends StatelessWidget {
               alignment: Alignment.centerRight,
               child: Icon(Icons.edit_outlined, size: 18, color: Theme.of(context).colorScheme.onPrimary),
             ),
-            Center(child: TextWidget(text: 'Limite disponível', size: MainTheme.fontSizeSmall)),
+            Center(child: TextWidget(text: 'Limite disponível'.hardcoded, size: MainTheme.fontSizeSmall)),
             Center(
                 child: TextWidget(
                     text: (limit - currentValue).formattedValue(),

@@ -1,3 +1,4 @@
+import 'package:finapp/shared/extensions/string_extension.dart';
 import 'package:finapp/shared/theme/theme.dart';
 import 'package:finapp/shared/widget/text.widget.dart';
 import 'package:flutter/material.dart';
@@ -13,18 +14,18 @@ class SelectMonthWidget extends StatelessWidget {
   });
 
   final List<String> months = [
-    'Janeiro',
-    'Fevereiro',
-    'Março',
-    'Abril',
-    'Maio',
-    'Junho',
-    'Julho',
-    'Agosto',
-    'Setembro',
-    'Outubro',
-    'Novembro',
-    'Dezembro'
+    'Janeiro'.hardcoded,
+    'Fevereiro'.hardcoded,
+    'Março'.hardcoded,
+    'Abril'.hardcoded,
+    'Maio'.hardcoded,
+    'Junho'.hardcoded,
+    'Julho'.hardcoded,
+    'Agosto'.hardcoded,
+    'Setembro'.hardcoded,
+    'Outubro'.hardcoded,
+    'Novembro'.hardcoded,
+    'Dezembro'.hardcoded
   ];
 
   @override

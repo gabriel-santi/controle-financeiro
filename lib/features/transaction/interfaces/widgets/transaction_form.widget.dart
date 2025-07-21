@@ -1,5 +1,6 @@
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:finapp/features/transaction/interfaces/widgets/currency_input.widget.dart';
+import 'package:finapp/shared/extensions/string_extension.dart';
 import 'package:finapp/shared/theme/theme.dart';
 import 'package:finapp/shared/widget/text.widget.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +27,7 @@ class TransactionFormWidget extends StatelessWidget {
       child: Column(
         children: [
           CurrencyInputWidget(
-            label: "Valor",
+            label: "Valor".hardcoded,
             controller: valueController,
             onSubmitted: (_) {
               FocusScope.of(context).unfocus();
@@ -34,7 +35,7 @@ class TransactionFormWidget extends StatelessWidget {
             },
             formatters: [_formatter],
             validator: (_) {
-              if (valueController.text.trim().isEmpty) return "*Campo obrigatório";
+              if (valueController.text.trim().isEmpty) return "*Campo obrigatório".hardcoded;
               return null;
             },
           ),
@@ -44,7 +45,7 @@ class TransactionFormWidget extends StatelessWidget {
               FocusScope.of(context).unfocus();
             },
             decoration: InputDecoration(
-              label: const TextWidget(text: "Descrição"),
+              label: TextWidget(text: "Descrição".hardcoded),
               alignLabelWithHint: true,
               border: UnderlineInputBorder(borderSide: BorderSide(color: Theme.of(context).colorScheme.primary)),
               enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Theme.of(context).colorScheme.primary)),
@@ -55,7 +56,7 @@ class TransactionFormWidget extends StatelessWidget {
             },
             validator: (value) {
               if (value == null || value.trim().isEmpty) {
-                return '*Campo obrigatório';
+                return '*Campo obrigatório'.hardcoded;
               }
               return null;
             },

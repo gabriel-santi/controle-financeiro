@@ -1,5 +1,6 @@
 import 'package:finapp/features/category/interfaces/widgets/category_selector.widget.dart';
 import 'package:finapp/features/transaction/interfaces/widgets/transaction_form.widget.dart';
+import 'package:finapp/shared/extensions/string_extension.dart';
 import 'package:finapp/shared/theme/theme.dart';
 import 'package:finapp/shared/widget/button/back_button.widget.dart';
 import 'package:finapp/shared/widget/notification.widget.dart';
@@ -43,7 +44,7 @@ class _EditTransactionPageState extends State<EditTransactionPage> {
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: MainTheme.spacing * 2),
                   child: Center(
-                    child: TextWidget(text: "Editar transação", size: MainTheme.fontSizeLarge, weight: FontWeight.w400),
+                    child: TextWidget(text: "Editar transação".hardcoded, size: MainTheme.fontSizeLarge, weight: FontWeight.w400),
                   ),
                 ),
                 TransactionFormWidget(
@@ -66,7 +67,7 @@ class _EditTransactionPageState extends State<EditTransactionPage> {
                           shape: MaterialStateProperty.resolveWith(
                               (states) => RoundedRectangleBorder(borderRadius: BorderRadius.circular(MainTheme.radiusMedium)))),
                       child: TextWidget(
-                        text: 'Excluir',
+                        text: 'Excluir'.hardcoded,
                         color: Theme.of(context).colorScheme.onError,
                       ),
                     ),
@@ -80,7 +81,7 @@ class _EditTransactionPageState extends State<EditTransactionPage> {
                           shape: MaterialStateProperty.resolveWith(
                               (states) => RoundedRectangleBorder(borderRadius: BorderRadius.circular(MainTheme.radiusMedium)))),
                       child: TextWidget(
-                        text: 'Salvar',
+                        text: 'Salvar'.hardcoded,
                         color: Theme.of(context).colorScheme.secondary,
                       ),
                     ),
@@ -98,19 +99,19 @@ class _EditTransactionPageState extends State<EditTransactionPage> {
     if (_formKey.currentState!.validate() == false) return;
 
     try {
-      showNotification("Transação salva com sucesso!", NotificationType.SUCCESS);
+      showNotification("Transação salva com sucesso!".hardcoded, NotificationType.SUCCESS);
       if (mounted) Navigator.pushReplacementNamed(context, '/');
     } catch (e) {
-      showNotification("Não foi possível salvar a transação!", NotificationType.ERROR);
+      showNotification("Não foi possível salvar a transação!".hardcoded, NotificationType.ERROR);
     }
   }
 
   void _onDelete() async {
     try {
-      showNotification("Transação excluída com sucesso!", NotificationType.SUCCESS);
+      showNotification("Transação excluída com sucesso!".hardcoded, NotificationType.SUCCESS);
       if (mounted) Navigator.pushReplacementNamed(context, '/');
     } catch (e) {
-      showNotification("Não foi possível salvar a transação!", NotificationType.ERROR);
+      showNotification("Não foi possível salvar a transação!".hardcoded, NotificationType.ERROR);
     }
   }
 }

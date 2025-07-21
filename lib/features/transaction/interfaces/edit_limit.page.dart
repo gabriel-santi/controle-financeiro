@@ -2,6 +2,7 @@ import 'package:currency_text_input_formatter/currency_text_input_formatter.dart
 import 'package:finapp/features/transaction/domain/monetary_value.dart';
 import 'package:finapp/features/transaction/interfaces/widgets/currency_input.widget.dart';
 import 'package:finapp/features/transaction/interfaces/widgets/progress_bar.widget.dart';
+import 'package:finapp/shared/extensions/string_extension.dart';
 import 'package:finapp/shared/theme/theme.dart';
 import 'package:finapp/shared/widget/button/back_button.widget.dart';
 import 'package:finapp/shared/widget/text.widget.dart';
@@ -53,19 +54,19 @@ class _EditLimitPageState extends State<EditLimitPage> {
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: MainTheme.spacing * 2),
                   child: Center(
-                    child: TextWidget(text: "Ajustar limite", size: MainTheme.fontSizeLarge, weight: FontWeight.w400),
+                    child: TextWidget(text: "Ajustar limite".hardcoded, size: MainTheme.fontSizeLarge, weight: FontWeight.w400),
                   ),
                 ),
                 SizedBox(height: MainTheme.spacing * 4),
                 Form(
                   key: _formKey,
                   child: CurrencyInputWidget(
-                    label: "Valor",
+                    label: "Valor".hardcoded,
                     controller: _valueController,
                     formatters: [_formatter],
                     validator: (_) {
-                      if (_valueController.text.trim().isEmpty) return "*Campo obrigatório";
-                      if (_formatter.getUnformattedValue() == 0) return "*Valor inválido";
+                      if (_valueController.text.trim().isEmpty) return "*Campo obrigatório".hardcoded;
+                      if (_formatter.getUnformattedValue() == 0) return "*Valor inválido".hardcoded;
                       return null;
                     },
                   ),
@@ -84,7 +85,7 @@ class _EditLimitPageState extends State<EditLimitPage> {
                         shape: MaterialStateProperty.resolveWith(
                             (states) => RoundedRectangleBorder(borderRadius: BorderRadius.circular(MainTheme.radiusMedium)))),
                     child: TextWidget(
-                      text: 'Salvar',
+                      text: 'Salvar'.hardcoded,
                       color: Theme.of(context).colorScheme.secondary,
                     ),
                   ),

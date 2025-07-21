@@ -1,4 +1,5 @@
 import 'package:finapp/features/category/domain/category.dart';
+import 'package:finapp/shared/extensions/string_extension.dart';
 import 'package:finapp/shared/theme/theme.dart';
 import 'package:finapp/shared/widget/button/back_button.widget.dart';
 import 'package:finapp/shared/widget/button/custom_button.widget.dart';
@@ -48,12 +49,12 @@ class _CategoryPageState extends State<CategoryPage> {
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: MainTheme.spacing * 2),
                   child: Center(
-                    child: TextWidget(text: "Categorias", size: MainTheme.fontSizeLarge, weight: FontWeight.w400),
+                    child: TextWidget(text: "Categorias".hardcoded, size: MainTheme.fontSizeLarge, weight: FontWeight.w400),
                   ),
                 ),
                 false
-                    ? const TextWidget(text: "Editar categoria", weight: FontWeight.w400)
-                    : const TextWidget(text: "Nova categoria", weight: FontWeight.w400),
+                    ? TextWidget(text: "Editar categoria".hardcoded, weight: FontWeight.w400)
+                    : TextWidget(text: "Nova categoria".hardcoded, weight: FontWeight.w400),
                 Form(
                   key: _formKey,
                   child: TextFormField(
@@ -62,7 +63,7 @@ class _CategoryPageState extends State<CategoryPage> {
                     },
                     autofocus: false,
                     decoration: InputDecoration(
-                      label: const TextWidget(text: "Descrição"),
+                      label: TextWidget(text: "Descrição".hardcoded),
                       alignLabelWithHint: true,
                       border: UnderlineInputBorder(borderSide: BorderSide(color: Theme.of(context).colorScheme.primary)),
                       enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Theme.of(context).colorScheme.primary)),
@@ -73,7 +74,7 @@ class _CategoryPageState extends State<CategoryPage> {
                     },
                     validator: (value) {
                       if (value == null || value.trim().isEmpty) {
-                        return '*Campo obrigatório';
+                        return '*Campo obrigatório'.hardcoded;
                       }
                       return null;
                     },
@@ -99,7 +100,7 @@ class _CategoryPageState extends State<CategoryPage> {
                       ),
                       child: Row(
                         children: [
-                          const TextWidget(text: 'Cor'),
+                          TextWidget(text: 'Cor'.hardcoded),
                           Padding(
                             padding: EdgeInsets.symmetric(horizontal: MainTheme.spacing),
                             child: TextWidget(
@@ -122,20 +123,22 @@ class _CategoryPageState extends State<CategoryPage> {
                   children: false
                       ? [
                           CustomButtonWidget(
-                              label: "Cancelar",
+                              label: "Cancelar".hardcoded,
                               color: Theme.of(context).colorScheme.error,
                               textColor: Theme.of(context).colorScheme.onSecondary,
                               onClick: _cancelEditing),
                           SizedBox(width: MainTheme.spacing),
                           SizedBox(
                             width: 200,
-                            child: CustomButtonWidget(label: "Salvar", textColor: Theme.of(context).colorScheme.onSecondary, onClick: _saveCategory),
+                            child: CustomButtonWidget(
+                                label: "Salvar".hardcoded, textColor: Theme.of(context).colorScheme.onSecondary, onClick: _saveCategory),
                           ),
                         ]
                       : [
                           SizedBox(
                               width: 150,
-                              child: CustomButtonWidget(label: "Criar", textColor: Theme.of(context).colorScheme.onSecondary, onClick: _saveCategory))
+                              child: CustomButtonWidget(
+                                  label: "Criar".hardcoded, textColor: Theme.of(context).colorScheme.onSecondary, onClick: _saveCategory))
                         ],
                 ),
                 SizedBox(height: MainTheme.spacing * 4),
@@ -197,7 +200,7 @@ class _CategoryPageState extends State<CategoryPage> {
       builder: (context) {
         Color editingColor = _selectedColor;
         return AlertDialog(
-          title: const TextWidget(text: 'Selecione uma cor'),
+          title: TextWidget(text: 'Selecione uma cor'.hardcoded),
           content: SingleChildScrollView(
             child: ColorPicker(
               color: editingColor,
@@ -220,12 +223,14 @@ class _CategoryPageState extends State<CategoryPage> {
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: const TextWidget(text: 'Cancelar'),
+              child: TextWidget(text: 'Cancelar'.hardcoded),
             ),
             SizedBox(
                 width: 150,
                 child: CustomButtonWidget(
-                    label: "Selecionar", textColor: Theme.of(context).colorScheme.onSecondary, onClick: () => Navigator.pop(context, editingColor))),
+                    label: "Selecionar".hardcoded,
+                    textColor: Theme.of(context).colorScheme.onSecondary,
+                    onClick: () => Navigator.pop(context, editingColor))),
           ],
         );
       },
@@ -242,10 +247,10 @@ class _CategoryPageState extends State<CategoryPage> {
     if (!_formKey.currentState!.validate()) return;
 
     try {
-      showNotification("Categoria salva com sucesso!", NotificationType.SUCCESS);
+      showNotification("Categoria salva com sucesso!".hardcoded, NotificationType.SUCCESS);
       _descriptionController.clear();
     } catch (e) {
-      showNotification("Não foi possível salvar categoria");
+      showNotification("Não foi possível salvar categoria".hardcoded);
     }
   }
 
@@ -266,7 +271,7 @@ class _CategoryPageState extends State<CategoryPage> {
       builder: (context) {
         return AlertDialog(
           title: TextWidget(
-            text: 'Excluir categoria',
+            text: 'Excluir categoria'.hardcoded,
             weight: FontWeight.w500,
             size: MainTheme.fontSizeMedium + 2,
           ),
@@ -274,9 +279,10 @@ class _CategoryPageState extends State<CategoryPage> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Icon(Icons.warning_rounded, color: Theme.of(context).colorScheme.tertiary, size: 50),
-              TextWidget(maxLines: 5, size: MainTheme.fontSizeMedium - 2, text: 'Todas as transações vinculadas a essa categoria serão afetadas.'),
               TextWidget(
-                text: 'Deseja mesmo excluir?',
+                  maxLines: 5, size: MainTheme.fontSizeMedium - 2, text: 'Todas as transações vinculadas a essa categoria serão afetadas.'.hardcoded),
+              TextWidget(
+                text: 'Deseja mesmo excluir?'.hardcoded,
                 size: MainTheme.fontSizeMedium - 2,
               ),
             ],
@@ -284,14 +290,14 @@ class _CategoryPageState extends State<CategoryPage> {
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context, false),
-              child: const TextWidget(text: 'Cancelar'),
+              child: TextWidget(text: 'Cancelar'.hardcoded),
             ),
             SizedBox(
               width: 150,
               child: CustomButtonWidget(
                   color: Theme.of(context).colorScheme.error,
                   textColor: Theme.of(context).colorScheme.onSecondary,
-                  label: "Excluir",
+                  label: "Excluir".hardcoded,
                   onClick: () => Navigator.pop(context, true)),
             ),
           ],
@@ -302,9 +308,9 @@ class _CategoryPageState extends State<CategoryPage> {
     if (confirm != true) return;
 
     try {
-      showNotification("Categoria excluída com sucesso!", NotificationType.SUCCESS);
+      showNotification("Categoria excluída com sucesso!".hardcoded, NotificationType.SUCCESS);
     } catch (e) {
-      showNotification("Não foi possível excluir categoria");
+      showNotification("Não foi possível excluir categoria".hardcoded);
     }
   }
 }
