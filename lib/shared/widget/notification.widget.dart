@@ -4,7 +4,6 @@ import 'dart:collection';
 import 'package:finapp/shared/theme/theme.dart';
 import 'package:finapp/shared/widget/text.widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 
 // ignore_for_file: constant_identifier_names
 
@@ -25,7 +24,7 @@ class NotificationWidget extends StatefulWidget {
 
 class NotificationWidgetState extends State<NotificationWidget> with TickerProviderStateMixin {
   final ListQueue<CustomNotification> _notifications = ListQueue();
-  AnimationController? _animationController;
+  double _topPosition = -80;
   Timer? _timer;
   final Duration _notificationDuration = const Duration(seconds: 3);
 
@@ -43,13 +42,15 @@ class NotificationWidgetState extends State<NotificationWidget> with TickerProvi
 
   void _showNotification() {
     if (_timer != null) _timer?.cancel();
-    _animationController?.forward();
+    _topPosition = 10;
     _timer = Timer(_notificationDuration, () => _removeNotification());
   }
 
   void _removeNotification() async {
     if (_notifications.isNotEmpty) {
-      _animationController?.reverse();
+      setState(() {
+        _topPosition = -80;
+      });
       await Future.delayed(
         const Duration(milliseconds: 350),
         () {
@@ -59,12 +60,6 @@ class NotificationWidgetState extends State<NotificationWidget> with TickerProvi
       );
     }
     if (_notifications.isNotEmpty) _showNotification();
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _animationController = AnimationController(vsync: this, duration: _notificationDuration);
   }
 
   Color get _notificationBackgroundColor {
@@ -100,8 +95,9 @@ class NotificationWidgetState extends State<NotificationWidget> with TickerProvi
           child: Stack(
             children: [
               widget.child,
-              Positioned(
-                top: 0,
+              AnimatedPositioned(
+                duration: const Duration(milliseconds: 300),
+                top: _topPosition,
                 left: 0,
                 right: 0,
                 child: Container(
@@ -139,13 +135,7 @@ class NotificationWidgetState extends State<NotificationWidget> with TickerProvi
                       ),
                     ],
                   ),
-                )
-                    .animate(
-                      autoPlay: false,
-                      controller: _animationController,
-                    )
-                    .fadeIn(duration: const Duration(milliseconds: 300))
-                    .moveY(begin: -2, end: 0, duration: const Duration(milliseconds: 200)),
+                ),
               ),
             ],
           ),
