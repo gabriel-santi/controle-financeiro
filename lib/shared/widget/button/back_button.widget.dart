@@ -1,5 +1,7 @@
+import 'package:finapp/route/routes.dart';
 import 'package:finapp/shared/theme/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class BackButtonWidget extends StatelessWidget {
   final Function()? onPressed;
@@ -9,7 +11,7 @@ class BackButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-        onPressed: () => onPressed != null ? onPressed!.call() : Navigator.pushReplacementNamed(context, '/'),
+        onPressed: () => onPressed != null ? onPressed!.call() : context.goNamed(AppRoute.home.name),
         padding: EdgeInsets.all(MainTheme.spacing + 2),
         style: ButtonStyle(
             backgroundColor: MaterialStateProperty.resolveWith((states) => Theme.of(context).colorScheme.secondary),

@@ -5,10 +5,12 @@ import 'package:finapp/features/transaction/domain/payment.dart';
 import 'package:finapp/features/transaction/domain/transaction.dart';
 import 'package:finapp/features/transaction/interfaces/widgets/limit_used.widget.dart';
 import 'package:finapp/features/transaction/interfaces/widgets/transaction_card.widget.dart';
+import 'package:finapp/route/routes.dart';
 import 'package:finapp/shared/theme/theme.dart';
 import 'package:finapp/shared/widget/button/add_button.widget.dart';
 import 'package:finapp/shared/widget/notification.widget.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -38,14 +40,9 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  void _onClickAdd() {
-    Navigator.pushReplacementNamed(context, '/transaction/create');
-  }
-
   void _onClickCard(Transaction transaction) {
     if (transaction is Payment) {
       // selectTransaction(transaction);
-      Navigator.pushReplacementNamed(context, '/transaction/edit', arguments: transaction.id);
     }
   }
 
@@ -127,7 +124,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         floatingActionButton: AddButtonWidget(
-          onClick: _onClickAdd,
+          onClick: () => context.goNamed(AppRoute.transactionCreate.name),
         ),
       ),
     );

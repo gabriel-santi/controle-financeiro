@@ -12,10 +12,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Finapp',
-      initialRoute: '/',
-      routes: Routes.routes,
+      routerConfig: appRouter,
       debugShowCheckedModeBanner: false,
       builder: (context, child) {
         return NotificationWidget(key: notificationKey, child: child!);
