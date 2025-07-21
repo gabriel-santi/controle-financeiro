@@ -1,11 +1,11 @@
-import 'package:finapp/features/category/domain/category.dart';
+import 'package:finapp/features/category/interfaces/widgets/categories_list.widget.dart';
+import 'package:finapp/features/category/interfaces/widgets/popup_select_color.dart';
 import 'package:finapp/shared/extensions/string_extension.dart';
 import 'package:finapp/shared/theme/theme.dart';
 import 'package:finapp/shared/widget/button/back_button.widget.dart';
 import 'package:finapp/shared/widget/button/custom_button.widget.dart';
 import 'package:finapp/shared/widget/notification.widget.dart';
 import 'package:finapp/shared/widget/text.widget.dart';
-import 'package:flex_color_picker/flex_color_picker.dart';
 import 'package:flutter/material.dart';
 
 class CategoryPage extends StatefulWidget {
@@ -32,8 +32,6 @@ class _CategoryPageState extends State<CategoryPage> {
 
   @override
   Widget build(BuildContext context) {
-    final categories = [];
-    final Category? selectedCategory = null;
     return SafeArea(
       child: Scaffold(
         extendBody: true,
@@ -142,49 +140,7 @@ class _CategoryPageState extends State<CategoryPage> {
                         ],
                 ),
                 SizedBox(height: MainTheme.spacing * 4),
-                ListView.separated(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: categories.length,
-                  separatorBuilder: (context, index) => SizedBox(height: MainTheme.spacing),
-                  itemBuilder: (context, index) {
-                    Category category = categories[index];
-                    bool selected = selectedCategory?.id == category.id;
-
-                    return GestureDetector(
-                      onTap: () => _selectCategory(category),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: category.color,
-                          borderRadius: BorderRadius.circular(MainTheme.radiusSmall),
-                          border: selected ? Border.all(width: 1.5, color: Theme.of(context).colorScheme.primary) : null,
-                          boxShadow: [
-                            BoxShadow(
-                              color: Theme.of(context).colorScheme.shadow.withOpacity(.1),
-                              blurRadius: 3,
-                              offset: const Offset(0, 2),
-                            )
-                          ],
-                        ),
-                        child: Row(
-                          children: [
-                            SizedBox(width: MainTheme.spacing),
-                            Icon(Icons.edit_outlined, color: Theme.of(context).colorScheme.onPrimary),
-                            SizedBox(width: MainTheme.spacing),
-                            TextWidget(text: category.description),
-                            const Spacer(),
-                            InkWell(
-                                onTap: () => _onDeleteCategory(category.id),
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: MainTheme.spacing * 2, vertical: MainTheme.spacing * 2),
-                                  child: Icon(Icons.delete, color: Theme.of(context).colorScheme.onPrimary.withOpacity(.8)),
-                                )),
-                          ],
-                        ),
-                      ),
-                    );
-                  },
-                ),
+                const CategoriesListWidget(),
                 SizedBox(height: MainTheme.spacing * 2),
               ],
             ),
@@ -198,41 +154,7 @@ class _CategoryPageState extends State<CategoryPage> {
     Color? c = await showDialog(
       context: context,
       builder: (context) {
-        Color editingColor = _selectedColor;
-        return AlertDialog(
-          title: TextWidget(text: 'Selecione uma cor'.hardcoded),
-          content: SingleChildScrollView(
-            child: ColorPicker(
-              color: editingColor,
-              pickersEnabled: const <ColorPickerType, bool>{
-                ColorPickerType.both: false,
-                ColorPickerType.primary: false,
-                ColorPickerType.accent: false,
-                ColorPickerType.bw: false,
-                ColorPickerType.custom: false,
-                ColorPickerType.wheel: true,
-              },
-              selectedColorIcon: Icons.check,
-              onColorChanged: (color) {
-                setState(() {
-                  editingColor = color;
-                });
-              },
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: TextWidget(text: 'Cancelar'.hardcoded),
-            ),
-            SizedBox(
-                width: 150,
-                child: CustomButtonWidget(
-                    label: "Selecionar".hardcoded,
-                    textColor: Theme.of(context).colorScheme.onSecondary,
-                    onClick: () => Navigator.pop(context, editingColor))),
-          ],
-        );
+        return PopupSelectColor(selectedColor: _selectedColor);
       },
     );
 
@@ -254,63 +176,7 @@ class _CategoryPageState extends State<CategoryPage> {
     }
   }
 
-  void _selectCategory(Category category) {
-    _descriptionController.text = category.description;
-    _selectedColor = category.color;
-    update();
-  }
-
   void _cancelEditing() {
     //  TODO
-  }
-
-  void _onDeleteCategory(int id) async {
-    bool? confirm = await showDialog(
-      // TODO new widget
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: TextWidget(
-            text: 'Excluir categoria'.hardcoded,
-            weight: FontWeight.w500,
-            size: MainTheme.fontSizeMedium + 2,
-          ),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Icon(Icons.warning_rounded, color: Theme.of(context).colorScheme.tertiary, size: 50),
-              TextWidget(
-                  maxLines: 5, size: MainTheme.fontSizeMedium - 2, text: 'Todas as transações vinculadas a essa categoria serão afetadas.'.hardcoded),
-              TextWidget(
-                text: 'Deseja mesmo excluir?'.hardcoded,
-                size: MainTheme.fontSizeMedium - 2,
-              ),
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context, false),
-              child: TextWidget(text: 'Cancelar'.hardcoded),
-            ),
-            SizedBox(
-              width: 150,
-              child: CustomButtonWidget(
-                  color: Theme.of(context).colorScheme.error,
-                  textColor: Theme.of(context).colorScheme.onSecondary,
-                  label: "Excluir".hardcoded,
-                  onClick: () => Navigator.pop(context, true)),
-            ),
-          ],
-        );
-      },
-    );
-
-    if (confirm != true) return;
-
-    try {
-      showNotification("Categoria excluída com sucesso!".hardcoded, NotificationType.SUCCESS);
-    } catch (e) {
-      showNotification("Não foi possível excluir categoria".hardcoded);
-    }
   }
 }

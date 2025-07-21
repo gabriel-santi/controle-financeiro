@@ -1,9 +1,11 @@
+import 'package:finapp/route/routes.dart';
 import 'package:finapp/shared/extensions/string_extension.dart';
 import 'package:finapp/shared/theme/theme.dart';
 import 'package:finapp/shared/widget/button/custom_button.widget.dart';
 import 'package:finapp/shared/widget/text.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
 class EmptyStateCategoryWidget extends StatelessWidget {
   const EmptyStateCategoryWidget({super.key});
@@ -28,7 +30,7 @@ class EmptyStateCategoryWidget extends StatelessWidget {
               textColor: Theme.of(context).colorScheme.onSecondary,
               fontSize: MainTheme.fontSizeSmall,
               icon: Icon(Icons.add, color: Theme.of(context).colorScheme.onSecondary),
-              onClick: () {},
+              onClick: () => context.goNamed(AppRoute.category.name),
               color: Theme.of(context).colorScheme.primary,
             ),
           ),

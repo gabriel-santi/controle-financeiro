@@ -6,11 +6,10 @@ import 'package:finapp/shared/widget/text.widget.dart';
 import 'package:flutter/material.dart';
 
 class LimitUsedWidget extends StatelessWidget {
-  final MonetaryValue limit;
-  final MonetaryValue currentValue;
-  final Function() onClick;
+  LimitUsedWidget({super.key});
 
-  const LimitUsedWidget({super.key, required this.limit, required this.currentValue, required this.onClick});
+  final MonetaryValue limit = MonetaryValue(2000);
+  final MonetaryValue currentValue = MonetaryValue(1300);
 
   @override
   Widget build(BuildContext context) {

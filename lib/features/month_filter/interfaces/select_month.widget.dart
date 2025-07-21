@@ -1,17 +1,18 @@
+import 'package:finapp/features/month_filter/interfaces/month_selector.widget.dart';
 import 'package:finapp/shared/extensions/string_extension.dart';
 import 'package:finapp/shared/theme/theme.dart';
 import 'package:finapp/shared/widget/text.widget.dart';
 import 'package:flutter/material.dart';
 
 class SelectMonthWidget extends StatelessWidget {
-  final int selectedMonth;
-  final Function() onClick;
+  final VoidCallback? onChangeMonth;
 
   SelectMonthWidget({
     super.key,
-    required this.selectedMonth,
-    required this.onClick,
+    required this.onChangeMonth,
   });
+
+  final int selectedMonth = 1;
 
   final List<String> months = [
     'Janeiro'.hardcoded,
@@ -28,10 +29,15 @@ class SelectMonthWidget extends StatelessWidget {
     'Dezembro'.hardcoded
   ];
 
+  void _selectMonth(int month) {
+    // selectMonth(month);
+    onChangeMonth?.call();
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onClick,
+      onTap: () => showModalBottomSheet(context: context, builder: (_) => MonthSelectorWidget(selectedMonth: selectedMonth, onSelect: _selectMonth)),
       child: FittedBox(
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: MainTheme.spacing * 3, vertical: MainTheme.spacing),

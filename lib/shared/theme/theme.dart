@@ -16,7 +16,6 @@ class MainTheme {
   static double get radiusSmall => 8;
 
   static ColorScheme get lightTheme => const ColorScheme(
-        background: Color(0xFFEEF3FA),
         brightness: Brightness.light,
         onPrimary: Color(0xFF373941),
         primary: Color(0xFF7152EE),
@@ -25,7 +24,7 @@ class MainTheme {
         error: Color(0xFFF68576),
         onError: Color(0xFFFFF3E2),
         onBackground: Color(0xFF161A30),
-        surface: Color(0xFFADAEFF),
+        surface: Color(0xFFEEF3FA),
         onSurface: Color(0xFF161A30),
         surfaceTint: Color(0xFFFCFCFC),
         tertiary: Color(0xFFFFD54F),

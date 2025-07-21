@@ -1,10 +1,6 @@
-import 'package:finapp/features/month_filter/interfaces/month_selector.widget.dart';
 import 'package:finapp/features/month_filter/interfaces/select_month.widget.dart';
-import 'package:finapp/features/transaction/domain/monetary_value.dart';
-import 'package:finapp/features/transaction/domain/payment.dart';
-import 'package:finapp/features/transaction/domain/transaction.dart';
 import 'package:finapp/features/transaction/interfaces/widgets/limit_used.widget.dart';
-import 'package:finapp/features/transaction/interfaces/widgets/transaction_card.widget.dart';
+import 'package:finapp/features/transaction/interfaces/widgets/transactions_list.widget.dart';
 import 'package:finapp/route/routes.dart';
 import 'package:finapp/shared/extensions/string_extension.dart';
 import 'package:finapp/shared/theme/theme.dart';
@@ -22,7 +18,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final int selectedMonth = 7;
-  final transactions = [];
 
   void _getData() async {
     try {
@@ -30,25 +25,6 @@ class _HomePageState extends State<HomePage> {
     } catch (e) {
       showNotification("Não foi possível buscar transações".hardcoded, NotificationType.ERROR);
     }
-  }
-
-  void _onClickCard(Transaction transaction) {
-    if (transaction is Payment) {
-      // selectTransaction(transaction);
-    }
-  }
-
-  void _onClickResume() {
-    // Navigator.pushReplacementNamed(context, '/limit', arguments: EditLimitParameters(_limit, _currentValue));
-  }
-
-  void _selectMonth(int month) {
-    // selectMonth(month);
-    _getData();
-  }
-
-  void _openMonthSelector() {
-    showModalBottomSheet(context: context, builder: (_) => MonthSelectorWidget(selectedMonth: selectedMonth, onSelect: _selectMonth));
   }
 
   @override
@@ -86,31 +62,17 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 SizedBox(height: MainTheme.spacing),
-                LimitUsedWidget(limit: MonetaryValue(5000), currentValue: MonetaryValue(2000), onClick: _onClickResume),
+                LimitUsedWidget(),
                 SizedBox(height: MainTheme.spacing * 4),
                 Center(
                   child: SelectMonthWidget(
-                    selectedMonth: selectedMonth,
-                    onClick: _openMonthSelector,
+                    onChangeMonth: () {
+                      // TODO update transactions
+                    },
                   ),
                 ),
                 SizedBox(height: MainTheme.spacing),
-                ListView.separated(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: transactions.length,
-                    padding: EdgeInsets.symmetric(vertical: MainTheme.spacing),
-                    separatorBuilder: (_, __) => SizedBox(height: MainTheme.spacing),
-                    itemBuilder: (_, index) {
-                      Transaction item = transactions[index];
-
-                      return TransactionCardWidget(
-                        description: item.description,
-                        date: item.createdAtFormatted,
-                        value: item.value.formattedValue(),
-                        onClick: () => _onClickCard(item),
-                      );
-                    }),
+                const TransactionsListWidget(),
               ],
             ),
           ),
