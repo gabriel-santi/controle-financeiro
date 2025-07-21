@@ -1,10 +1,6 @@
-import 'package:finapp/application/component/transaction.component.dart';
-import 'package:finapp/application/state/category.state.dart';
-import 'package:finapp/application/state/transaction.state.dart';
 import 'package:finapp/domain/monetary_value.dart';
 import 'package:finapp/domain/payment.dart';
 import 'package:finapp/domain/transaction.dart';
-import 'package:finapp/interfaces/configuration/module/app.module.dart';
 import 'package:finapp/interfaces/page/parameter/edit_limit.parameter.dart';
 import 'package:finapp/interfaces/theme/theme.dart';
 import 'package:finapp/interfaces/widget/button/add_button.widget.dart';
@@ -23,15 +19,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final TransactionComponent _component = TransactionComponent();
-  final TransactionState _state = TransactionState.instance;
-  final CategoryState _categoryState = CategoryState.instance;
-
   @override
   void initState() {
     super.initState();
-    _component.initialize(AppModule.transactionRepo, _state, AppModule.categoryRepo, _categoryState, update);
-    _getData();
   }
 
   void update() {
@@ -40,10 +30,12 @@ class _HomePageState extends State<HomePage> {
 
   final double _limit = 1000;
   final double _currentValue = 800;
+  final int selectedMonth = 7;
+  final transactions = [];
 
   void _getData() async {
     try {
-      await _component.getTransactions();
+      // await getTransactions();
     } catch (e) {
       showNotification("Não foi possível buscar transações", NotificationType.ERROR);
     }
@@ -55,7 +47,7 @@ class _HomePageState extends State<HomePage> {
 
   void _onClickCard(Transaction transaction) {
     if (transaction is Payment) {
-      _component.selectTransaction(transaction);
+      // selectTransaction(transaction);
       Navigator.pushReplacementNamed(context, '/transaction/edit', arguments: transaction.id);
     }
   }
@@ -65,8 +57,12 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _selectMonth(int month) {
-    _component.selectMonth(month);
+    // selectMonth(month);
     _getData();
+  }
+
+  void _openMonthSelector() {
+    showModalBottomSheet(context: context, builder: (_) => MonthSelectorWidget(selectedMonth: selectedMonth, onSelect: _selectMonth));
   }
 
   @override
@@ -108,7 +104,7 @@ class _HomePageState extends State<HomePage> {
                 SizedBox(height: MainTheme.spacing * 4),
                 Center(
                   child: SelectMonthWidget(
-                    selectedMonth: _state.selectedMonth,
+                    selectedMonth: selectedMonth,
                     onClick: _openMonthSelector,
                   ),
                 ),
@@ -116,11 +112,11 @@ class _HomePageState extends State<HomePage> {
                 ListView.separated(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    itemCount: _state.transactions.length,
+                    itemCount: transactions.length,
                     padding: EdgeInsets.symmetric(vertical: MainTheme.spacing),
                     separatorBuilder: (_, __) => SizedBox(height: MainTheme.spacing),
                     itemBuilder: (_, index) {
-                      Transaction item = _state.transactions[index];
+                      Transaction item = transactions[index];
 
                       return TransactionCardWidget(
                         description: item.description,
@@ -138,10 +134,5 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
-  }
-
-  void _openMonthSelector() {
-    showModalBottomSheet(
-        context: context, builder: (_) => MonthSelectorWidget(selectedMonth: _state.selectedMonth, onSelect: _selectMonth));
   }
 }

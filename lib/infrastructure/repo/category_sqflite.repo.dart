@@ -1,6 +1,15 @@
-import 'package:finapp/application/repo/category.repo.dart';
 import 'package:finapp/domain/category.dart';
 import 'package:finapp/infrastructure/entity/dao/category/category.dao.dart';
+
+abstract class CategoryRepo {
+  Future<List<Category>> getCategories();
+
+  Future<Category> getCategory(int idCategory);
+
+  Future<void> saveCategory(Category category);
+
+  Future<void> deleteCategory(int idCategory);
+}
 
 class CategorySqfliteRepo extends CategoryRepo {
   final CategoryDao _dao = CategoryDao();

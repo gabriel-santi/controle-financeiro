@@ -1,7 +1,4 @@
-import 'package:finapp/application/component/category.component.dart';
-import 'package:finapp/application/state/category.state.dart';
 import 'package:finapp/domain/category.dart';
-import 'package:finapp/interfaces/configuration/module/app.module.dart';
 import 'package:finapp/interfaces/theme/theme.dart';
 import 'package:finapp/interfaces/widget/button/back_button.widget.dart';
 import 'package:finapp/interfaces/widget/button/custom_button.widget.dart';
@@ -18,28 +15,24 @@ class CategoryPage extends StatefulWidget {
 }
 
 class _CategoryPageState extends State<CategoryPage> {
-  final CategoryComponent _categoryComponent = CategoryComponent();
   final TextEditingController _descriptionController = TextEditingController();
-  final CategoryState _state = CategoryState.instance;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
     super.initState();
-    _categoryComponent.initialize(AppModule.categoryRepo, _state, update);
-    _getAllCategories();
   }
 
   void update() {
     if (mounted) setState(() {});
   }
 
-  bool get isEditingCategory => _state.selectedCategory != null;
-
   Color _selectedColor = Colors.greenAccent;
 
   @override
   Widget build(BuildContext context) {
+    final categories = [];
+    final Category? selectedCategory = null;
     return SafeArea(
       child: Scaffold(
         extendBody: true,
@@ -58,7 +51,7 @@ class _CategoryPageState extends State<CategoryPage> {
                     child: TextWidget(text: "Categorias", size: MainTheme.fontSizeLarge, weight: FontWeight.w400),
                   ),
                 ),
-                isEditingCategory
+                false
                     ? const TextWidget(text: "Editar categoria", weight: FontWeight.w400)
                     : const TextWidget(text: "Nova categoria", weight: FontWeight.w400),
                 Form(
@@ -126,7 +119,7 @@ class _CategoryPageState extends State<CategoryPage> {
                 SizedBox(height: MainTheme.spacing * 2),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
-                  children: isEditingCategory
+                  children: false
                       ? [
                           CustomButtonWidget(
                               label: "Cancelar",
@@ -136,29 +129,27 @@ class _CategoryPageState extends State<CategoryPage> {
                           SizedBox(width: MainTheme.spacing),
                           SizedBox(
                             width: 200,
-                            child: CustomButtonWidget(
-                                label: "Salvar", textColor: Theme.of(context).colorScheme.onSecondary, onClick: _saveCategory),
+                            child: CustomButtonWidget(label: "Salvar", textColor: Theme.of(context).colorScheme.onSecondary, onClick: _saveCategory),
                           ),
                         ]
                       : [
                           SizedBox(
                               width: 150,
-                              child: CustomButtonWidget(
-                                  label: "Criar", textColor: Theme.of(context).colorScheme.onSecondary, onClick: _saveCategory))
+                              child: CustomButtonWidget(label: "Criar", textColor: Theme.of(context).colorScheme.onSecondary, onClick: _saveCategory))
                         ],
                 ),
                 SizedBox(height: MainTheme.spacing * 4),
                 ListView.separated(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
-                  itemCount: _state.categories.length,
+                  itemCount: categories.length,
                   separatorBuilder: (context, index) => SizedBox(height: MainTheme.spacing),
                   itemBuilder: (context, index) {
-                    Category category = _state.categories[index];
-                    bool selected = _state.selectedCategory?.id == category.id;
+                    Category category = categories[index];
+                    bool selected = selectedCategory?.id == category.id;
 
                     return GestureDetector(
-                      onTap: () => _selectTransaction(category),
+                      onTap: () => _selectCategory(category),
                       child: Container(
                         decoration: BoxDecoration(
                           color: category.color,
@@ -182,8 +173,7 @@ class _CategoryPageState extends State<CategoryPage> {
                             InkWell(
                                 onTap: () => _onDeleteCategory(category.id),
                                 child: Padding(
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: MainTheme.spacing * 2, vertical: MainTheme.spacing * 2),
+                                  padding: EdgeInsets.symmetric(horizontal: MainTheme.spacing * 2, vertical: MainTheme.spacing * 2),
                                   child: Icon(Icons.delete, color: Theme.of(context).colorScheme.onPrimary.withOpacity(.8)),
                                 )),
                           ],
@@ -199,14 +189,6 @@ class _CategoryPageState extends State<CategoryPage> {
         ),
       ),
     );
-  }
-
-  void _getAllCategories() async {
-    try {
-      await _categoryComponent.getCategories();
-    } catch (e) {
-      showNotification("Não foi possível carregar categorias");
-    }
   }
 
   void _openColorPicker() async {
@@ -243,9 +225,7 @@ class _CategoryPageState extends State<CategoryPage> {
             SizedBox(
                 width: 150,
                 child: CustomButtonWidget(
-                    label: "Selecionar",
-                    textColor: Theme.of(context).colorScheme.onSecondary,
-                    onClick: () => Navigator.pop(context, editingColor))),
+                    label: "Selecionar", textColor: Theme.of(context).colorScheme.onSecondary, onClick: () => Navigator.pop(context, editingColor))),
           ],
         );
       },
@@ -262,13 +242,6 @@ class _CategoryPageState extends State<CategoryPage> {
     if (!_formKey.currentState!.validate()) return;
 
     try {
-      Category category = Category.load(
-        isEditingCategory ? _state.selectedCategory!.id : -1,
-        _descriptionController.text,
-        _selectedColor.value.toString(),
-      );
-
-      await _categoryComponent.saveCategory(category);
       showNotification("Categoria salva com sucesso!", NotificationType.SUCCESS);
       _descriptionController.clear();
     } catch (e) {
@@ -276,19 +249,19 @@ class _CategoryPageState extends State<CategoryPage> {
     }
   }
 
-  void _selectTransaction(Category category) {
-    if (_state.selectedCategory?.id == category.id) return _cancelEditing();
-
-    _categoryComponent.selectCategory(category);
+  void _selectCategory(Category category) {
     _descriptionController.text = category.description;
     _selectedColor = category.color;
     update();
   }
 
-  void _cancelEditing() => _categoryComponent.selectCategory(null);
+  void _cancelEditing() {
+    //  TODO
+  }
 
   void _onDeleteCategory(int id) async {
     bool? confirm = await showDialog(
+      // TODO new widget
       context: context,
       builder: (context) {
         return AlertDialog(
@@ -301,10 +274,7 @@ class _CategoryPageState extends State<CategoryPage> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Icon(Icons.warning_rounded, color: Theme.of(context).colorScheme.tertiary, size: 50),
-              TextWidget(
-                  maxLines: 5,
-                  size: MainTheme.fontSizeMedium - 2,
-                  text: 'Todas as transações vinculadas a essa categoria serão afetadas.'),
+              TextWidget(maxLines: 5, size: MainTheme.fontSizeMedium - 2, text: 'Todas as transações vinculadas a essa categoria serão afetadas.'),
               TextWidget(
                 text: 'Deseja mesmo excluir?',
                 size: MainTheme.fontSizeMedium - 2,
@@ -332,7 +302,6 @@ class _CategoryPageState extends State<CategoryPage> {
     if (confirm != true) return;
 
     try {
-      await _categoryComponent.deleteCategory(id);
       showNotification("Categoria excluída com sucesso!", NotificationType.SUCCESS);
     } catch (e) {
       showNotification("Não foi possível excluir categoria");

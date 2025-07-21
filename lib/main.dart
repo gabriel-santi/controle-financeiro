@@ -1,4 +1,4 @@
-import 'package:finapp/interfaces/configuration/route/routes.dart';
+import 'package:finapp/interfaces/route/routes.dart';
 import 'package:finapp/interfaces/theme/theme.dart';
 import 'package:finapp/interfaces/widget/notification.widget.dart';
 import 'package:flutter/material.dart';

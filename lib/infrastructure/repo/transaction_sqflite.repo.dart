@@ -1,7 +1,16 @@
-import 'package:finapp/application/repo/transaction.repo.dart';
 import 'package:finapp/domain/payment.dart';
 import 'package:finapp/domain/transaction.dart';
 import 'package:finapp/infrastructure/entity/dao/transaction/transaction.dao.dart';
+
+abstract class TransactionRepo {
+  Future<List<Transaction>> getTransactionsByDate(int month, int year);
+
+  Future<Payment> getPayment(int idPayment);
+
+  Future<void> savePayment(Payment payment);
+
+  Future<void> deletePayment(int idPayment);
+}
 
 class TransactionSqfliteRepo implements TransactionRepo {
   final TransactionDao _dao = TransactionDao();
