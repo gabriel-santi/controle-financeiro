@@ -1,4 +1,4 @@
-import 'package:finapp/interfaces/theme/theme.dart';
+import 'package:finapp/shared/theme/theme.dart';
 import 'package:flutter/material.dart';
 
 class BackButtonWidget extends StatelessWidget {

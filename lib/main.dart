@@ -1,5 +1,5 @@
-import 'package:finapp/interfaces/route/routes.dart';
-import 'package:finapp/interfaces/theme/theme.dart';
+import 'package:finapp/route/routes.dart';
+import 'package:finapp/shared/theme/theme.dart';
 import 'package:finapp/shared/widget/notification.widget.dart';
 import 'package:flutter/material.dart';
 

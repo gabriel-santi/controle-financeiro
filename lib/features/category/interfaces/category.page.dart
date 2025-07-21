@@ -1,5 +1,5 @@
 import 'package:finapp/features/category/domain/category.dart';
-import 'package:finapp/interfaces/theme/theme.dart';
+import 'package:finapp/shared/theme/theme.dart';
 import 'package:finapp/shared/widget/button/back_button.widget.dart';
 import 'package:finapp/shared/widget/button/custom_button.widget.dart';
 import 'package:finapp/shared/widget/notification.widget.dart';

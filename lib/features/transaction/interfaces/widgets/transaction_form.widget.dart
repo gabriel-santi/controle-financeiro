@@ -1,6 +1,6 @@
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:finapp/features/transaction/interfaces/widgets/currency_input.widget.dart';
-import 'package:finapp/interfaces/theme/theme.dart';
+import 'package:finapp/shared/theme/theme.dart';
 import 'package:finapp/shared/widget/text.widget.dart';
 import 'package:flutter/material.dart';
 

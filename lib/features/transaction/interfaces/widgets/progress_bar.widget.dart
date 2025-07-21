@@ -1,5 +1,5 @@
 import 'package:finapp/features/transaction/domain/monetary_value.dart';
-import 'package:finapp/interfaces/theme/theme.dart';
+import 'package:finapp/shared/theme/theme.dart';
 import 'package:finapp/shared/widget/text.widget.dart';
 import 'package:flutter/material.dart';
 
