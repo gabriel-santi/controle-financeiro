@@ -1,6 +1,8 @@
 import 'package:finapp/application/component/transaction.component.dart';
+import 'package:finapp/application/state/category.state.dart';
 import 'package:finapp/application/state/transaction.state.dart';
 import 'package:finapp/domain/monetary_value.dart';
+import 'package:finapp/domain/payment.dart';
 import 'package:finapp/domain/transaction.dart';
 import 'package:finapp/interfaces/configuration/module/app.module.dart';
 import 'package:finapp/interfaces/page/parameter/edit_limit.parameter.dart';
@@ -23,12 +25,13 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final TransactionComponent _component = TransactionComponent();
   final TransactionState _state = TransactionState.instance;
+  final CategoryState _categoryState = CategoryState.instance;
 
   @override
   void initState() {
     super.initState();
-    _component.initialize(AppModule.transactionRepo, _state, update);
-    _getTransactions();
+    _component.initialize(AppModule.transactionRepo, _state, AppModule.categoryRepo, _categoryState, update);
+    _getData();
   }
 
   void update() {
@@ -38,7 +41,7 @@ class _HomePageState extends State<HomePage> {
   final double _limit = 1000;
   final double _currentValue = 800;
 
-  void _getTransactions() async {
+  void _getData() async {
     try {
       await _component.getTransactions();
     } catch (e) {
@@ -51,8 +54,10 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _onClickCard(Transaction transaction) {
-    _component.selectTransaction(transaction);
-    Navigator.pushReplacementNamed(context, '/transaction/edit', arguments: transaction.id);
+    if (transaction is Payment) {
+      _component.selectTransaction(transaction);
+      Navigator.pushReplacementNamed(context, '/transaction/edit', arguments: transaction.id);
+    }
   }
 
   void _onClickResume() {
@@ -61,7 +66,7 @@ class _HomePageState extends State<HomePage> {
 
   void _selectMonth(int month) {
     _component.selectMonth(month);
-    _getTransactions();
+    _getData();
   }
 
   @override
@@ -136,6 +141,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _openMonthSelector() {
-    showModalBottomSheet(context: context, builder: (_) => MonthSelectorWidget(selectedMonth: _state.selectedMonth, onSelect: _selectMonth));
+    showModalBottomSheet(
+        context: context, builder: (_) => MonthSelectorWidget(selectedMonth: _state.selectedMonth, onSelect: _selectMonth));
   }
 }

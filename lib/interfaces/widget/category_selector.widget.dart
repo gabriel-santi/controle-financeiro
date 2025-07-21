@@ -28,10 +28,10 @@ class CategorySelectorWidget extends StatelessWidget {
         SizedBox(height: MainTheme.spacing),
         categories.isNotEmpty
             ? Wrap(
-                spacing: MainTheme.spacing,
-                runSpacing: MainTheme.spacing,
-                children: _buildCategories(context),
-              )
+          spacing: MainTheme.spacing,
+          runSpacing: MainTheme.spacing,
+          children: _buildCategories(context),
+        )
             : _buildEmptyState(context),
       ],
     );
@@ -49,9 +49,22 @@ class CategorySelectorWidget extends StatelessWidget {
           label: category.description,
           fontSize: MainTheme.fontSizeSmall,
           onClick: () => onSelectCategory(category.id),
-          color: selected ? category.color : Theme.of(context).colorScheme.background,
-          border: Border.all(color: selected ? category.color : Theme.of(context).colorScheme.primary),
-          textColor: selected ? Theme.of(context).colorScheme.onPrimary.withOpacity(.6) : Theme.of(context).colorScheme.primary,
+          color: selected ? category.color : Theme
+              .of(context)
+              .colorScheme
+              .background,
+          border: Border.all(color: selected ? category.color : Theme
+              .of(context)
+              .colorScheme
+              .primary),
+          textColor: selected ? Theme
+              .of(context)
+              .colorScheme
+              .onPrimary
+              .withOpacity(.6) : Theme
+              .of(context)
+              .colorScheme
+              .primary,
         ),
       ));
     }
@@ -59,12 +72,24 @@ class CategorySelectorWidget extends StatelessWidget {
     categoriesWidgets.add(FittedBox(
       child: CustomButtonWidget(
         label: "Adicionar",
-        textColor: Theme.of(context).colorScheme.onSecondary,
+        textColor: Theme
+            .of(context)
+            .colorScheme
+            .onSecondary,
         fontSize: MainTheme.fontSizeSmall,
-        icon: Icon(Icons.add, color: Theme.of(context).colorScheme.onSecondary),
+        icon: Icon(Icons.add, size: 16, color: Theme
+            .of(context)
+            .colorScheme
+            .onSecondary),
         onClick: onAddCategory,
-        color: Theme.of(context).colorScheme.primary,
-        border: Border.all(color: Theme.of(context).colorScheme.primary),
+        color: Theme
+            .of(context)
+            .colorScheme
+            .primary,
+        border: Border.all(color: Theme
+            .of(context)
+            .colorScheme
+            .primary),
       ),
     ));
 
@@ -82,11 +107,20 @@ class CategorySelectorWidget extends StatelessWidget {
             width: 200,
             child: CustomButtonWidget(
               label: "Criar",
-              textColor: Theme.of(context).colorScheme.onSecondary,
+              textColor: Theme
+                  .of(context)
+                  .colorScheme
+                  .onSecondary,
               fontSize: MainTheme.fontSizeSmall,
-              icon: Icon(Icons.add, color: Theme.of(context).colorScheme.onSecondary),
+              icon: Icon(Icons.add, color: Theme
+                  .of(context)
+                  .colorScheme
+                  .onSecondary),
               onClick: onAddCategory,
-              color: Theme.of(context).colorScheme.primary,
+              color: Theme
+                  .of(context)
+                  .colorScheme
+                  .primary,
             ),
           ),
         ],

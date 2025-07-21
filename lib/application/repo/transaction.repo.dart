@@ -4,7 +4,7 @@ import 'package:finapp/domain/transaction.dart';
 abstract class TransactionRepo {
   Future<List<Transaction>> getTransactionsByDate(int month, int year);
 
-  Future<Transaction> getPayment(int idPayment);
+  Future<Payment> getPayment(int idPayment);
 
   Future<void> savePayment(Payment payment);
 

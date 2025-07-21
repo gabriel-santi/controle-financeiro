@@ -22,8 +22,8 @@ class TransactionQueries {
       "account, "
       "credit FROM payment WHERE id = ?";
 
-  static String get addPaymentQuery => "INSERT INTO payment (description, created_at, value, account, credit) "
-      "VALUES (?, ?, ?, ?, ?)";
+  static String get addPaymentQuery => "INSERT INTO payment (description, created_at, value, category, account, credit) "
+      "VALUES (?, ?, ?, ?, ?, ?)";
 
   static String get updatePaymentQuery => "UPDATE payment SET "
       "description = ?, "

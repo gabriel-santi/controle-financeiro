@@ -1,7 +1,7 @@
 import 'package:finapp/application/component/category.component.dart';
 import 'package:finapp/application/state/category.state.dart';
 import 'package:finapp/domain/category.dart';
-import 'package:finapp/infrastructure/repo/category_sqflite.repo.dart';
+import 'package:finapp/interfaces/configuration/module/app.module.dart';
 import 'package:finapp/interfaces/theme/theme.dart';
 import 'package:finapp/interfaces/widget/button/back_button.widget.dart';
 import 'package:finapp/interfaces/widget/button/custom_button.widget.dart';
@@ -26,7 +26,7 @@ class _CategoryPageState extends State<CategoryPage> {
   @override
   void initState() {
     super.initState();
-    _categoryComponent.initialize(CategorySqfliteRepo.instance, _state, update);
+    _categoryComponent.initialize(AppModule.categoryRepo, _state, update);
     _getAllCategories();
   }
 

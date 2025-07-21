@@ -1,4 +1,5 @@
 import 'package:finapp/application/component/transaction.component.dart';
+import 'package:finapp/application/state/category.state.dart';
 import 'package:finapp/application/state/transaction.state.dart';
 import 'package:finapp/domain/monetary_value.dart';
 import 'package:finapp/domain/payment.dart';
@@ -22,15 +23,18 @@ class AddTransactionPage extends StatefulWidget {
 class _AddTransactionPageState extends State<AddTransactionPage> {
   final TransactionComponent _component = TransactionComponent();
   final TransactionState _state = TransactionState.instance;
+  final CategoryState _categoryState = CategoryState.instance;
 
   final TextEditingController _valueController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
+  int? _categoryController;
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
     super.initState();
-    _component.initialize(AppModule.transactionRepo, _state, update);
+    _component.initialize(AppModule.transactionRepo, _state, AppModule.categoryRepo, _categoryState, update);
   }
 
   void update() {
@@ -63,9 +67,9 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
                 ),
                 SizedBox(height: MainTheme.spacing * 4),
                 CategorySelectorWidget(
-                  categorySelected: 1,
-                  categories: [],
-                  onSelectCategory: (int id) {},
+                  categorySelected: _categoryController,
+                  categories: _categoryState.categories,
+                  onSelectCategory: _onSelectCategory,
                   onAddCategory: _navigateToCategories,
                 ),
                 SizedBox(height: MainTheme.spacing * 6),
@@ -75,13 +79,20 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
                     onPressed: _onSave,
                     style: ButtonStyle(
                         padding: MaterialStateProperty.resolveWith(
-                            (states) => EdgeInsets.symmetric(vertical: MainTheme.spacing, horizontal: MainTheme.spacing * 4)),
-                        backgroundColor: MaterialStateProperty.resolveWith((states) => Theme.of(context).colorScheme.primary),
+                                (states) => EdgeInsets.symmetric(vertical: MainTheme.spacing, horizontal: MainTheme.spacing * 4)),
+                        backgroundColor: MaterialStateProperty.resolveWith((states) =>
+                        Theme
+                            .of(context)
+                            .colorScheme
+                            .primary),
                         shape: MaterialStateProperty.resolveWith(
-                            (states) => RoundedRectangleBorder(borderRadius: BorderRadius.circular(MainTheme.radiusMedium)))),
+                                (states) => RoundedRectangleBorder(borderRadius: BorderRadius.circular(MainTheme.radiusMedium)))),
                     child: TextWidget(
                       text: 'Salvar',
-                      color: Theme.of(context).colorScheme.secondary,
+                      color: Theme
+                          .of(context)
+                          .colorScheme
+                          .secondary,
                     ),
                   ),
                 ),
@@ -100,16 +111,21 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
       final formatter = NumberFormat.currency(locale: 'pt-br', symbol: 'R\$');
       final double value = formatter.parse(_valueController.text).toDouble();
       final String description = _descriptionController.text.trim();
-      Payment payment = Payment.create(description, MonetaryValue(value), null, null, false);
+      Payment payment = Payment.create(description, MonetaryValue(value), _categoryController, null, false);
       await _component.savePayment(payment);
       showNotification("Transação salva com sucesso!", NotificationType.SUCCESS);
-      Navigator.pushReplacementNamed(context, '/');
+      if (mounted) Navigator.pushReplacementNamed(context, '/');
     } catch (e) {
       showNotification("Não foi possível salvar transação!", NotificationType.ERROR);
     }
   }
 
+  void _onSelectCategory(int id) {
+    _categoryController = id;
+    update();
+  }
+
   void _navigateToCategories() {
-    Navigator.pushNamed(context, '/category');
+    Navigator.pushNamed(context, '/category').whenComplete(() => update());
   }
 }
