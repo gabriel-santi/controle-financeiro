@@ -1,11 +1,12 @@
-import 'package:finapp/features/month_filter/interfaces/select_month.widget.dart';
-import 'package:finapp/features/transaction/interfaces/widgets/limit_used.widget.dart';
+import 'package:finapp/features/month_filter/interfaces/month_button.widget.dart';
+import 'package:finapp/features/transaction/interfaces/widgets/saudation_widget.dart';
+import 'package:finapp/features/transaction/interfaces/widgets/transaction_overview_widget.dart';
 import 'package:finapp/features/transaction/interfaces/widgets/transactions_list.widget.dart';
 import 'package:finapp/route/routes.dart';
 import 'package:finapp/shared/extensions/string_extension.dart';
 import 'package:finapp/shared/theme/theme.dart';
 import 'package:finapp/shared/widget/button/add_button.widget.dart';
-import 'package:finapp/shared/widget/notification.widget.dart';
+import 'package:finapp/shared/widget/text.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -19,14 +20,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final int selectedMonth = 7;
 
-  void _getData() async {
-    try {
-      // await getTransactions();
-    } catch (e) {
-      showNotification("Não foi possível buscar transações".hardcoded, NotificationType.ERROR);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -38,40 +31,25 @@ class _HomePageState extends State<HomePage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: MainTheme.spacing),
-                RichText(
-                  textAlign: TextAlign.left,
-                  text: TextSpan(
-                    children: [
-                      TextSpan(
-                        text: 'Seja bem-vindo(a), '.hardcoded,
-                        style: TextStyle(
-                          fontSize: MainTheme.fontSizeSmall,
-                          fontWeight: FontWeight.w300,
-                          color: Theme.of(context).colorScheme.onPrimary,
-                        ),
-                      ),
-                      TextSpan(
-                        text: 'Username!'.hardcoded,
-                        style: TextStyle(
-                          fontSize: MainTheme.fontSizeMedium,
-                          fontWeight: FontWeight.w400,
-                          color: Theme.of(context).colorScheme.onPrimary,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(height: MainTheme.spacing),
-                LimitUsedWidget(),
-                SizedBox(height: MainTheme.spacing * 4),
+                const SaudationWidget(),
+                SizedBox(height: MainTheme.spacing * 3),
                 Center(
-                  child: SelectMonthWidget(
+                  child: MonthButtonWidget(
                     onChangeMonth: () {
                       // TODO update transactions
                     },
                   ),
                 ),
-                SizedBox(height: MainTheme.spacing),
+                SizedBox(height: MainTheme.spacing * 3),
+                TransactionOverviewWidget(),
+                Padding(
+                  padding: EdgeInsets.only(top: MainTheme.spacing * 4, bottom: MainTheme.spacing),
+                  child: TextWidget(
+                    text: "Movimentações".hardcoded,
+                    size: MainTheme.fontSizeLarge,
+                    weight: FontWeight.w500,
+                  ),
+                ),
                 const TransactionsListWidget(),
               ],
             ),

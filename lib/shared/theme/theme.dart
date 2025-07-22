@@ -17,14 +17,15 @@ class MainTheme {
 
   static ColorScheme get lightTheme => const ColorScheme(
         brightness: Brightness.light,
-        onPrimary: Color(0xFF373941),
+        onPrimary: Color(0xFFFFFFFF),
         primary: Color(0xFF7152EE),
         onSecondary: Color(0xFFDFF5FF),
         secondary: Color(0xFFFCFCFC),
+        onSecondaryContainer: Color(0x9102d7f2),
         error: Color(0xFFF68576),
         onError: Color(0xFFFFF3E2),
         onBackground: Color(0xFF161A30),
-        surface: Color(0xFFEEF3FA),
+        surface: Color(0xFF140F24),
         onSurface: Color(0xFF161A30),
         surfaceTint: Color(0xFFFCFCFC),
         tertiary: Color(0xFFFFD54F),

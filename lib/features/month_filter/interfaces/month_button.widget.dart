@@ -1,13 +1,13 @@
-import 'package:finapp/features/month_filter/interfaces/month_selector.widget.dart';
+import 'package:finapp/features/month_filter/interfaces/month_selector_overlay.dart';
 import 'package:finapp/shared/extensions/string_extension.dart';
 import 'package:finapp/shared/theme/theme.dart';
 import 'package:finapp/shared/widget/text.widget.dart';
 import 'package:flutter/material.dart';
 
-class SelectMonthWidget extends StatelessWidget {
+class MonthButtonWidget extends StatelessWidget {
   final VoidCallback? onChangeMonth;
 
-  SelectMonthWidget({
+  MonthButtonWidget({
     super.key,
     required this.onChangeMonth,
   });
@@ -37,21 +37,14 @@ class SelectMonthWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => showModalBottomSheet(context: context, builder: (_) => MonthSelectorWidget(selectedMonth: selectedMonth, onSelect: _selectMonth)),
+      onTap: () => showModalBottomSheet(context: context, builder: (_) => MonthSelectorOverlay(selectedMonth: selectedMonth, onSelect: _selectMonth)),
       child: FittedBox(
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: MainTheme.spacing * 3, vertical: MainTheme.spacing),
           decoration: BoxDecoration(
-            border: Border.all(color: Theme.of(context).colorScheme.primary),
+            border: Border.all(color: Theme.of(context).colorScheme.primary, width: 2),
             borderRadius: BorderRadius.circular(MainTheme.radiusBig),
             color: Theme.of(context).colorScheme.background,
-            boxShadow: [
-              BoxShadow(
-                color: Theme.of(context).colorScheme.onPrimary.withOpacity(.2),
-                blurRadius: 3,
-                offset: const Offset(0, 2),
-              )
-            ],
           ),
           child: Row(
             children: [
@@ -60,6 +53,7 @@ class SelectMonthWidget extends StatelessWidget {
               TextWidget(
                 text: months[selectedMonth - 1],
                 color: Theme.of(context).colorScheme.primary,
+                weight: FontWeight.w500,
                 size: MainTheme.fontSizeSmall,
               ),
             ],

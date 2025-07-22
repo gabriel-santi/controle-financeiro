@@ -41,7 +41,7 @@ class TransactionCardWidget extends StatelessWidget {
       onTap: () => context.goNamed(AppRoute.transactionEdit.name, pathParameters: {"id": transaction.id.toString()}),
       child: Container(
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.surfaceTint,
+          color: Colors.transparent,
           borderRadius: BorderRadius.circular(MainTheme.radiusMedium),
         ),
         padding: EdgeInsets.symmetric(horizontal: MainTheme.spacing + 5, vertical: MainTheme.spacing * 2),
@@ -55,7 +55,7 @@ class TransactionCardWidget extends StatelessWidget {
                 TextWidget(text: transaction.value.formattedValue(), weight: FontWeight.w400),
               ],
             ),
-            SizedBox(height: MainTheme.spacing * 2),
+            SizedBox(height: MainTheme.spacing),
             TextWidget(text: transaction.createdAtFormatted, size: MainTheme.fontSizeSmall)
           ],
         ),

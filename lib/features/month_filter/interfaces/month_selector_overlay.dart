@@ -4,17 +4,17 @@ import 'package:finapp/shared/widget/button/custom_button.widget.dart';
 import 'package:finapp/shared/widget/text.widget.dart';
 import 'package:flutter/material.dart';
 
-class MonthSelectorWidget extends StatefulWidget {
+class MonthSelectorOverlay extends StatefulWidget {
   final int selectedMonth;
   final Function(int) onSelect;
 
-  const MonthSelectorWidget({super.key, required this.selectedMonth, required this.onSelect});
+  const MonthSelectorOverlay({super.key, required this.selectedMonth, required this.onSelect});
 
   @override
-  State<MonthSelectorWidget> createState() => _MonthSelectorWidgetState();
+  State<MonthSelectorOverlay> createState() => _MonthSelectorOverlayState();
 }
 
-class _MonthSelectorWidgetState extends State<MonthSelectorWidget> {
+class _MonthSelectorOverlayState extends State<MonthSelectorOverlay> {
   final List<String> months = [
     'Janeiro'.hardcoded,
     'Fevereiro'.hardcoded,

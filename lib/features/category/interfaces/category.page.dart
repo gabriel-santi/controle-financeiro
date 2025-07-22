@@ -19,15 +19,6 @@ class _CategoryPageState extends State<CategoryPage> {
   final TextEditingController _descriptionController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  void update() {
-    if (mounted) setState(() {});
-  }
-
   Color _selectedColor = Colors.greenAccent;
 
   @override
