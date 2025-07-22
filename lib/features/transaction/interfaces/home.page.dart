@@ -8,6 +8,7 @@ import 'package:finapp/shared/theme/theme.dart';
 import 'package:finapp/shared/widget/button/add_button.widget.dart';
 import 'package:finapp/shared/widget/text.widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 
 class HomePage extends StatefulWidget {
@@ -24,35 +25,45 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: MainTheme.spacing + 4, vertical: MainTheme.spacing * 2),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: MainTheme.spacing),
-                const SaudationWidget(),
-                SizedBox(height: MainTheme.spacing * 3),
-                Center(
+        body: Padding(
+          padding: EdgeInsets.symmetric(horizontal: MainTheme.spacing + 6),
+          child: CustomScrollView(
+            slivers: [
+              SliverPadding(padding: EdgeInsets.only(top: MainTheme.spacing * 2)),
+              SliverToBoxAdapter(child: SizedBox(height: MainTheme.spacing)),
+              SliverToBoxAdapter(child: const SaudationWidget().animate().fadeIn(duration: const Duration(milliseconds: 600))),
+              SliverToBoxAdapter(child: SizedBox(height: MainTheme.spacing * 3)),
+              SliverToBoxAdapter(
+                child: Center(
                   child: MonthButtonWidget(
                     onChangeMonth: () {
                       // TODO update transactions
                     },
-                  ),
+                  ).animate(delay: const Duration(milliseconds: 1500)).fadeIn(duration: const Duration(milliseconds: 300)),
                 ),
-                SizedBox(height: MainTheme.spacing * 3),
-                TransactionOverviewWidget(),
-                Padding(
+              ),
+              SliverToBoxAdapter(child: SizedBox(height: MainTheme.spacing * 3)),
+              SliverToBoxAdapter(
+                  child: TransactionOverviewWidget()
+                      .animate(delay: const Duration(milliseconds: 1500))
+                      .fadeIn(duration: const Duration(milliseconds: 300))
+                      .slideY(begin: 0.8, end: 0, duration: const Duration(milliseconds: 300))),
+              SliverToBoxAdapter(
+                child: Padding(
                   padding: EdgeInsets.only(top: MainTheme.spacing * 4, bottom: MainTheme.spacing),
                   child: TextWidget(
                     text: "Movimentações".hardcoded,
                     size: MainTheme.fontSizeLarge,
                     weight: FontWeight.w500,
-                  ),
+                  ).animate(delay: const Duration(milliseconds: 2200)).fadeIn(duration: const Duration(milliseconds: 400)),
                 ),
-                const TransactionsListWidget(),
-              ],
-            ),
+              ),
+              SliverFillRemaining(
+                  child: const TransactionsListWidget()
+                      .animate(delay: const Duration(milliseconds: 2200))
+                      .fadeIn(duration: const Duration(milliseconds: 400))),
+              SliverPadding(padding: EdgeInsets.only(top: MainTheme.spacing * 2)),
+            ],
           ),
         ),
         floatingActionButton: AddButtonWidget(

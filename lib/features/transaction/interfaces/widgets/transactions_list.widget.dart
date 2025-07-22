@@ -19,9 +19,9 @@ class TransactionsListWidget extends StatelessWidget {
     ];
 
     return ListView.separated(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
         itemCount: transactions.length,
+        primary: false,
+        physics: const NeverScrollableScrollPhysics(),
         padding: EdgeInsets.symmetric(vertical: MainTheme.spacing),
         separatorBuilder: (_, __) => SizedBox(height: MainTheme.spacing),
         itemBuilder: (_, index) {
