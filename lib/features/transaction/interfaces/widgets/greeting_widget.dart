@@ -27,7 +27,6 @@ class GreetingWidget extends StatelessWidget {
             TextWidget(
               text: 'Seja bem-vindo(a), '.hardcoded,
               size: MainTheme.fontSizeSmall,
-              weight: FontWeight.w500,
             ),
             TextWidget(
               text: '$user!',

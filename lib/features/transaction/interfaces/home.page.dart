@@ -24,6 +24,8 @@ class HomePage extends StatelessWidget {
 
   int get durationTransactionAnimation => 400;
 
+  int get delayTillShowFloatingButton => delayTillTransactionsAnimation + durationTransactionAnimation + 200;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -75,7 +77,7 @@ class HomePage extends StatelessWidget {
         ),
         floatingActionButton: AddButtonWidget(
           onClick: () => context.goNamed(AppRoute.transactionCreate.name),
-        ),
+        ).animate(delay: Duration(milliseconds: delayTillShowFloatingButton)).fadeIn(),
       ),
     );
   }
