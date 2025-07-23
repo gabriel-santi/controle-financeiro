@@ -40,14 +40,14 @@ class MonthButtonWidget extends StatelessWidget {
       onTap: () => showModalBottomSheet(context: context, builder: (_) => MonthSelectorOverlay(selectedMonth: selectedMonth, onSelect: _selectMonth)),
       child: FittedBox(
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: MainTheme.spacing * 3, vertical: MainTheme.spacing),
+          padding: EdgeInsets.symmetric(vertical: MainTheme.spacing),
           decoration: BoxDecoration(
             border: Border.all(color: Theme.of(context).colorScheme.primary, width: 2),
             borderRadius: BorderRadius.circular(MainTheme.radiusBig),
-            color: Theme.of(context).colorScheme.background,
           ),
           child: Row(
             children: [
+              SizedBox(width: MainTheme.spacing * 3),
               Icon(Icons.calendar_month_rounded, size: 18, color: Theme.of(context).colorScheme.primary),
               SizedBox(width: MainTheme.spacing),
               TextWidget(
@@ -56,6 +56,9 @@ class MonthButtonWidget extends StatelessWidget {
                 weight: FontWeight.w500,
                 size: MainTheme.fontSizeSmall,
               ),
+              SizedBox(width: MainTheme.spacing * 3),
+              Icon(Icons.keyboard_arrow_down, size: 18, color: Theme.of(context).colorScheme.primary),
+              SizedBox(width: MainTheme.spacing * 2),
             ],
           ),
         ),
