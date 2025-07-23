@@ -1,0 +1,63 @@
+import 'package:finapp/shared/extensions/string_extension.dart';
+import 'package:finapp/shared/theme/theme.dart';
+import 'package:finapp/shared/widget/text.widget.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+
+class GreetingWidget extends StatelessWidget {
+  const GreetingWidget({super.key});
+
+  static int get durationSaudationAnimation => _delayTillUsernameAnimation + _durationUsernameAnimation;
+
+  static int get _delayTillAnimation => 1200;
+
+  static int get _durationSlideAnimation => 1000;
+
+  static int get _delayTillUsernameAnimation => _delayTillAnimation + _durationSlideAnimation + 500;
+
+  static int get _durationUsernameAnimation => 600;
+
+  @override
+  Widget build(BuildContext context) {
+    const String user = "Username";
+    return Stack(
+      children: [
+        Row(
+          children: [
+            TextWidget(
+              text: 'Seja bem-vindo(a), '.hardcoded,
+              size: MainTheme.fontSizeSmall,
+              weight: FontWeight.w500,
+            ),
+            TextWidget(
+              text: '$user!',
+              size: MainTheme.fontSizeMedium,
+              weight: FontWeight.w500,
+            )
+                .animate(delay: Duration(milliseconds: _delayTillUsernameAnimation))
+                .fadeIn(duration: Duration(milliseconds: _durationUsernameAnimation)),
+          ],
+        ),
+        Container(
+          width: 400,
+          height: 24,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+              colors: [
+                MainTheme.lightTheme.surface.withOpacity(0),
+                MainTheme.lightTheme.surface,
+              ],
+              stops: const [0.01, 0.02],
+            ),
+          ),
+        )
+            .animate(delay: Duration(milliseconds: _delayTillAnimation))
+            .slideX(begin: -0.2, end: .4, duration: Duration(milliseconds: _durationSlideAnimation))
+            .then()
+            .fadeOut(duration: Duration.zero),
+      ],
+    );
+  }
+}

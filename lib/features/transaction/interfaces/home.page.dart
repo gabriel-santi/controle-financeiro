@@ -1,5 +1,5 @@
 import 'package:finapp/features/month_filter/interfaces/month_button.widget.dart';
-import 'package:finapp/features/transaction/interfaces/widgets/saudation_widget.dart';
+import 'package:finapp/features/transaction/interfaces/widgets/greeting_widget.dart';
 import 'package:finapp/features/transaction/interfaces/widgets/transaction_overview_widget.dart';
 import 'package:finapp/features/transaction/interfaces/widgets/transactions_list.widget.dart';
 import 'package:finapp/route/routes.dart';
@@ -14,7 +14,7 @@ import 'package:go_router/go_router.dart';
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
-  int get durationSaudationAnimation => SaudationWidget.durationSaudationAnimation;
+  int get durationSaudationAnimation => GreetingWidget.durationSaudationAnimation;
 
   int get delayTillOverviewAnimation => durationSaudationAnimation + 600;
 
@@ -34,7 +34,7 @@ class HomePage extends StatelessWidget {
             slivers: [
               SliverPadding(padding: EdgeInsets.only(top: MainTheme.spacing * 2)),
               SliverToBoxAdapter(child: SizedBox(height: MainTheme.spacing)),
-              const SliverToBoxAdapter(child: SaudationWidget()),
+              const SliverToBoxAdapter(child: GreetingWidget()),
               SliverToBoxAdapter(child: SizedBox(height: MainTheme.spacing * 3)),
               SliverToBoxAdapter(
                 child: Center(
