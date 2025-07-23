@@ -7,7 +7,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 class GreetingWidget extends StatelessWidget {
   const GreetingWidget({super.key});
 
-  static int get durationSaudationAnimation => _delayTillUsernameAnimation + _durationUsernameAnimation;
+  static int get durationGreetingAnimation => _delayTillUsernameAnimation + _durationUsernameAnimation;
 
   static int get _delayTillAnimation => 1200;
 
@@ -15,7 +15,7 @@ class GreetingWidget extends StatelessWidget {
 
   static int get _delayTillUsernameAnimation => _delayTillAnimation + _durationSlideAnimation + 500;
 
-  static int get _durationUsernameAnimation => 600;
+  static int get _durationUsernameAnimation => 300;
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +49,7 @@ class GreetingWidget extends StatelessWidget {
                 MainTheme.lightTheme.surface.withOpacity(0),
                 MainTheme.lightTheme.surface,
               ],
-              stops: const [0.01, 0.02],
+              stops: const [0.01, 0.06],
             ),
           ),
         )

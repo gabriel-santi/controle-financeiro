@@ -14,9 +14,9 @@ import 'package:go_router/go_router.dart';
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
-  int get durationSaudationAnimation => GreetingWidget.durationSaudationAnimation;
+  int get durationGreetingAnimation => GreetingWidget.durationGreetingAnimation;
 
-  int get delayTillOverviewAnimation => durationSaudationAnimation + 600;
+  int get delayTillOverviewAnimation => durationGreetingAnimation + 600;
 
   int get durationOverviewAnimation => 300;
 
