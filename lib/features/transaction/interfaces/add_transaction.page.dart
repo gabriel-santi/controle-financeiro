@@ -28,7 +28,7 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
       child: Scaffold(
         extendBody: true,
         body: Padding(
-          padding: EdgeInsets.only(left: MainTheme.spacing, right: MainTheme.spacing, top: MainTheme.spacing * 2),
+          padding: EdgeInsets.only(left: MainTheme.spacing * 2, right: MainTheme.spacing * 2, top: MainTheme.spacing * 2),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

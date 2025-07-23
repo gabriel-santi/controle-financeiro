@@ -37,7 +37,7 @@ class _EditTransactionPageState extends State<EditTransactionPage> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: MainTheme.spacing, vertical: MainTheme.spacing * 2),
+            padding: EdgeInsets.symmetric(horizontal: MainTheme.spacing * 2, vertical: MainTheme.spacing * 2),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
