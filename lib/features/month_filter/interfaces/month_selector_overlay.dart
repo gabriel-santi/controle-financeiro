@@ -54,7 +54,7 @@ class _MonthSelectorOverlayState extends State<MonthSelectorOverlay> {
         ),
         color: Theme.of(context).colorScheme.background,
       ),
-      padding: EdgeInsets.symmetric(horizontal: MainTheme.spacing, vertical: MainTheme.spacing),
+      padding: EdgeInsets.symmetric(horizontal: MainTheme.spacing * 2, vertical: MainTheme.spacing),
       child: Column(
         children: [
           Padding(

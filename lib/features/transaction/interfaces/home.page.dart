@@ -44,7 +44,7 @@ class HomePage extends StatelessWidget {
             ),
           ),
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: MainTheme.spacing + 6),
+            padding: EdgeInsets.symmetric(horizontal: MainTheme.spacing * 2),
             child: CustomScrollView(
               slivers: [
                 SliverPadding(padding: EdgeInsets.only(top: MainTheme.spacing * 2)),
