@@ -1,6 +1,5 @@
 import 'package:finapp/features/category/interfaces/category.page.dart';
 import 'package:finapp/features/transaction/interfaces/add_transaction.page.dart';
-import 'package:finapp/features/transaction/interfaces/edit_limit.page.dart';
 import 'package:finapp/features/transaction/interfaces/edit_transaction.page.dart';
 import 'package:finapp/features/transaction/interfaces/home.page.dart';
 import 'package:go_router/go_router.dart';
@@ -9,7 +8,6 @@ enum AppRoute {
   home('home'),
   transactionCreate('transactionCreate'),
   transactionEdit('transactionEdit'),
-  editLimit('editLimit'),
   category('category');
 
   final String name;
@@ -36,11 +34,6 @@ final GoRouter appRouter = GoRouter(
             final transactionId = int.parse(state.pathParameters["id"]!);
             return EditTransactionPage(transactionId: transactionId);
           },
-        ),
-        GoRoute(
-          path: 'limit',
-          name: AppRoute.editLimit.name,
-          builder: (context, state) => const EditLimitPage(),
         ),
         GoRoute(
           path: 'category',

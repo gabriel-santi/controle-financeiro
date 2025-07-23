@@ -13,9 +13,7 @@ class BackButtonWidget extends StatelessWidget {
     return IconButton(
         onPressed: () => onPressed != null ? onPressed!.call() : context.goNamed(AppRoute.home.name),
         padding: EdgeInsets.all(MainTheme.spacing + 4),
-        style: ButtonStyle(
-            shadowColor: WidgetStateProperty.resolveWith((states) => Theme.of(context).colorScheme.shadow),
-            elevation: WidgetStateProperty.resolveWith((states) => 2)),
+        style: ButtonStyle(elevation: WidgetStateProperty.resolveWith((states) => 2)),
         icon: Icon(
           size: 20,
           Icons.chevron_left,
