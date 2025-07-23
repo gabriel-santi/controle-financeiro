@@ -11,15 +11,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
+  int get durationSaudationAnimation => SaudationWidget.durationSaudationAnimation;
 
-class _HomePageState extends State<HomePage> {
-  final int selectedMonth = 7;
+  int get delayTillOverviewAnimation => durationSaudationAnimation + 600;
+
+  int get durationOverviewAnimation => 300;
+
+  int get delayTillTransactionsAnimation => delayTillOverviewAnimation + durationOverviewAnimation + 600;
+
+  int get durationTransactionAnimation => 400;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +34,7 @@ class _HomePageState extends State<HomePage> {
             slivers: [
               SliverPadding(padding: EdgeInsets.only(top: MainTheme.spacing * 2)),
               SliverToBoxAdapter(child: SizedBox(height: MainTheme.spacing)),
-              SliverToBoxAdapter(child: const SaudationWidget().animate().fadeIn(duration: const Duration(milliseconds: 600))),
+              const SliverToBoxAdapter(child: SaudationWidget()),
               SliverToBoxAdapter(child: SizedBox(height: MainTheme.spacing * 3)),
               SliverToBoxAdapter(
                 child: Center(
@@ -39,15 +42,17 @@ class _HomePageState extends State<HomePage> {
                     onChangeMonth: () {
                       // TODO update transactions
                     },
-                  ).animate(delay: const Duration(milliseconds: 1500)).fadeIn(duration: const Duration(milliseconds: 300)),
+                  )
+                      .animate(delay: Duration(milliseconds: delayTillOverviewAnimation))
+                      .fadeIn(duration: Duration(milliseconds: durationOverviewAnimation)),
                 ),
               ),
               SliverToBoxAdapter(child: SizedBox(height: MainTheme.spacing * 3)),
               SliverToBoxAdapter(
                   child: TransactionOverviewWidget()
-                      .animate(delay: const Duration(milliseconds: 1500))
-                      .fadeIn(duration: const Duration(milliseconds: 300))
-                      .slideY(begin: 0.8, end: 0, duration: const Duration(milliseconds: 300))),
+                      .animate(delay: Duration(milliseconds: delayTillOverviewAnimation + 400))
+                      .fadeIn(duration: Duration(milliseconds: durationOverviewAnimation))
+                      .slideY(begin: 0.8, end: 0, duration: Duration(milliseconds: durationOverviewAnimation))),
               SliverToBoxAdapter(
                 child: Padding(
                   padding: EdgeInsets.only(top: MainTheme.spacing * 4, bottom: MainTheme.spacing),
@@ -55,13 +60,15 @@ class _HomePageState extends State<HomePage> {
                     text: "Movimentações".hardcoded,
                     size: MainTheme.fontSizeLarge,
                     weight: FontWeight.w500,
-                  ).animate(delay: const Duration(milliseconds: 2200)).fadeIn(duration: const Duration(milliseconds: 400)),
+                  )
+                      .animate(delay: Duration(milliseconds: delayTillTransactionsAnimation))
+                      .fadeIn(duration: Duration(milliseconds: durationTransactionAnimation)),
                 ),
               ),
               SliverFillRemaining(
                   child: const TransactionsListWidget()
-                      .animate(delay: const Duration(milliseconds: 2200))
-                      .fadeIn(duration: const Duration(milliseconds: 400))),
+                      .animate(delay: Duration(milliseconds: delayTillTransactionsAnimation))
+                      .fadeIn(duration: Duration(milliseconds: durationTransactionAnimation))),
               SliverPadding(padding: EdgeInsets.only(top: MainTheme.spacing * 2)),
             ],
           ),
