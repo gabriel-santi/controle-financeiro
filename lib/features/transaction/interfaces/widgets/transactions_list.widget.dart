@@ -1,3 +1,4 @@
+import 'package:finapp/features/category/interfaces/widgets/category_chip_widget.dart';
 import 'package:finapp/features/transaction/domain/monetary_value.dart';
 import 'package:finapp/features/transaction/domain/payment.dart';
 import 'package:finapp/features/transaction/domain/transaction.dart';
@@ -13,9 +14,10 @@ class TransactionsListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final transactions = [
-      Payment.load(1, "Lunch", DateTime.now(), DateTime.now(), MonetaryValue(10), 1, 1, false),
+      Payment.load(1, "Lunch", DateTime.now(), DateTime.now(), MonetaryValue(26), 1, 1, false),
       Payment.load(2, "Cine", DateTime.now(), DateTime.now(), MonetaryValue(14), 1, 1, false),
       Payment.load(3, "Uber", DateTime.now(), DateTime.now(), MonetaryValue(25), 1, 1, false),
+      Payment.load(4, "Dinner", DateTime.now(), DateTime.now(), MonetaryValue(52), 1, 1, false),
     ];
 
     return ListView.separated(
@@ -56,7 +58,13 @@ class TransactionCardWidget extends StatelessWidget {
               ],
             ),
             SizedBox(height: MainTheme.spacing),
-            TextWidget(text: transaction.createdAtFormatted, size: MainTheme.fontSizeSmall)
+            Row(
+              children: [
+                TextWidget(text: transaction.createdAtFormatted, size: MainTheme.fontSizeSmall),
+                SizedBox(width: MainTheme.spacing),
+                CategoryChipWidget(description: 'description', color: Color(0xFFFFBDBD))
+              ],
+            )
           ],
         ),
       ),
