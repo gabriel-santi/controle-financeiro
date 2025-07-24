@@ -1,3 +1,4 @@
+import 'package:finapp/shared/constants/app_sizes.dart';
 import 'package:finapp/shared/extensions/string_extension.dart';
 import 'package:finapp/shared/theme/theme.dart';
 import 'package:finapp/shared/widget/text.widget.dart';
@@ -45,7 +46,7 @@ class TextInputWidget extends StatelessWidget {
         enabledBorder: UnderlineInputBorder(
           borderSide: BorderSide(color: Theme.of(context).colorScheme.primary),
         ),
-        contentPadding: EdgeInsets.symmetric(horizontal: MainTheme.spacing, vertical: MainTheme.spacing),
+        contentPadding: const EdgeInsets.all(Sizes.p8),
       ),
       textAlign: TextAlign.center,
       controller: controller,
