@@ -1,5 +1,6 @@
 import 'package:finapp/features/category/interfaces/widgets/category_selector.widget.dart';
 import 'package:finapp/features/transaction/interfaces/widgets/transaction_form.widget.dart';
+import 'package:finapp/shared/constants/app_sizes.dart';
 import 'package:finapp/shared/extensions/string_extension.dart';
 import 'package:finapp/shared/theme/theme.dart';
 import 'package:finapp/shared/widget/button/back_button.widget.dart';
@@ -28,15 +29,15 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
       child: Scaffold(
         extendBody: true,
         body: Padding(
-          padding: EdgeInsets.only(left: MainTheme.spacing * 2, right: MainTheme.spacing * 2, top: MainTheme.spacing * 2),
+          padding: const EdgeInsets.all(Sizes.p16).copyWith(bottom: 0),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: MainTheme.spacing * 2),
+                const SizedBox(height: Sizes.p16),
                 const BackButtonWidget(),
                 Padding(
-                  padding: EdgeInsets.symmetric(vertical: MainTheme.spacing * 2),
+                  padding: const EdgeInsets.symmetric(vertical: Sizes.p16),
                   child: Center(
                     child: TextWidget(text: "Adicionar transação".hardcoded, size: MainTheme.fontSizeLarge, weight: FontWeight.w400),
                   ),
@@ -46,16 +47,15 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
                   descriptionController: _descriptionController,
                   formKey: _formKey,
                 ),
-                SizedBox(height: MainTheme.spacing * 4),
+                const SizedBox(height: Sizes.p32),
                 CategorySelectorWidget(),
-                SizedBox(height: MainTheme.spacing * 6),
+                const SizedBox(height: Sizes.p64),
                 Align(
                   alignment: Alignment.centerRight,
                   child: ElevatedButton(
                     onPressed: _onSave,
                     style: ButtonStyle(
-                        padding: WidgetStateProperty.resolveWith(
-                            (states) => EdgeInsets.symmetric(vertical: MainTheme.spacing * 2, horizontal: MainTheme.spacing * 4)),
+                        padding: WidgetStateProperty.resolveWith((states) => const EdgeInsets.symmetric(vertical: Sizes.p16, horizontal: Sizes.p32)),
                         backgroundColor: WidgetStateProperty.resolveWith((states) => Theme.of(context).colorScheme.primary),
                         shape: WidgetStateProperty.resolveWith(
                             (states) => RoundedRectangleBorder(borderRadius: BorderRadius.circular(MainTheme.radiusMedium)))),
@@ -65,7 +65,7 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: MainTheme.spacing * 2),
+                const SizedBox(height: Sizes.p16),
               ],
             ),
           ),

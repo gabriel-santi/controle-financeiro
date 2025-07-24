@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:collection';
 
+import 'package:finapp/shared/constants/app_sizes.dart';
 import 'package:finapp/shared/theme/theme.dart';
 import 'package:finapp/shared/widget/text.widget.dart';
 import 'package:flutter/material.dart';
@@ -80,7 +81,7 @@ class NotificationWidgetState extends State<NotificationWidget> with TickerProvi
     }
 
     return Container(
-      padding: EdgeInsets.all(MainTheme.spacing / 2),
+      padding: const EdgeInsets.all(Sizes.p4),
       decoration: BoxDecoration(color: _notificationBackgroundColor, shape: BoxShape.circle),
       child: icon,
     );
@@ -103,7 +104,7 @@ class NotificationWidgetState extends State<NotificationWidget> with TickerProvi
                 child: Container(
                   height: 50,
                   clipBehavior: Clip.hardEdge,
-                  margin: EdgeInsets.all(MainTheme.spacing),
+                  margin: const EdgeInsets.all(Sizes.p8),
                   decoration: BoxDecoration(
                     color: Theme.of(context).colorScheme.surfaceTint,
                     borderRadius: BorderRadius.circular(MainTheme.radiusSmall),
@@ -118,9 +119,9 @@ class NotificationWidgetState extends State<NotificationWidget> with TickerProvi
                   ),
                   child: Row(
                     children: [
-                      SizedBox(width: MainTheme.spacing),
+                      const SizedBox(width: Sizes.p8),
                       _iconNotification,
-                      SizedBox(width: MainTheme.spacing),
+                      const SizedBox(width: Sizes.p8),
                       Expanded(
                           child: TextWidget(
                         text: currentNotification?.message ?? '',
@@ -128,7 +129,7 @@ class NotificationWidgetState extends State<NotificationWidget> with TickerProvi
                         maxLines: 2,
                         weight: FontWeight.w500,
                       )),
-                      SizedBox(width: MainTheme.spacing),
+                      const SizedBox(width: Sizes.p8),
                       IconButton(
                         icon: const Icon(Icons.close),
                         onPressed: _removeNotification,

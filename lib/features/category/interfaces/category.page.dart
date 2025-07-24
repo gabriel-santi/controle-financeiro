@@ -1,5 +1,6 @@
 import 'package:finapp/features/category/interfaces/widgets/categories_list.widget.dart';
 import 'package:finapp/features/category/interfaces/widgets/popup_select_color.dart';
+import 'package:finapp/shared/constants/app_sizes.dart';
 import 'package:finapp/shared/extensions/string_extension.dart';
 import 'package:finapp/shared/theme/theme.dart';
 import 'package:finapp/shared/widget/button/back_button.widget.dart';
@@ -27,16 +28,16 @@ class _CategoryPageState extends State<CategoryPage> {
       child: Scaffold(
         extendBody: true,
         body: Padding(
-          padding: EdgeInsets.only(left: MainTheme.spacing, right: MainTheme.spacing, top: MainTheme.spacing * 2),
+          padding: const EdgeInsets.only(left: Sizes.p8, right: Sizes.p8, top: Sizes.p16),
           child: SingleChildScrollView(
             clipBehavior: Clip.none,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: MainTheme.spacing * 2),
+                const SizedBox(height: Sizes.p16),
                 BackButtonWidget(onPressed: () => Navigator.pop(context)),
                 Padding(
-                  padding: EdgeInsets.symmetric(vertical: MainTheme.spacing * 2),
+                  padding: const EdgeInsets.symmetric(vertical: Sizes.p16),
                   child: Center(
                     child: TextWidget(text: "Categorias".hardcoded, size: MainTheme.fontSizeLarge, weight: FontWeight.w400),
                   ),
@@ -56,7 +57,7 @@ class _CategoryPageState extends State<CategoryPage> {
                       alignLabelWithHint: true,
                       border: UnderlineInputBorder(borderSide: BorderSide(color: Theme.of(context).colorScheme.primary)),
                       enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Theme.of(context).colorScheme.primary)),
-                      contentPadding: EdgeInsets.symmetric(horizontal: MainTheme.spacing, vertical: MainTheme.spacing),
+                      contentPadding: const EdgeInsets.all(Sizes.p8),
                     ),
                     onFieldSubmitted: (_) {
                       FocusScope.of(context).unfocus();
@@ -71,11 +72,11 @@ class _CategoryPageState extends State<CategoryPage> {
                     style: TextStyle(fontSize: MainTheme.fontSizeMedium),
                   ),
                 ),
-                SizedBox(height: MainTheme.spacing * 2),
+                const SizedBox(height: Sizes.p16),
                 InkWell(
                   onTap: _openColorPicker,
                   child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: MainTheme.spacing, vertical: MainTheme.spacing),
+                      padding: const EdgeInsets.all(Sizes.p8),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(MainTheme.radiusSmall),
                         color: _selectedColor,
@@ -91,7 +92,7 @@ class _CategoryPageState extends State<CategoryPage> {
                         children: [
                           TextWidget(text: 'Cor'.hardcoded),
                           Padding(
-                            padding: EdgeInsets.symmetric(horizontal: MainTheme.spacing),
+                            padding: const EdgeInsets.symmetric(horizontal: Sizes.p8),
                             child: TextWidget(
                               text: "#${_selectedColor.value}",
                               size: MainTheme.fontSizeSmall,
@@ -106,7 +107,7 @@ class _CategoryPageState extends State<CategoryPage> {
                         ],
                       )),
                 ),
-                SizedBox(height: MainTheme.spacing * 2),
+                const SizedBox(height: Sizes.p16),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: false
@@ -116,7 +117,7 @@ class _CategoryPageState extends State<CategoryPage> {
                               color: Theme.of(context).colorScheme.error,
                               textColor: Theme.of(context).colorScheme.onSecondary,
                               onClick: _cancelEditing),
-                          SizedBox(width: MainTheme.spacing),
+                          const SizedBox(width: Sizes.p8),
                           SizedBox(
                             width: 200,
                             child: CustomButtonWidget(
@@ -130,9 +131,9 @@ class _CategoryPageState extends State<CategoryPage> {
                                   label: "Criar".hardcoded, textColor: Theme.of(context).colorScheme.onSecondary, onClick: _saveCategory))
                         ],
                 ),
-                SizedBox(height: MainTheme.spacing * 4),
+                const SizedBox(height: Sizes.p32),
                 const CategoriesListWidget(),
-                SizedBox(height: MainTheme.spacing * 2),
+                const SizedBox(height: Sizes.p16),
               ],
             ),
           ),

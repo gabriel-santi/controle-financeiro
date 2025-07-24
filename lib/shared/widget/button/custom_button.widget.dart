@@ -1,4 +1,4 @@
-import 'package:finapp/shared/theme/theme.dart';
+import 'package:finapp/shared/constants/app_sizes.dart';
 import 'package:finapp/shared/widget/text.widget.dart';
 import 'package:flutter/material.dart';
 
@@ -43,7 +43,7 @@ class CustomButtonWidget extends StatelessWidget {
             children: [
               if (icon != null)
                 Padding(
-                  padding: EdgeInsets.only(left: MainTheme.spacing / 2),
+                  padding: const EdgeInsets.only(left: Sizes.p4),
                   child: icon,
                 ),
               TextWidget(

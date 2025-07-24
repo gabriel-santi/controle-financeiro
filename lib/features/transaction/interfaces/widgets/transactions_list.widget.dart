@@ -3,6 +3,7 @@ import 'package:finapp/features/transaction/domain/monetary_value.dart';
 import 'package:finapp/features/transaction/domain/payment.dart';
 import 'package:finapp/features/transaction/domain/transaction.dart';
 import 'package:finapp/route/routes.dart';
+import 'package:finapp/shared/constants/app_sizes.dart';
 import 'package:finapp/shared/theme/theme.dart';
 import 'package:finapp/shared/widget/text.widget.dart';
 import 'package:flutter/material.dart';
@@ -24,8 +25,8 @@ class TransactionsListWidget extends StatelessWidget {
         itemCount: transactions.length,
         primary: false,
         physics: const NeverScrollableScrollPhysics(),
-        padding: EdgeInsets.symmetric(vertical: MainTheme.spacing),
-        separatorBuilder: (_, __) => SizedBox(height: MainTheme.spacing),
+        padding: const EdgeInsets.symmetric(vertical: Sizes.p8),
+        separatorBuilder: (_, __) => const SizedBox(height: Sizes.p8),
         itemBuilder: (_, index) {
           return TransactionCardWidget(transaction: transactions[index]);
         });
@@ -46,7 +47,7 @@ class TransactionCardWidget extends StatelessWidget {
           color: Colors.transparent,
           borderRadius: BorderRadius.circular(MainTheme.radiusMedium),
         ),
-        padding: EdgeInsets.symmetric(horizontal: MainTheme.spacing + 5, vertical: MainTheme.spacing * 2),
+        padding: const EdgeInsets.symmetric(horizontal: Sizes.p12, vertical: Sizes.p16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -57,12 +58,12 @@ class TransactionCardWidget extends StatelessWidget {
                 TextWidget(text: transaction.value.formattedValue(), weight: FontWeight.w400),
               ],
             ),
-            SizedBox(height: MainTheme.spacing),
+            const SizedBox(height: Sizes.p8),
             Row(
               children: [
                 TextWidget(text: transaction.createdAtFormatted, size: MainTheme.fontSizeSmall),
-                SizedBox(width: MainTheme.spacing),
-                CategoryChipWidget(description: 'description', color: Color(0xFFFFBDBD))
+                const SizedBox(width: Sizes.p8),
+                const CategoryChipWidget(description: 'description', color: Color(0xFFFFBDBD))
               ],
             )
           ],

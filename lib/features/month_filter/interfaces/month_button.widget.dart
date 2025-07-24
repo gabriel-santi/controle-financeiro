@@ -1,4 +1,5 @@
 import 'package:finapp/features/month_filter/interfaces/month_selector_overlay.dart';
+import 'package:finapp/shared/constants/app_sizes.dart';
 import 'package:finapp/shared/extensions/string_extension.dart';
 import 'package:finapp/shared/theme/theme.dart';
 import 'package:finapp/shared/widget/text.widget.dart';
@@ -40,25 +41,25 @@ class MonthButtonWidget extends StatelessWidget {
       onTap: () => showModalBottomSheet(context: context, builder: (_) => MonthSelectorOverlay(selectedMonth: selectedMonth, onSelect: _selectMonth)),
       child: FittedBox(
         child: Container(
-          padding: EdgeInsets.symmetric(vertical: MainTheme.spacing),
+          padding: const EdgeInsets.symmetric(vertical: Sizes.p8),
           decoration: BoxDecoration(
             border: Border.all(color: Theme.of(context).colorScheme.primary, width: 2),
             borderRadius: BorderRadius.circular(MainTheme.radiusBig),
           ),
           child: Row(
             children: [
-              SizedBox(width: MainTheme.spacing * 3),
+              const SizedBox(width: Sizes.p24),
               Icon(Icons.calendar_month_rounded, size: 18, color: Theme.of(context).colorScheme.primary),
-              SizedBox(width: MainTheme.spacing),
+              const SizedBox(width: Sizes.p8),
               TextWidget(
                 text: months[selectedMonth - 1],
                 color: Theme.of(context).colorScheme.primary,
                 weight: FontWeight.w500,
                 size: MainTheme.fontSizeSmall,
               ),
-              SizedBox(width: MainTheme.spacing * 3),
+              const SizedBox(width: Sizes.p24),
               Icon(Icons.keyboard_arrow_down, size: 18, color: Theme.of(context).colorScheme.primary),
-              SizedBox(width: MainTheme.spacing * 2),
+              const SizedBox(width: Sizes.p16),
             ],
           ),
         ),

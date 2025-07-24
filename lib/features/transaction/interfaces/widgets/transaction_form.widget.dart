@@ -1,5 +1,6 @@
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:finapp/features/transaction/interfaces/widgets/currency_input.widget.dart';
+import 'package:finapp/shared/constants/app_sizes.dart';
 import 'package:finapp/shared/extensions/string_extension.dart';
 import 'package:finapp/shared/theme/theme.dart';
 import 'package:finapp/shared/widget/text.widget.dart';
@@ -39,7 +40,7 @@ class TransactionFormWidget extends StatelessWidget {
               return null;
             },
           ),
-          SizedBox(height: MainTheme.spacing * 2),
+          const SizedBox(height: Sizes.p16),
           TextFormField(
             onTapOutside: (event) {
               FocusScope.of(context).unfocus();
@@ -49,7 +50,7 @@ class TransactionFormWidget extends StatelessWidget {
               alignLabelWithHint: true,
               border: UnderlineInputBorder(borderSide: BorderSide(color: Theme.of(context).colorScheme.primary)),
               enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Theme.of(context).colorScheme.primary)),
-              contentPadding: EdgeInsets.symmetric(horizontal: MainTheme.spacing, vertical: MainTheme.spacing),
+              contentPadding: const EdgeInsets.all(Sizes.p8),
             ),
             onFieldSubmitted: (_) {
               FocusScope.of(context).unfocus();

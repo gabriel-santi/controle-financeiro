@@ -3,6 +3,7 @@ import 'package:finapp/features/transaction/interfaces/widgets/greeting_widget.d
 import 'package:finapp/features/transaction/interfaces/widgets/transaction_overview_widget.dart';
 import 'package:finapp/features/transaction/interfaces/widgets/transactions_list.widget.dart';
 import 'package:finapp/route/routes.dart';
+import 'package:finapp/shared/constants/app_sizes.dart';
 import 'package:finapp/shared/extensions/string_extension.dart';
 import 'package:finapp/shared/theme/theme.dart';
 import 'package:finapp/shared/widget/button/add_button.widget.dart';
@@ -44,13 +45,12 @@ class HomePage extends StatelessWidget {
             ),
           ),
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: MainTheme.spacing * 2),
+            padding: const EdgeInsets.symmetric(horizontal: Sizes.p16),
             child: CustomScrollView(
               slivers: [
-                SliverPadding(padding: EdgeInsets.only(top: MainTheme.spacing * 2)),
-                SliverToBoxAdapter(child: SizedBox(height: MainTheme.spacing)),
+                const SliverPadding(padding: EdgeInsets.only(top: Sizes.p16)),
                 const SliverToBoxAdapter(child: GreetingWidget()),
-                SliverToBoxAdapter(child: SizedBox(height: MainTheme.spacing * 3)),
+                const SliverPadding(padding: EdgeInsets.only(top: Sizes.p24)),
                 SliverToBoxAdapter(
                   child: Center(
                     child: MonthButtonWidget(
@@ -62,7 +62,7 @@ class HomePage extends StatelessWidget {
                         .fadeIn(duration: Duration(milliseconds: durationOverviewAnimation)),
                   ),
                 ),
-                SliverToBoxAdapter(child: SizedBox(height: MainTheme.spacing * 3)),
+                const SliverPadding(padding: EdgeInsets.only(top: Sizes.p24)),
                 SliverToBoxAdapter(
                     child: TransactionOverviewWidget()
                         .animate(delay: Duration(milliseconds: delayTillOverviewAnimation + 400))
@@ -70,7 +70,7 @@ class HomePage extends StatelessWidget {
                         .slideY(begin: 0.8, end: 0, duration: Duration(milliseconds: durationOverviewAnimation))),
                 SliverToBoxAdapter(
                   child: Padding(
-                    padding: EdgeInsets.only(top: MainTheme.spacing * 4, bottom: MainTheme.spacing),
+                    padding: const EdgeInsets.only(top: Sizes.p32, bottom: Sizes.p8),
                     child: TextWidget(
                       text: "Movimentações".hardcoded,
                       size: MainTheme.fontSizeLarge,
@@ -84,7 +84,7 @@ class HomePage extends StatelessWidget {
                     child: const TransactionsListWidget()
                         .animate(delay: Duration(milliseconds: delayTillTransactionsAnimation))
                         .fadeIn(duration: Duration(milliseconds: durationTransactionAnimation))),
-                SliverPadding(padding: EdgeInsets.only(top: MainTheme.spacing * 2)),
+                const SliverPadding(padding: EdgeInsets.only(top: Sizes.p16)),
               ],
             ),
           ),

@@ -1,3 +1,4 @@
+import 'package:finapp/shared/constants/app_sizes.dart';
 import 'package:finapp/shared/extensions/string_extension.dart';
 import 'package:finapp/shared/theme/theme.dart';
 import 'package:finapp/shared/widget/button/custom_button.widget.dart';
@@ -54,11 +55,11 @@ class _MonthSelectorOverlayState extends State<MonthSelectorOverlay> {
         ),
         color: Theme.of(context).colorScheme.background,
       ),
-      padding: EdgeInsets.symmetric(horizontal: MainTheme.spacing * 2, vertical: MainTheme.spacing),
+      padding: const EdgeInsets.symmetric(horizontal: Sizes.p16, vertical: Sizes.p8),
       child: Column(
         children: [
           Padding(
-            padding: EdgeInsets.symmetric(vertical: MainTheme.spacing / 2),
+            padding: const EdgeInsets.symmetric(vertical: Sizes.p4),
             child: Container(
               width: 50,
               height: 5,
@@ -68,9 +69,9 @@ class _MonthSelectorOverlayState extends State<MonthSelectorOverlay> {
               ),
             ),
           ),
-          SizedBox(height: MainTheme.spacing),
+          const SizedBox(height: Sizes.p8),
           Align(alignment: Alignment.centerLeft, child: TextWidget(text: "Mês selecionado".hardcoded)),
-          SizedBox(height: MainTheme.spacing),
+          const SizedBox(height: Sizes.p8),
           GridView.builder(
             shrinkWrap: true,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -103,7 +104,7 @@ class _MonthSelectorOverlayState extends State<MonthSelectorOverlay> {
           CustomButtonWidget(
               label: "Selecionar".hardcoded,
               borderRadius: MainTheme.radiusBig,
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: MainTheme.spacing * 2),
+              padding: const EdgeInsets.all(Sizes.p16),
               textColor: Theme.of(context).colorScheme.onSecondary,
               onClick: () {
                 Navigator.of(context).pop();

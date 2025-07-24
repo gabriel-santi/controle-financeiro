@@ -1,5 +1,6 @@
 import 'package:finapp/features/category/domain/category.dart';
 import 'package:finapp/features/category/interfaces/widgets/empty_state_category.widget.dart';
+import 'package:finapp/shared/constants/app_sizes.dart';
 import 'package:finapp/shared/extensions/string_extension.dart';
 import 'package:finapp/shared/theme/theme.dart';
 import 'package:finapp/shared/widget/button/custom_button.widget.dart';
@@ -22,11 +23,11 @@ class CategorySelectorWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         TextWidget(text: "Categoria".hardcoded, weight: FontWeight.w500),
-        SizedBox(height: MainTheme.spacing),
+        const SizedBox(height: Sizes.p8),
         categories.isNotEmpty
             ? Wrap(
-                spacing: MainTheme.spacing,
-                runSpacing: MainTheme.spacing,
+                spacing: Sizes.p8,
+                runSpacing: Sizes.p8,
                 children: [
                   for (int i = 0; i < categories.length; i++)
                     FittedBox(

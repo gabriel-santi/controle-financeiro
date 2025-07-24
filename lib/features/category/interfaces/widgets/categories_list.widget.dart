@@ -1,5 +1,6 @@
 import 'package:finapp/features/category/domain/category.dart';
 import 'package:finapp/features/category/interfaces/widgets/popup_delete_category.dart';
+import 'package:finapp/shared/constants/app_sizes.dart';
 import 'package:finapp/shared/extensions/string_extension.dart';
 import 'package:finapp/shared/theme/theme.dart';
 import 'package:finapp/shared/widget/notification.widget.dart';
@@ -33,7 +34,7 @@ class CategoriesListWidget extends StatelessWidget {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       itemCount: categories.length,
-      separatorBuilder: (context, index) => SizedBox(height: MainTheme.spacing),
+      separatorBuilder: (context, index) => const SizedBox(height: Sizes.p8),
       itemBuilder: (context, index) {
         Category category = categories[index];
         bool selected = selectedCategory?.id == category.id;
@@ -57,15 +58,15 @@ class CategoriesListWidget extends StatelessWidget {
             ),
             child: Row(
               children: [
-                SizedBox(width: MainTheme.spacing),
+                const SizedBox(width: Sizes.p8),
                 Icon(Icons.edit_outlined, color: Theme.of(context).colorScheme.onPrimary),
-                SizedBox(width: MainTheme.spacing),
+                const SizedBox(width: Sizes.p8),
                 TextWidget(text: category.description),
                 const Spacer(),
                 InkWell(
                     onTap: () => _openConfirmDialog(context, category.id),
                     child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: MainTheme.spacing * 2, vertical: MainTheme.spacing * 2),
+                      padding: const EdgeInsets.symmetric(horizontal: Sizes.p16, vertical: Sizes.p16),
                       child: Icon(Icons.delete, color: Theme.of(context).colorScheme.onPrimary.withOpacity(.8)),
                     )),
               ],

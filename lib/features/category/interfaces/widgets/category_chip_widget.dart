@@ -1,3 +1,4 @@
+import 'package:finapp/shared/constants/app_sizes.dart';
 import 'package:finapp/shared/theme/theme.dart';
 import 'package:finapp/shared/widget/text.widget.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,7 @@ class CategoryChipWidget extends StatelessWidget {
         ],
       ),
       child: Padding(
-        padding: EdgeInsets.symmetric(vertical: MainTheme.spacing / 3, horizontal: MainTheme.spacing),
+        padding: const EdgeInsets.symmetric(vertical: Sizes.p4, horizontal: Sizes.p8),
         child: Center(
           child: TextWidget(
             text: description,

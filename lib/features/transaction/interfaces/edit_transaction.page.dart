@@ -1,5 +1,6 @@
 import 'package:finapp/features/category/interfaces/widgets/category_selector.widget.dart';
 import 'package:finapp/features/transaction/interfaces/widgets/transaction_form.widget.dart';
+import 'package:finapp/shared/constants/app_sizes.dart';
 import 'package:finapp/shared/extensions/string_extension.dart';
 import 'package:finapp/shared/theme/theme.dart';
 import 'package:finapp/shared/widget/button/back_button.widget.dart';
@@ -37,7 +38,7 @@ class _EditTransactionPageState extends State<EditTransactionPage> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: MainTheme.spacing * 2, vertical: MainTheme.spacing * 2),
+            padding: const EdgeInsets.all(Sizes.p16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -47,7 +48,7 @@ class _EditTransactionPageState extends State<EditTransactionPage> {
                     const BackButtonWidget(),
                     IconButton(
                         onPressed: _onDelete,
-                        padding: EdgeInsets.all(MainTheme.spacing + 4),
+                        padding: const EdgeInsets.all(Sizes.p12),
                         icon: Icon(
                           Icons.delete_outline,
                           size: 26,
@@ -56,7 +57,7 @@ class _EditTransactionPageState extends State<EditTransactionPage> {
                   ],
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(vertical: MainTheme.spacing * 2),
+                  padding: const EdgeInsets.symmetric(vertical: Sizes.p16),
                   child: Center(
                     child: TextWidget(text: "Editar transação".hardcoded, size: MainTheme.fontSizeLarge, weight: FontWeight.w400),
                   ),
@@ -66,17 +67,17 @@ class _EditTransactionPageState extends State<EditTransactionPage> {
                   descriptionController: _descriptionController,
                   formKey: _formKey,
                 ),
-                SizedBox(height: MainTheme.spacing * 4),
+                const SizedBox(height: Sizes.p32),
                 CategorySelectorWidget(),
-                SizedBox(height: MainTheme.spacing * 4),
+                const SizedBox(height: Sizes.p32),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     ElevatedButton(
                       onPressed: _onSave,
                       style: ButtonStyle(
-                          padding: WidgetStateProperty.resolveWith(
-                              (states) => EdgeInsets.symmetric(vertical: MainTheme.spacing * 2, horizontal: MainTheme.spacing * 4)),
+                          padding:
+                              WidgetStateProperty.resolveWith((states) => const EdgeInsets.symmetric(vertical: Sizes.p16, horizontal: Sizes.p32)),
                           backgroundColor: WidgetStateProperty.resolveWith((states) => Theme.of(context).colorScheme.primary),
                           shape: WidgetStateProperty.resolveWith(
                               (states) => RoundedRectangleBorder(borderRadius: BorderRadius.circular(MainTheme.radiusMedium)))),

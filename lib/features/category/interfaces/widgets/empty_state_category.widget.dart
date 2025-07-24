@@ -1,4 +1,5 @@
 import 'package:finapp/route/routes.dart';
+import 'package:finapp/shared/constants/app_sizes.dart';
 import 'package:finapp/shared/extensions/string_extension.dart';
 import 'package:finapp/shared/theme/theme.dart';
 import 'package:finapp/shared/widget/button/custom_button.widget.dart';
@@ -15,14 +16,14 @@ class EmptyStateCategoryWidget extends StatelessWidget {
     return Center(
       child: Column(
         children: [
-          SizedBox(height: MainTheme.spacing),
+          const SizedBox(height: Sizes.p8),
           SvgPicture.asset(
             'assets/svg/empty_state_category.svg',
             width: 150,
           ),
-          SizedBox(height: MainTheme.spacing),
+          const SizedBox(height: Sizes.p8),
           TextWidget(text: "Nenhuma categoria criada".hardcoded, size: MainTheme.fontSizeSmall),
-          SizedBox(height: MainTheme.spacing * 2),
+          const SizedBox(height: Sizes.p16),
           SizedBox(
             width: 200,
             child: CustomButtonWidget(

@@ -1,5 +1,6 @@
 import 'package:finapp/features/transaction/domain/monetary_value.dart';
 import 'package:finapp/features/transaction/interfaces/widgets/progress_bar.widget.dart';
+import 'package:finapp/shared/constants/app_sizes.dart';
 import 'package:finapp/shared/extensions/string_extension.dart';
 import 'package:finapp/shared/theme/theme.dart';
 import 'package:finapp/shared/widget/text.widget.dart';
@@ -20,7 +21,7 @@ class TransactionOverviewWidget extends StatelessWidget {
             children: [
               Expanded(
                 child: Container(
-                  padding: EdgeInsets.symmetric(vertical: MainTheme.spacing * 4),
+                  padding: const EdgeInsets.symmetric(vertical: Sizes.p32),
                   decoration: BoxDecoration(
                     border: Border.all(width: 2, color: MainTheme.lightTheme.onSecondaryContainer),
                     borderRadius: BorderRadius.circular(MainTheme.radiusMedium),
@@ -41,10 +42,10 @@ class TransactionOverviewWidget extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(width: MainTheme.spacing * 2),
+              const SizedBox(width: Sizes.p16),
               Expanded(
                 child: Container(
-                  padding: EdgeInsets.symmetric(vertical: MainTheme.spacing * 4),
+                  padding: const EdgeInsets.symmetric(vertical: Sizes.p32),
                   decoration: BoxDecoration(
                     border: Border.all(width: 2, color: MainTheme.lightTheme.onSecondaryContainer),
                     borderRadius: BorderRadius.circular(MainTheme.radiusMedium),
@@ -67,9 +68,9 @@ class TransactionOverviewWidget extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: MainTheme.spacing * 2),
+          const SizedBox(height: Sizes.p16),
           Container(
-            padding: EdgeInsets.all(MainTheme.spacing * 4),
+            padding: const EdgeInsets.all(Sizes.p32),
             decoration: BoxDecoration(
               border: Border.all(width: 2, color: MainTheme.lightTheme.onSecondaryContainer),
               borderRadius: BorderRadius.circular(MainTheme.radiusMedium),
@@ -84,9 +85,9 @@ class TransactionOverviewWidget extends StatelessWidget {
                     size: MainTheme.fontSizeLarge + 4,
                     color: Theme.of(context).colorScheme.onPrimary,
                     weight: FontWeight.w500),
-                SizedBox(height: MainTheme.spacing * 2),
+                const SizedBox(height: Sizes.p16),
                 ProgressBarWidget(maxValue: totalEarned, currentValue: totalSpent),
-                SizedBox(height: MainTheme.spacing * 2),
+                const SizedBox(height: Sizes.p16),
               ],
             ),
           ),
