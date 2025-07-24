@@ -35,13 +35,13 @@ class HomePage extends StatelessWidget {
           decoration: const BoxDecoration(
             gradient: RadialGradient(
               center: Alignment.bottomCenter,
-              radius: 1,
+              radius: 1.1,
               colors: [
-                Color(0xFFA343FD),
-                Color(0xFF402E6B),
+                Color(0xFF752ABC),
+                Color(0xFF37285B),
                 Color(0xFF140F24),
               ],
-              stops: [0.1, 0.4, 1],
+              stops: [0.01, 0.4, 1],
             ),
           ),
           child: Padding(

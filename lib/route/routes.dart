@@ -2,10 +2,12 @@ import 'package:finapp/features/category/interfaces/category.page.dart';
 import 'package:finapp/features/transaction/interfaces/add_transaction.page.dart';
 import 'package:finapp/features/transaction/interfaces/edit_transaction.page.dart';
 import 'package:finapp/features/transaction/interfaces/home.page.dart';
+import 'package:finapp/features/user/interfaces/username.page.dart';
 import 'package:go_router/go_router.dart';
 
 enum AppRoute {
   home('home'),
+  user('user'),
   transactionCreate('transactionCreate'),
   transactionEdit('transactionEdit'),
   category('category');
@@ -16,6 +18,7 @@ enum AppRoute {
 }
 
 final GoRouter appRouter = GoRouter(
+  initialLocation: '/user',
   routes: [
     GoRoute(
       path: '/',
@@ -39,6 +42,11 @@ final GoRouter appRouter = GoRouter(
           path: 'category',
           name: AppRoute.category.name,
           builder: (context, state) => const CategoryPage(),
+        ),
+        GoRoute(
+          path: 'user',
+          name: AppRoute.user.name,
+          builder: (context, state) => const UsernamePage(),
         ),
       ],
     ),

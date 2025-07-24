@@ -20,12 +20,11 @@ class MainTheme {
         onSecondary: Color(0xFFDFF5FF),
         secondary: Color(0xFFFCFCFC),
         onSecondaryContainer: Color(0xFF402E6B),
-        // 402E6B
         error: Color(0xFFF68576),
         onError: Color(0xFFFFF3E2),
         onBackground: Color(0xFF161A30),
         surface: Color(0xFF140F24),
-        onSurface: Color(0xFF161A30),
+        onSurface: Color(0xFFFFFFFF),
         surfaceTint: Color(0xFFFCFCFC),
         tertiary: Color(0xFFFFD54F),
         inversePrimary: Color(0xFF6EFF4C),
