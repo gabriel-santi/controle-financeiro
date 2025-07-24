@@ -18,7 +18,7 @@ enum AppRoute {
 }
 
 final GoRouter appRouter = GoRouter(
-  initialLocation: '/user',
+  initialLocation: '/',
   routes: [
     GoRoute(
       path: '/',

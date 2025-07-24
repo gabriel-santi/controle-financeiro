@@ -46,27 +46,32 @@ class _UsernamePageState extends State<UsernamePage> {
               enabled: _isValidName.value,
             );
           }),
-      body: Padding(
-        padding: const EdgeInsets.all(Sizes.p16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Spacer(flex: 2),
-            TextWidget(text: "Como gostaria de ser chamado?".hardcoded).animate(delay: const Duration(milliseconds: 800)).fadeIn(),
-            gapH12,
-            TextInputWidget(
-              label: null,
-              controller: _nameController,
-              autofocus: true,
-              validator: (value) {
-                if (value == null || value.trim().isEmpty) {
-                  return 'Preencha este campo'.hardcoded;
-                }
-                return null;
-              },
-            ).animate(delay: const Duration(milliseconds: 1600)).fadeIn(),
-            const Spacer(flex: 3),
-          ],
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(Sizes.p16),
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 450),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Spacer(flex: 2),
+                TextWidget(text: "Como gostaria de ser chamado?".hardcoded).animate(delay: const Duration(milliseconds: 800)).fadeIn(),
+                gapH12,
+                TextInputWidget(
+                  label: null,
+                  controller: _nameController,
+                  autofocus: true,
+                  validator: (value) {
+                    if (value == null || value.trim().isEmpty) {
+                      return 'Preencha este campo'.hardcoded;
+                    }
+                    return null;
+                  },
+                ).animate(delay: const Duration(milliseconds: 1600)).fadeIn(),
+                const Spacer(flex: 3),
+              ],
+            ),
+          ),
         ),
       ),
     );
