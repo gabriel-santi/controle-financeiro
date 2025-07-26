@@ -1,3 +1,4 @@
+import 'package:finapp/features/language/interfaces/widgets/language_selector_widget.dart';
 import 'package:finapp/shared/constants/app_sizes.dart';
 import 'package:finapp/shared/extensions/string_extension.dart';
 import 'package:finapp/shared/widget/button/next_button_widget.dart';
@@ -15,14 +16,13 @@ class LanguagePage extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(Sizes.p16),
             child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 450),
+              constraints: const BoxConstraints(maxWidth: 350),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Spacer(),
                   TextWidget(text: "Selecione o idioma:".hardcoded),
-                  gapH12,
-                  // LanguageSelectorWidget(),
-                  const Spacer(),
+                  const Padding(padding: EdgeInsets.only(top: Sizes.p12)),
+                  const Flexible(child: LanguageSelectorWidget()),
                 ],
               ),
             ),
