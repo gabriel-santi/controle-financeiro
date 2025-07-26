@@ -18,7 +18,7 @@ class EmptyStateCategoryWidget extends StatelessWidget {
         children: [
           const SizedBox(height: Sizes.p8),
           SvgPicture.asset(
-            'assets/svg/empty_state_category.svg',
+            'assets/images/svg/empty_state_category.svg',
             width: 150,
           ),
           const SizedBox(height: Sizes.p8),

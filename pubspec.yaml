@@ -37,4 +37,5 @@ flutter:
         - asset: assets/fonts/Montserrat-SemiBold.ttf
           weight: 600
   assets:
-    - assets/svg/
+    - assets/images/svg/
+    - assets/images/png/flags/
