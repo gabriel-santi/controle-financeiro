@@ -1,3 +1,4 @@
+import 'package:finapp/features/language/domain/language.dart';
 import 'package:finapp/route/routes.dart';
 import 'package:finapp/shared/theme/theme.dart';
 import 'package:finapp/shared/widget/notification.widget.dart';
@@ -19,6 +20,8 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return NotificationWidget(key: notificationKey, child: child!);
       },
+      supportedLocales: Language.values.map((l) => l.locale),
+      locale: Language.values.first.locale,
       theme: ThemeData(
           useMaterial3: true,
           fontFamily: "Montserrat",
