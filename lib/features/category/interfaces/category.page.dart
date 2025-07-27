@@ -1,7 +1,7 @@
 import 'package:finapp/features/category/interfaces/widgets/categories_list.widget.dart';
 import 'package:finapp/features/category/interfaces/widgets/popup_select_color.dart';
 import 'package:finapp/shared/constants/app_sizes.dart';
-import 'package:finapp/shared/extensions/string_extension.dart';
+import 'package:finapp/shared/extensions/localization.dart';
 import 'package:finapp/shared/theme/theme.dart';
 import 'package:finapp/shared/widget/button/back_button.widget.dart';
 import 'package:finapp/shared/widget/button/custom_button.widget.dart';
@@ -39,12 +39,12 @@ class _CategoryPageState extends State<CategoryPage> {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: Sizes.p16),
                   child: Center(
-                    child: TextWidget(text: "Categorias".hardcoded, size: MainTheme.fontSizeLarge, weight: FontWeight.w400),
+                    child: TextWidget(text: context.translatedString.nCategory(2), size: MainTheme.fontSizeLarge, weight: FontWeight.w400),
                   ),
                 ),
                 false
-                    ? TextWidget(text: "Editar categoria".hardcoded, weight: FontWeight.w400)
-                    : TextWidget(text: "Nova categoria".hardcoded, weight: FontWeight.w400),
+                    ? TextWidget(text: context.translatedString.editCategory, weight: FontWeight.w400)
+                    : TextWidget(text: context.translatedString.newCategory, weight: FontWeight.w400),
                 Form(
                   key: _formKey,
                   child: TextFormField(
@@ -53,7 +53,7 @@ class _CategoryPageState extends State<CategoryPage> {
                     },
                     autofocus: false,
                     decoration: InputDecoration(
-                      label: TextWidget(text: "Descrição".hardcoded),
+                      label: TextWidget(text: context.translatedString.description),
                       alignLabelWithHint: true,
                       border: UnderlineInputBorder(borderSide: BorderSide(color: Theme.of(context).colorScheme.primary)),
                       enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Theme.of(context).colorScheme.primary)),
@@ -64,7 +64,7 @@ class _CategoryPageState extends State<CategoryPage> {
                     },
                     validator: (value) {
                       if (value == null || value.trim().isEmpty) {
-                        return '*Campo obrigatório'.hardcoded;
+                        return context.translatedString.requiredField;
                       }
                       return null;
                     },
@@ -90,7 +90,7 @@ class _CategoryPageState extends State<CategoryPage> {
                       ),
                       child: Row(
                         children: [
-                          TextWidget(text: 'Cor'.hardcoded),
+                          TextWidget(text: context.translatedString.color),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: Sizes.p8),
                             child: TextWidget(
@@ -113,7 +113,7 @@ class _CategoryPageState extends State<CategoryPage> {
                   children: false
                       ? [
                           CustomButtonWidget(
-                              label: "Cancelar".hardcoded,
+                              label: context.translatedString.cancel,
                               color: Theme.of(context).colorScheme.error,
                               textColor: Theme.of(context).colorScheme.onSecondary,
                               onClick: _cancelEditing),
@@ -121,14 +121,16 @@ class _CategoryPageState extends State<CategoryPage> {
                           SizedBox(
                             width: 200,
                             child: CustomButtonWidget(
-                                label: "Salvar".hardcoded, textColor: Theme.of(context).colorScheme.onSecondary, onClick: _saveCategory),
+                                label: context.translatedString.save, textColor: Theme.of(context).colorScheme.onSecondary, onClick: _saveCategory),
                           ),
                         ]
                       : [
                           SizedBox(
                               width: 150,
                               child: CustomButtonWidget(
-                                  label: "Criar".hardcoded, textColor: Theme.of(context).colorScheme.onSecondary, onClick: _saveCategory))
+                                  label: context.translatedString.create,
+                                  textColor: Theme.of(context).colorScheme.onSecondary,
+                                  onClick: _saveCategory))
                         ],
                 ),
                 const SizedBox(height: Sizes.p32),
@@ -161,10 +163,10 @@ class _CategoryPageState extends State<CategoryPage> {
     if (!_formKey.currentState!.validate()) return;
 
     try {
-      showNotification("Categoria salva com sucesso!".hardcoded, NotificationType.SUCCESS);
+      showNotification(context.translatedString.categorySaveSuccess, NotificationType.SUCCESS);
       _descriptionController.clear();
     } catch (e) {
-      showNotification("Não foi possível salvar categoria".hardcoded);
+      showNotification(context.translatedString.categorySaveFailure);
     }
   }
 

@@ -1,4 +1,4 @@
-import 'package:finapp/shared/extensions/string_extension.dart';
+import 'package:finapp/shared/extensions/localization.dart';
 import 'package:finapp/shared/theme/theme.dart';
 import 'package:finapp/shared/widget/text.widget.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +25,7 @@ class GreetingWidget extends StatelessWidget {
         Row(
           children: [
             TextWidget(
-              text: 'Seja bem-vindo(a), '.hardcoded,
+              text: context.translatedString.welcome(user),
               size: MainTheme.fontSizeSmall,
             ),
             TextWidget(

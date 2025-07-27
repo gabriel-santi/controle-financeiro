@@ -1,11 +1,12 @@
-import 'package:finapp/features/language/domain/language.dart';
 import 'package:finapp/l10n/app_localizations.dart';
 import 'package:finapp/route/routes.dart';
 import 'package:finapp/shared/theme/theme.dart';
 import 'package:finapp/shared/widget/notification.widget.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 void main() {
+  initializeDateFormatting();
   runApp(const MyApp());
 }
 
@@ -21,8 +22,8 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return NotificationWidget(key: notificationKey, child: child!);
       },
-      supportedLocales: Language.values.map((l) => l.locale),
-      locale: Language.values.first.locale,
+      supportedLocales: AppLocalizations.supportedLocales,
+      locale: const Locale("en"),
       localizationsDelegates: const [AppLocalizations.delegate],
       theme: ThemeData(
           useMaterial3: true,

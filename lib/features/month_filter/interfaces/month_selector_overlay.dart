@@ -1,9 +1,11 @@
+import 'package:finapp/l10n/app_localizations.dart';
 import 'package:finapp/shared/constants/app_sizes.dart';
-import 'package:finapp/shared/extensions/string_extension.dart';
+import 'package:finapp/shared/extensions/localization.dart';
 import 'package:finapp/shared/theme/theme.dart';
 import 'package:finapp/shared/widget/button/custom_button.widget.dart';
 import 'package:finapp/shared/widget/text.widget.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class MonthSelectorOverlay extends StatefulWidget {
   final int selectedMonth;
@@ -16,21 +18,6 @@ class MonthSelectorOverlay extends StatefulWidget {
 }
 
 class _MonthSelectorOverlayState extends State<MonthSelectorOverlay> {
-  final List<String> months = [
-    'Janeiro'.hardcoded,
-    'Fevereiro'.hardcoded,
-    'Março'.hardcoded,
-    'Abril'.hardcoded,
-    'Maio'.hardcoded,
-    'Junho'.hardcoded,
-    'Julho'.hardcoded,
-    'Agosto'.hardcoded,
-    'Setembro'.hardcoded,
-    'Outubro'.hardcoded,
-    'Novembro'.hardcoded,
-    'Dezembro'.hardcoded
-  ];
-
   late int _selectedMonth;
 
   @override
@@ -47,6 +34,11 @@ class _MonthSelectorOverlayState extends State<MonthSelectorOverlay> {
 
   @override
   Widget build(BuildContext context) {
+    final months = List.generate(12, (index) {
+      final formatter = DateFormat.MMMM(AppLocalizations.of(context).localeName.toString());
+      final date = DateTime(2000, index + 1, 1);
+      return formatter.format(date);
+    });
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
@@ -70,7 +62,7 @@ class _MonthSelectorOverlayState extends State<MonthSelectorOverlay> {
             ),
           ),
           const SizedBox(height: Sizes.p8),
-          Align(alignment: Alignment.centerLeft, child: TextWidget(text: "Mês selecionado".hardcoded)),
+          Align(alignment: Alignment.centerLeft, child: TextWidget(text: context.translatedString.selectedMonth)),
           const SizedBox(height: Sizes.p8),
           GridView.builder(
             shrinkWrap: true,
@@ -102,7 +94,7 @@ class _MonthSelectorOverlayState extends State<MonthSelectorOverlay> {
           ),
           const Spacer(),
           CustomButtonWidget(
-              label: "Selecionar".hardcoded,
+              label: context.translatedString.select,
               borderRadius: MainTheme.radiusBig,
               padding: const EdgeInsets.all(Sizes.p16),
               textColor: Theme.of(context).colorScheme.onSecondary,

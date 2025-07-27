@@ -1,4 +1,4 @@
-import 'package:finapp/shared/extensions/string_extension.dart';
+import 'package:finapp/shared/extensions/localization.dart';
 import 'package:finapp/shared/theme/theme.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +13,7 @@ class NextButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return FloatingActionButton(
         onPressed: enabled ? onClick : null,
-        tooltip: "Avançar".hardcoded,
+        tooltip: context.translatedString.next,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(MainTheme.radiusMedium)),
         backgroundColor: Theme.of(context).colorScheme.primary.withOpacity(enabled ? 1 : .12),
         child: isLoading

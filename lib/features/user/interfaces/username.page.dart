@@ -1,5 +1,5 @@
 import 'package:finapp/shared/constants/app_sizes.dart';
-import 'package:finapp/shared/extensions/string_extension.dart';
+import 'package:finapp/shared/extensions/localization.dart';
 import 'package:finapp/shared/widget/button/next_button_widget.dart';
 import 'package:finapp/shared/widget/input/text_input_widget.dart';
 import 'package:finapp/shared/widget/text.widget.dart';
@@ -55,7 +55,7 @@ class _UsernamePageState extends State<UsernamePage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Spacer(flex: 2),
-                TextWidget(text: "Como gostaria de ser chamado?".hardcoded).animate(delay: const Duration(milliseconds: 800)).fadeIn(),
+                TextWidget(text: context.translatedString.askName).animate(delay: const Duration(milliseconds: 800)).fadeIn(),
                 gapH12,
                 TextInputWidget(
                   label: null,
@@ -63,7 +63,7 @@ class _UsernamePageState extends State<UsernamePage> {
                   autofocus: true,
                   validator: (value) {
                     if (value == null || value.trim().isEmpty) {
-                      return 'Preencha este campo'.hardcoded;
+                      return context.translatedString.requiredField;
                     }
                     return null;
                   },

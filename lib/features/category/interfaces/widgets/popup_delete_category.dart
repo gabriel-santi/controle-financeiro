@@ -1,4 +1,4 @@
-import 'package:finapp/shared/extensions/string_extension.dart';
+import 'package:finapp/shared/extensions/localization.dart';
 import 'package:finapp/shared/theme/theme.dart';
 import 'package:finapp/shared/widget/button/custom_button.widget.dart';
 import 'package:finapp/shared/widget/text.widget.dart';
@@ -11,7 +11,7 @@ class PopupDeleteCategory extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: TextWidget(
-        text: 'Excluir categoria'.hardcoded,
+        text: context.translatedString.deleteCategory,
         weight: FontWeight.w500,
         size: MainTheme.fontSizeMedium + 2,
       ),
@@ -20,9 +20,12 @@ class PopupDeleteCategory extends StatelessWidget {
         children: [
           Icon(Icons.warning_rounded, color: Theme.of(context).colorScheme.tertiary, size: 50),
           TextWidget(
-              maxLines: 5, size: MainTheme.fontSizeMedium - 2, text: 'Todas as transações vinculadas a essa categoria serão afetadas.'.hardcoded),
+            maxLines: 5,
+            size: MainTheme.fontSizeMedium - 2,
+            text: context.translatedString.allTransactionsLinkedWillBeAffected,
+          ),
           TextWidget(
-            text: 'Deseja mesmo excluir?'.hardcoded,
+            text: context.translatedString.deleteConfirmation,
             size: MainTheme.fontSizeMedium - 2,
           ),
         ],
@@ -30,14 +33,14 @@ class PopupDeleteCategory extends StatelessWidget {
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(context, false),
-          child: TextWidget(text: 'Cancelar'.hardcoded),
+          child: TextWidget(text: context.translatedString.cancel),
         ),
         SizedBox(
           width: 150,
           child: CustomButtonWidget(
               color: Theme.of(context).colorScheme.error,
               textColor: Theme.of(context).colorScheme.onSecondary,
-              label: "Excluir".hardcoded,
+              label: context.translatedString.delete,
               onClick: () => Navigator.pop(context, true)),
         ),
       ],

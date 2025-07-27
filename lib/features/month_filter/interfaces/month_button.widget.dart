@@ -1,42 +1,38 @@
 import 'package:finapp/features/month_filter/interfaces/month_selector_overlay.dart';
+import 'package:finapp/l10n/app_localizations.dart';
 import 'package:finapp/shared/constants/app_sizes.dart';
-import 'package:finapp/shared/extensions/string_extension.dart';
 import 'package:finapp/shared/theme/theme.dart';
 import 'package:finapp/shared/widget/text.widget.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
-class MonthButtonWidget extends StatelessWidget {
+class MonthButtonWidget extends StatefulWidget {
   final VoidCallback? onChangeMonth;
 
-  MonthButtonWidget({
+  const MonthButtonWidget({
     super.key,
     required this.onChangeMonth,
   });
 
-  final int selectedMonth = 1;
+  @override
+  State<MonthButtonWidget> createState() => _MonthButtonWidgetState();
+}
 
-  final List<String> months = [
-    'Janeiro'.hardcoded,
-    'Fevereiro'.hardcoded,
-    'Março'.hardcoded,
-    'Abril'.hardcoded,
-    'Maio'.hardcoded,
-    'Junho'.hardcoded,
-    'Julho'.hardcoded,
-    'Agosto'.hardcoded,
-    'Setembro'.hardcoded,
-    'Outubro'.hardcoded,
-    'Novembro'.hardcoded,
-    'Dezembro'.hardcoded
-  ];
+class _MonthButtonWidgetState extends State<MonthButtonWidget> {
+  final int selectedMonth = 1;
 
   void _selectMonth(int month) {
     // selectMonth(month);
-    onChangeMonth?.call();
+    widget.onChangeMonth?.call();
   }
 
   @override
   Widget build(BuildContext context) {
+    final months = List.generate(12, (index) {
+      final formatter = DateFormat.MMMM(AppLocalizations.of(context).localeName.toString());
+      final date = DateTime(2000, index + 1, 1);
+      return formatter.format(date);
+    });
     return GestureDetector(
       onTap: () => showModalBottomSheet(context: context, builder: (_) => MonthSelectorOverlay(selectedMonth: selectedMonth, onSelect: _selectMonth)),
       child: FittedBox(

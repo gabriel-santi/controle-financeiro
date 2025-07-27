@@ -1,7 +1,7 @@
 import 'package:finapp/features/category/interfaces/widgets/category_selector.widget.dart';
 import 'package:finapp/features/transaction/interfaces/widgets/transaction_form.widget.dart';
 import 'package:finapp/shared/constants/app_sizes.dart';
-import 'package:finapp/shared/extensions/string_extension.dart';
+import 'package:finapp/shared/extensions/localization.dart';
 import 'package:finapp/shared/theme/theme.dart';
 import 'package:finapp/shared/widget/button/back_button.widget.dart';
 import 'package:finapp/shared/widget/notification.widget.dart';
@@ -59,7 +59,7 @@ class _EditTransactionPageState extends State<EditTransactionPage> {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: Sizes.p16),
                   child: Center(
-                    child: TextWidget(text: "Editar transação".hardcoded, size: MainTheme.fontSizeLarge, weight: FontWeight.w400),
+                    child: TextWidget(text: context.translatedString.editTransaction, size: MainTheme.fontSizeLarge, weight: FontWeight.w400),
                   ),
                 ),
                 TransactionFormWidget(
@@ -82,7 +82,7 @@ class _EditTransactionPageState extends State<EditTransactionPage> {
                           shape: WidgetStateProperty.resolveWith(
                               (states) => RoundedRectangleBorder(borderRadius: BorderRadius.circular(MainTheme.radiusMedium)))),
                       child: TextWidget(
-                        text: 'Salvar'.hardcoded,
+                        text: context.translatedString.save,
                         color: Theme.of(context).colorScheme.secondary,
                       ),
                     ),
@@ -100,19 +100,19 @@ class _EditTransactionPageState extends State<EditTransactionPage> {
     if (_formKey.currentState!.validate() == false) return;
 
     try {
-      showNotification("Transação salva com sucesso!".hardcoded, NotificationType.SUCCESS);
+      showNotification(context.translatedString.transactionSaveSuccess, NotificationType.SUCCESS);
       if (mounted) Navigator.pushReplacementNamed(context, '/');
     } catch (e) {
-      showNotification("Não foi possível salvar a transação!".hardcoded, NotificationType.ERROR);
+      showNotification(context.translatedString.transactionSaveFailure, NotificationType.ERROR);
     }
   }
 
   void _onDelete() async {
     try {
-      showNotification("Transação excluída com sucesso!".hardcoded, NotificationType.SUCCESS);
+      showNotification(context.translatedString.transactionDeleteSuccess, NotificationType.SUCCESS);
       if (mounted) Navigator.pushReplacementNamed(context, '/');
     } catch (e) {
-      showNotification("Não foi possível salvar a transação!".hardcoded, NotificationType.ERROR);
+      showNotification(context.translatedString.transactionDeleteFailure, NotificationType.ERROR);
     }
   }
 }

@@ -1,6 +1,6 @@
 import 'package:finapp/route/routes.dart';
 import 'package:finapp/shared/constants/app_sizes.dart';
-import 'package:finapp/shared/extensions/string_extension.dart';
+import 'package:finapp/shared/extensions/localization.dart';
 import 'package:finapp/shared/theme/theme.dart';
 import 'package:finapp/shared/widget/button/custom_button.widget.dart';
 import 'package:finapp/shared/widget/text.widget.dart';
@@ -22,12 +22,12 @@ class EmptyStateCategoryWidget extends StatelessWidget {
             width: 150,
           ),
           const SizedBox(height: Sizes.p8),
-          TextWidget(text: "Nenhuma categoria criada".hardcoded, size: MainTheme.fontSizeSmall),
+          TextWidget(text: context.translatedString.nCategory(0), size: MainTheme.fontSizeSmall),
           const SizedBox(height: Sizes.p16),
           SizedBox(
             width: 200,
             child: CustomButtonWidget(
-              label: "Criar".hardcoded,
+              label: context.translatedString.create,
               textColor: Theme.of(context).colorScheme.onSecondary,
               fontSize: MainTheme.fontSizeSmall,
               icon: Icon(Icons.add, color: Theme.of(context).colorScheme.onSecondary),

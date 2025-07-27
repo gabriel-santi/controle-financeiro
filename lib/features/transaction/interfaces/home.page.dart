@@ -4,7 +4,7 @@ import 'package:finapp/features/transaction/interfaces/widgets/transaction_overv
 import 'package:finapp/features/transaction/interfaces/widgets/transactions_list.widget.dart';
 import 'package:finapp/route/routes.dart';
 import 'package:finapp/shared/constants/app_sizes.dart';
-import 'package:finapp/shared/extensions/string_extension.dart';
+import 'package:finapp/shared/extensions/localization.dart';
 import 'package:finapp/shared/theme/theme.dart';
 import 'package:finapp/shared/widget/button/add_button.widget.dart';
 import 'package:finapp/shared/widget/text.widget.dart';
@@ -72,7 +72,7 @@ class HomePage extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(top: Sizes.p32, bottom: Sizes.p8),
                     child: TextWidget(
-                      text: "Movimentações".hardcoded,
+                      text: context.translatedString.moves,
                       size: MainTheme.fontSizeLarge,
                       weight: FontWeight.w500,
                     )

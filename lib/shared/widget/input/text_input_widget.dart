@@ -1,5 +1,5 @@
 import 'package:finapp/shared/constants/app_sizes.dart';
-import 'package:finapp/shared/extensions/string_extension.dart';
+import 'package:finapp/shared/extensions/localization.dart';
 import 'package:finapp/shared/theme/theme.dart';
 import 'package:finapp/shared/widget/text.widget.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +36,7 @@ class TextInputWidget extends StatelessWidget {
       validator: (value) {
         if (validator != null) return validator!(value);
         if (value == null || value.trim().isEmpty) {
-          return '*Campo obrigatório'.hardcoded;
+          return context.translatedString.requiredField;
         }
         return null;
       },

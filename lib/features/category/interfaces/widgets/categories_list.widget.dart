@@ -1,7 +1,7 @@
 import 'package:finapp/features/category/domain/category.dart';
 import 'package:finapp/features/category/interfaces/widgets/popup_delete_category.dart';
 import 'package:finapp/shared/constants/app_sizes.dart';
-import 'package:finapp/shared/extensions/string_extension.dart';
+import 'package:finapp/shared/extensions/localization.dart';
 import 'package:finapp/shared/theme/theme.dart';
 import 'package:finapp/shared/widget/notification.widget.dart';
 import 'package:finapp/shared/widget/text.widget.dart';
@@ -19,9 +19,9 @@ class CategoriesListWidget extends StatelessWidget {
     if (confirm != true) return;
 
     try {
-      showNotification("Categoria excluída com sucesso!".hardcoded, NotificationType.SUCCESS);
+      showNotification(context.translatedString.categoryDeleteSuccess, NotificationType.SUCCESS);
     } catch (e) {
-      showNotification("Não foi possível excluir categoria".hardcoded);
+      showNotification(context.translatedString.categoryDeleteFailure);
     }
   }
 

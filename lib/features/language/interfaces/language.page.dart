@@ -1,6 +1,6 @@
 import 'package:finapp/features/language/interfaces/widgets/language_selector_widget.dart';
 import 'package:finapp/shared/constants/app_sizes.dart';
-import 'package:finapp/shared/extensions/string_extension.dart';
+import 'package:finapp/shared/extensions/localization.dart';
 import 'package:finapp/shared/widget/button/next_button_widget.dart';
 import 'package:finapp/shared/widget/text.widget.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +20,7 @@ class LanguagePage extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  TextWidget(text: "Selecione o idioma:".hardcoded),
+                  TextWidget(text: context.translatedString.selectLanguage),
                   const Padding(padding: EdgeInsets.only(top: Sizes.p12)),
                   const Flexible(child: LanguageSelectorWidget()),
                 ],

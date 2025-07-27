@@ -1,7 +1,7 @@
 import 'package:finapp/features/transaction/domain/monetary_value.dart';
 import 'package:finapp/features/transaction/interfaces/widgets/progress_bar.widget.dart';
 import 'package:finapp/shared/constants/app_sizes.dart';
-import 'package:finapp/shared/extensions/string_extension.dart';
+import 'package:finapp/shared/extensions/localization.dart';
 import 'package:finapp/shared/theme/theme.dart';
 import 'package:finapp/shared/widget/text.widget.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +31,7 @@ class TransactionOverviewWidget extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        TextWidget(text: "Gasto".hardcoded),
+                        TextWidget(text: context.translatedString.spent),
                         TextWidget(
                           text: totalSpent.formattedValue(),
                           size: MainTheme.fontSizeLarge,
@@ -55,7 +55,7 @@ class TransactionOverviewWidget extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        TextWidget(text: "Ganho".hardcoded),
+                        TextWidget(text: context.translatedString.earn),
                         TextWidget(
                           text: totalEarned.formattedValue(),
                           size: MainTheme.fontSizeLarge,
@@ -79,7 +79,7 @@ class TransactionOverviewWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                TextWidget(text: 'Percentual de Gastos	'.hardcoded),
+                TextWidget(text: context.translatedString.percentageExpenses),
                 TextWidget(
                     text: '${((totalSpent.value * 100) / totalEarned.value).toStringAsFixed(2)} %',
                     size: MainTheme.fontSizeLarge + 4,

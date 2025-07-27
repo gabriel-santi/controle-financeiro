@@ -1,4 +1,4 @@
-import 'package:finapp/shared/extensions/string_extension.dart';
+import 'package:finapp/shared/extensions/localization.dart';
 import 'package:finapp/shared/widget/button/custom_button.widget.dart';
 import 'package:finapp/shared/widget/text.widget.dart';
 import 'package:flex_color_picker/flex_color_picker.dart';
@@ -14,7 +14,7 @@ class PopupSelectColor extends StatelessWidget {
     Color editingColor = selectedColor;
 
     return AlertDialog(
-      title: TextWidget(text: 'Selecione uma cor'.hardcoded),
+      title: TextWidget(text: context.translatedString.selectColor),
       content: SingleChildScrollView(
         child: ColorPicker(
           color: editingColor,
@@ -35,12 +35,12 @@ class PopupSelectColor extends StatelessWidget {
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(context),
-          child: TextWidget(text: 'Cancelar'.hardcoded),
+          child: TextWidget(text: context.translatedString.cancel),
         ),
         SizedBox(
             width: 150,
             child: CustomButtonWidget(
-                label: "Selecionar".hardcoded,
+                label: context.translatedString.select,
                 textColor: Theme.of(context).colorScheme.onSecondary,
                 onClick: () => Navigator.pop(context, editingColor))),
       ],

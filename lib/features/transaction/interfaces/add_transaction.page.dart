@@ -1,7 +1,7 @@
 import 'package:finapp/features/category/interfaces/widgets/category_selector.widget.dart';
 import 'package:finapp/features/transaction/interfaces/widgets/transaction_form.widget.dart';
 import 'package:finapp/shared/constants/app_sizes.dart';
-import 'package:finapp/shared/extensions/string_extension.dart';
+import 'package:finapp/shared/extensions/localization.dart';
 import 'package:finapp/shared/theme/theme.dart';
 import 'package:finapp/shared/widget/button/back_button.widget.dart';
 import 'package:finapp/shared/widget/text.widget.dart';
@@ -39,7 +39,7 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: Sizes.p16),
                   child: Center(
-                    child: TextWidget(text: "Adicionar transação".hardcoded, size: MainTheme.fontSizeLarge, weight: FontWeight.w400),
+                    child: TextWidget(text: context.translatedString.newTransaction, size: MainTheme.fontSizeLarge, weight: FontWeight.w400),
                   ),
                 ),
                 TransactionFormWidget(
@@ -60,7 +60,7 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
                         shape: WidgetStateProperty.resolveWith(
                             (states) => RoundedRectangleBorder(borderRadius: BorderRadius.circular(MainTheme.radiusMedium)))),
                     child: TextWidget(
-                      text: 'Salvar'.hardcoded,
+                      text: context.translatedString.save,
                       color: Theme.of(context).colorScheme.secondary,
                     ),
                   ),
