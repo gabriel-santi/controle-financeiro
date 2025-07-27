@@ -56,7 +56,7 @@ class _LanguageSelectorWidgetState extends State<LanguageSelectorWidget> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  TextWidget(text: lang.name),
+                  TextWidget(text: lang.description),
                   Image.asset(
                     "assets/images/png/flags/${lang.languageCode}_flag.png",
                     height: 30,
