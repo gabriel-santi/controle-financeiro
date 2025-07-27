@@ -1,0 +1,46 @@
+{
+  "requiredField": "Veuillez remplir ce champ",
+  "askName": "Comment souhaitez-vous être appelé ?",
+  "save": "Enregistrer",
+  "cancel": "Annuler",
+  "next": "Suivant",
+  "select": "Sélectionner",
+  "create": "Créer",
+  "delete": "Supprimer",
+  "deleteCategory": "Supprimer la catégorie ?",
+  "deleteConfirmation": "Êtes-vous sûr de vouloir supprimer ?",
+  "nCategory": "{count, plural, =0{Aucune catégorie trouvée} =1{Catégorie} other{Catégories}}",
+  "@nCategory": {
+    "placeholders": {
+      "count": {
+        "type": "num",
+        "format": "compact"
+      }
+    }
+  },
+  "editCategory": "Modifier la catégorie",
+  "newCategory": "Nouvelle catégorie",
+  "categoryDeleteSuccess": "Catégorie supprimée avec succès",
+  "categoryDeleteFailure": "Impossible de supprimer la catégorie",
+  "categorySaveSuccess": "Catégorie enregistrée avec succès",
+  "categorySaveFailure": "Impossible d'enregistrer la catégorie",
+  "transaction": "Transaction",
+  "newTransaction": "Nouvelle transaction",
+  "editTransaction": "Modifier la transaction",
+  "transactionDeleteSuccess": "Transaction supprimée avec succès",
+  "transactionDeleteFailure": "Impossible de supprimer la transaction",
+  "transactionSaveSuccess": "Transaction enregistrée avec succès",
+  "transactionSaveFailure": "Impossible d'enregistrer la transaction",
+  "allTransactionsLinkedWillBeAffected": "Toutes les transactions liées à cette catégorie seront affectées",
+  "selectColor": "Sélectionnez une couleur",
+  "selectLanguage": "Sélectionnez la langue",
+  "color": "Couleur",
+  "description": "Description",
+  "value": "Montant",
+  "earn": "Revenu",
+  "spent": "Dépense",
+  "welcome": "Bienvenue, {username}",
+  "moves": "Mouvements",
+  "percentageExpenses": "Pourcentage des dépenses",
+  "selectedMonth": "Mois sélectionné"
+}

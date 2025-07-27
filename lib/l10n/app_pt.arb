@@ -1,4 +1,46 @@
 {
     "requiredField": "Preencha este campo",
-    "askName": "Como gostaria de ser chamado?"
+    "askName": "Como gostaria de ser chamado?",
+    "save": "Salvar",
+    "cancel": "Cancelar",
+    "next": "Avançar",
+    "select": "Selecionar",
+    "create": "Criar",
+    "delete": "Excluir",
+    "deleteCategory": "Excluir categoria?",
+    "deleteConfirmation": "Deseja mesmo excluir?",
+    "nCategory": "{count, plural, =0{Nenhuma categoria encontrada} =1{Categoria} other{Categorias}}",
+    "@nCategory": {
+        "placeholders": {
+            "count": {
+            "type": "num",
+            "format": "compact"
+        }
+      }
+    },
+    "editCategory": "Editar categoria",
+    "newCategory": "Nova categoria",
+    "categoryDeleteSuccess": "Categoria excluída com sucesso",
+    "categoryDeleteFailure": "Não foi possível excluir categoria",
+    "categorySaveSuccess": "Categoria salva com sucesso",
+    "categorySaveFailure": "Não foi possível salvar categoria",
+    "transaction": "Transação",
+    "newTransaction": "Nova transação",
+    "editTransaction": "Editar transação",
+    "transactionDeleteSuccess": "Transação excluída com sucesso",
+    "transactionDeleteFailure": "Não foi possível excluir transação",
+    "transactionSaveSuccess": "Transação salva com sucesso",
+    "transactionSaveFailure": "Não foi possível salvar transação",
+    "allTransactionsLinkedWillBeAffected": "Todas as transações vinculadas a essa categoria serão afetadas",
+    "selectColor": "Selecione uma cor",
+    "selectLanguage": "Selecione o idioma",
+    "color": "Cor",
+    "description": "Descrição",
+    "value": "Valor",
+    "earn": "Ganho",
+    "spent": "Gasto",
+    "welcome": "Seja bem-vindo(a), {username}",
+    "moves": "Movimentações",
+    "percentageExpenses": "Percentual de Gastos",
+    "selectedMonth": "Mês selecionado"
 }

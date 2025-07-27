@@ -1,4 +1,46 @@
 {
-  "requiredField": "Required field",
-  "askName": "How would you like to be called?"
+  "requiredField": "Please fill out this field",
+  "askName": "How would you like to be called?",
+  "save": "Save",
+  "cancel": "Cancel",
+  "next": "Next",
+  "select": "Select",
+  "create": "Create",
+  "delete": "Delete",
+  "deleteCategory": "Delete category?",
+  "deleteConfirmation": "Are you sure you want to delete?",
+  "nCategory": "{count, plural, =0{No categories found} =1{Category} other{Categories}}",
+  "@nCategory": {
+    "placeholders": {
+      "count": {
+        "type": "num",
+        "format": "compact"
+      }
+    }
+  },
+  "editCategory": "Edit category",
+  "newCategory": "New category",
+  "categoryDeleteSuccess": "Category deleted successfully",
+  "categoryDeleteFailure": "Unable to delete category",
+  "categorySaveSuccess": "Category saved successfully",
+  "categorySaveFailure": "Unable to save category",
+  "transaction": "Transaction",
+  "newTransaction": "New transaction",
+  "editTransaction": "Edit transaction",
+  "transactionDeleteSuccess": "Transaction deleted successfully",
+  "transactionDeleteFailure": "Unable to delete transaction",
+  "transactionSaveSuccess": "Transaction saved successfully",
+  "transactionSaveFailure": "Unable to save transaction",
+  "allTransactionsLinkedWillBeAffected": "All transactions linked to this category will be affected",
+  "selectColor": "Select a color",
+  "selectLanguage": "Select language",
+  "color": "Color",
+  "description": "Description",
+  "value": "Amount",
+  "earn": "Income",
+  "spent": "Expense",
+  "welcome": "Welcome, {username}",
+  "moves": "Transactions",
+  "percentageExpenses": "Expense percentage",
+  "selectedMonth": "Selected month"
 }

@@ -6,6 +6,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
 import 'app_localizations_en.dart';
+import 'app_localizations_es.dart';
+import 'app_localizations_fr.dart';
 import 'app_localizations_pt.dart';
 
 // ignore_for_file: type=lint
@@ -92,20 +94,226 @@ abstract class AppLocalizations {
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
     Locale('en'),
+    Locale('es'),
+    Locale('fr'),
     Locale('pt')
   ];
 
   /// No description provided for @requiredField.
   ///
-  /// In en, this message translates to:
-  /// **'Required field'**
+  /// In pt, this message translates to:
+  /// **'Preencha este campo'**
   String get requiredField;
 
   /// No description provided for @askName.
   ///
-  /// In en, this message translates to:
-  /// **'How would you like to be called?'**
+  /// In pt, this message translates to:
+  /// **'Como gostaria de ser chamado?'**
   String get askName;
+
+  /// No description provided for @save.
+  ///
+  /// In pt, this message translates to:
+  /// **'Salvar'**
+  String get save;
+
+  /// No description provided for @cancel.
+  ///
+  /// In pt, this message translates to:
+  /// **'Cancelar'**
+  String get cancel;
+
+  /// No description provided for @next.
+  ///
+  /// In pt, this message translates to:
+  /// **'Avançar'**
+  String get next;
+
+  /// No description provided for @select.
+  ///
+  /// In pt, this message translates to:
+  /// **'Selecionar'**
+  String get select;
+
+  /// No description provided for @create.
+  ///
+  /// In pt, this message translates to:
+  /// **'Criar'**
+  String get create;
+
+  /// No description provided for @delete.
+  ///
+  /// In pt, this message translates to:
+  /// **'Excluir'**
+  String get delete;
+
+  /// No description provided for @deleteCategory.
+  ///
+  /// In pt, this message translates to:
+  /// **'Excluir categoria?'**
+  String get deleteCategory;
+
+  /// No description provided for @deleteConfirmation.
+  ///
+  /// In pt, this message translates to:
+  /// **'Deseja mesmo excluir?'**
+  String get deleteConfirmation;
+
+  /// No description provided for @nCategory.
+  ///
+  /// In pt, this message translates to:
+  /// **'{count, plural, =0{Nenhuma categoria encontrada} =1{Categoria} other{Categorias}}'**
+  String nCategory(num count);
+
+  /// No description provided for @editCategory.
+  ///
+  /// In pt, this message translates to:
+  /// **'Editar categoria'**
+  String get editCategory;
+
+  /// No description provided for @newCategory.
+  ///
+  /// In pt, this message translates to:
+  /// **'Nova categoria'**
+  String get newCategory;
+
+  /// No description provided for @categoryDeleteSuccess.
+  ///
+  /// In pt, this message translates to:
+  /// **'Categoria excluída com sucesso'**
+  String get categoryDeleteSuccess;
+
+  /// No description provided for @categoryDeleteFailure.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não foi possível excluir categoria'**
+  String get categoryDeleteFailure;
+
+  /// No description provided for @categorySaveSuccess.
+  ///
+  /// In pt, this message translates to:
+  /// **'Categoria salva com sucesso'**
+  String get categorySaveSuccess;
+
+  /// No description provided for @categorySaveFailure.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não foi possível salvar categoria'**
+  String get categorySaveFailure;
+
+  /// No description provided for @transaction.
+  ///
+  /// In pt, this message translates to:
+  /// **'Transação'**
+  String get transaction;
+
+  /// No description provided for @newTransaction.
+  ///
+  /// In pt, this message translates to:
+  /// **'Nova transação'**
+  String get newTransaction;
+
+  /// No description provided for @editTransaction.
+  ///
+  /// In pt, this message translates to:
+  /// **'Editar transação'**
+  String get editTransaction;
+
+  /// No description provided for @transactionDeleteSuccess.
+  ///
+  /// In pt, this message translates to:
+  /// **'Transação excluída com sucesso'**
+  String get transactionDeleteSuccess;
+
+  /// No description provided for @transactionDeleteFailure.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não foi possível excluir transação'**
+  String get transactionDeleteFailure;
+
+  /// No description provided for @transactionSaveSuccess.
+  ///
+  /// In pt, this message translates to:
+  /// **'Transação salva com sucesso'**
+  String get transactionSaveSuccess;
+
+  /// No description provided for @transactionSaveFailure.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não foi possível salvar transação'**
+  String get transactionSaveFailure;
+
+  /// No description provided for @allTransactionsLinkedWillBeAffected.
+  ///
+  /// In pt, this message translates to:
+  /// **'Todas as transações vinculadas a essa categoria serão afetadas'**
+  String get allTransactionsLinkedWillBeAffected;
+
+  /// No description provided for @selectColor.
+  ///
+  /// In pt, this message translates to:
+  /// **'Selecione uma cor'**
+  String get selectColor;
+
+  /// No description provided for @selectLanguage.
+  ///
+  /// In pt, this message translates to:
+  /// **'Selecione o idioma'**
+  String get selectLanguage;
+
+  /// No description provided for @color.
+  ///
+  /// In pt, this message translates to:
+  /// **'Cor'**
+  String get color;
+
+  /// No description provided for @description.
+  ///
+  /// In pt, this message translates to:
+  /// **'Descrição'**
+  String get description;
+
+  /// No description provided for @value.
+  ///
+  /// In pt, this message translates to:
+  /// **'Valor'**
+  String get value;
+
+  /// No description provided for @earn.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ganho'**
+  String get earn;
+
+  /// No description provided for @spent.
+  ///
+  /// In pt, this message translates to:
+  /// **'Gasto'**
+  String get spent;
+
+  /// No description provided for @welcome.
+  ///
+  /// In pt, this message translates to:
+  /// **'Seja bem-vindo(a), {username}'**
+  String welcome(Object username);
+
+  /// No description provided for @moves.
+  ///
+  /// In pt, this message translates to:
+  /// **'Movimentações'**
+  String get moves;
+
+  /// No description provided for @percentageExpenses.
+  ///
+  /// In pt, this message translates to:
+  /// **'Percentual de Gastos'**
+  String get percentageExpenses;
+
+  /// No description provided for @selectedMonth.
+  ///
+  /// In pt, this message translates to:
+  /// **'Mês selecionado'**
+  String get selectedMonth;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
@@ -117,7 +325,7 @@ class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> 
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['en', 'pt'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['en', 'es', 'fr', 'pt'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -129,6 +337,8 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
     case 'en': return AppLocalizationsEn();
+    case 'es': return AppLocalizationsEs();
+    case 'fr': return AppLocalizationsFr();
     case 'pt': return AppLocalizationsPt();
   }
 
