@@ -25,7 +25,7 @@ class GreetingWidget extends StatelessWidget {
         Row(
           children: [
             TextWidget(
-              text: context.translatedString.welcome(user),
+              text: context.translatedString.welcome,
               size: MainTheme.fontSizeSmall,
             ),
             TextWidget(

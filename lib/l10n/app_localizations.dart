@@ -101,218 +101,218 @@ abstract class AppLocalizations {
 
   /// No description provided for @requiredField.
   ///
-  /// In pt, this message translates to:
-  /// **'Preencha este campo'**
+  /// In en, this message translates to:
+  /// **'Please fill out this field'**
   String get requiredField;
 
   /// No description provided for @askName.
   ///
-  /// In pt, this message translates to:
-  /// **'Como gostaria de ser chamado?'**
+  /// In en, this message translates to:
+  /// **'How would you like to be called?'**
   String get askName;
 
   /// No description provided for @save.
   ///
-  /// In pt, this message translates to:
-  /// **'Salvar'**
+  /// In en, this message translates to:
+  /// **'Save'**
   String get save;
 
   /// No description provided for @cancel.
   ///
-  /// In pt, this message translates to:
-  /// **'Cancelar'**
+  /// In en, this message translates to:
+  /// **'Cancel'**
   String get cancel;
 
   /// No description provided for @next.
   ///
-  /// In pt, this message translates to:
-  /// **'Avançar'**
+  /// In en, this message translates to:
+  /// **'Next'**
   String get next;
 
   /// No description provided for @select.
   ///
-  /// In pt, this message translates to:
-  /// **'Selecionar'**
+  /// In en, this message translates to:
+  /// **'Select'**
   String get select;
 
   /// No description provided for @create.
   ///
-  /// In pt, this message translates to:
-  /// **'Criar'**
+  /// In en, this message translates to:
+  /// **'Create'**
   String get create;
 
   /// No description provided for @delete.
   ///
-  /// In pt, this message translates to:
-  /// **'Excluir'**
+  /// In en, this message translates to:
+  /// **'Delete'**
   String get delete;
 
   /// No description provided for @deleteCategory.
   ///
-  /// In pt, this message translates to:
-  /// **'Excluir categoria?'**
+  /// In en, this message translates to:
+  /// **'Delete category?'**
   String get deleteCategory;
 
   /// No description provided for @deleteConfirmation.
   ///
-  /// In pt, this message translates to:
-  /// **'Deseja mesmo excluir?'**
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete?'**
   String get deleteConfirmation;
 
   /// No description provided for @nCategory.
   ///
-  /// In pt, this message translates to:
-  /// **'{count, plural, =0{Nenhuma categoria encontrada} =1{Categoria} other{Categorias}}'**
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{No categories found} =1{Category} other{Categories}}'**
   String nCategory(num count);
 
   /// No description provided for @editCategory.
   ///
-  /// In pt, this message translates to:
-  /// **'Editar categoria'**
+  /// In en, this message translates to:
+  /// **'Edit category'**
   String get editCategory;
 
   /// No description provided for @newCategory.
   ///
-  /// In pt, this message translates to:
-  /// **'Nova categoria'**
+  /// In en, this message translates to:
+  /// **'New category'**
   String get newCategory;
 
   /// No description provided for @categoryDeleteSuccess.
   ///
-  /// In pt, this message translates to:
-  /// **'Categoria excluída com sucesso'**
+  /// In en, this message translates to:
+  /// **'Category deleted successfully'**
   String get categoryDeleteSuccess;
 
   /// No description provided for @categoryDeleteFailure.
   ///
-  /// In pt, this message translates to:
-  /// **'Não foi possível excluir categoria'**
+  /// In en, this message translates to:
+  /// **'Unable to delete category'**
   String get categoryDeleteFailure;
 
   /// No description provided for @categorySaveSuccess.
   ///
-  /// In pt, this message translates to:
-  /// **'Categoria salva com sucesso'**
+  /// In en, this message translates to:
+  /// **'Category saved successfully'**
   String get categorySaveSuccess;
 
   /// No description provided for @categorySaveFailure.
   ///
-  /// In pt, this message translates to:
-  /// **'Não foi possível salvar categoria'**
+  /// In en, this message translates to:
+  /// **'Unable to save category'**
   String get categorySaveFailure;
 
   /// No description provided for @transaction.
   ///
-  /// In pt, this message translates to:
-  /// **'Transação'**
+  /// In en, this message translates to:
+  /// **'Transaction'**
   String get transaction;
 
   /// No description provided for @newTransaction.
   ///
-  /// In pt, this message translates to:
-  /// **'Nova transação'**
+  /// In en, this message translates to:
+  /// **'New transaction'**
   String get newTransaction;
 
   /// No description provided for @editTransaction.
   ///
-  /// In pt, this message translates to:
-  /// **'Editar transação'**
+  /// In en, this message translates to:
+  /// **'Edit transaction'**
   String get editTransaction;
 
   /// No description provided for @transactionDeleteSuccess.
   ///
-  /// In pt, this message translates to:
-  /// **'Transação excluída com sucesso'**
+  /// In en, this message translates to:
+  /// **'Transaction deleted successfully'**
   String get transactionDeleteSuccess;
 
   /// No description provided for @transactionDeleteFailure.
   ///
-  /// In pt, this message translates to:
-  /// **'Não foi possível excluir transação'**
+  /// In en, this message translates to:
+  /// **'Unable to delete transaction'**
   String get transactionDeleteFailure;
 
   /// No description provided for @transactionSaveSuccess.
   ///
-  /// In pt, this message translates to:
-  /// **'Transação salva com sucesso'**
+  /// In en, this message translates to:
+  /// **'Transaction saved successfully'**
   String get transactionSaveSuccess;
 
   /// No description provided for @transactionSaveFailure.
   ///
-  /// In pt, this message translates to:
-  /// **'Não foi possível salvar transação'**
+  /// In en, this message translates to:
+  /// **'Unable to save transaction'**
   String get transactionSaveFailure;
 
   /// No description provided for @allTransactionsLinkedWillBeAffected.
   ///
-  /// In pt, this message translates to:
-  /// **'Todas as transações vinculadas a essa categoria serão afetadas'**
+  /// In en, this message translates to:
+  /// **'All transactions linked to this category will be affected'**
   String get allTransactionsLinkedWillBeAffected;
 
   /// No description provided for @selectColor.
   ///
-  /// In pt, this message translates to:
-  /// **'Selecione uma cor'**
+  /// In en, this message translates to:
+  /// **'Select a color'**
   String get selectColor;
 
   /// No description provided for @selectLanguage.
   ///
-  /// In pt, this message translates to:
-  /// **'Selecione o idioma'**
+  /// In en, this message translates to:
+  /// **'Select language'**
   String get selectLanguage;
 
   /// No description provided for @color.
   ///
-  /// In pt, this message translates to:
-  /// **'Cor'**
+  /// In en, this message translates to:
+  /// **'Color'**
   String get color;
 
   /// No description provided for @description.
   ///
-  /// In pt, this message translates to:
-  /// **'Descrição'**
+  /// In en, this message translates to:
+  /// **'Description'**
   String get description;
 
   /// No description provided for @value.
   ///
-  /// In pt, this message translates to:
-  /// **'Valor'**
+  /// In en, this message translates to:
+  /// **'Amount'**
   String get value;
 
   /// No description provided for @earn.
   ///
-  /// In pt, this message translates to:
-  /// **'Ganho'**
+  /// In en, this message translates to:
+  /// **'Income'**
   String get earn;
 
   /// No description provided for @spent.
   ///
-  /// In pt, this message translates to:
-  /// **'Gasto'**
+  /// In en, this message translates to:
+  /// **'Expense'**
   String get spent;
 
   /// No description provided for @welcome.
   ///
-  /// In pt, this message translates to:
-  /// **'Seja bem-vindo(a), {username}'**
-  String welcome(Object username);
+  /// In en, this message translates to:
+  /// **'Welcome, '**
+  String get welcome;
 
   /// No description provided for @moves.
   ///
-  /// In pt, this message translates to:
-  /// **'Movimentações'**
+  /// In en, this message translates to:
+  /// **'Transactions'**
   String get moves;
 
   /// No description provided for @percentageExpenses.
   ///
-  /// In pt, this message translates to:
-  /// **'Percentual de Gastos'**
+  /// In en, this message translates to:
+  /// **'Expense percentage'**
   String get percentageExpenses;
 
   /// No description provided for @selectedMonth.
   ///
-  /// In pt, this message translates to:
-  /// **'Mês selecionado'**
+  /// In en, this message translates to:
+  /// **'Selected month'**
   String get selectedMonth;
 }
 

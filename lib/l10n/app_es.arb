@@ -39,7 +39,7 @@
   "value": "Monto",
   "earn": "Ingreso",
   "spent": "Gasto",
-  "welcome": "Bienvenido(a), {username}",
+  "welcome": "Bienvenido(a), ",
   "moves": "Movimientos",
   "percentageExpenses": "Porcentaje de gastos",
   "selectedMonth": "Mes seleccionado"

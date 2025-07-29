@@ -9,17 +9,18 @@ import 'package:flutter/material.dart';
 class TransactionFormWidget extends StatelessWidget {
   final TextEditingController valueController;
   final TextEditingController descriptionController;
+  final CurrencyTextInputFormatter formatter;
   final GlobalKey<FormState> formKey;
 
   TransactionFormWidget({
     super.key,
     required this.valueController,
     required this.descriptionController,
+    required this.formatter,
     required this.formKey,
   });
 
   final FocusNode _descriptionFieldFocus = FocusNode();
-  final CurrencyTextInputFormatter _formatter = CurrencyTextInputFormatter(locale: "pt-br", minValue: 0, symbol: "R\$");
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +35,7 @@ class TransactionFormWidget extends StatelessWidget {
               FocusScope.of(context).unfocus();
               _descriptionFieldFocus.requestFocus();
             },
-            formatters: [_formatter],
+            formatters: [formatter],
             validator: (_) {
               if (valueController.text.trim().isEmpty) return context.translatedString.requiredField;
               return null;

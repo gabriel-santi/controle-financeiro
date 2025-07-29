@@ -39,7 +39,7 @@
   "value": "Amount",
   "earn": "Income",
   "spent": "Expense",
-  "welcome": "Welcome, {username}",
+  "welcome": "Welcome, ",
   "moves": "Transactions",
   "percentageExpenses": "Expense percentage",
   "selectedMonth": "Selected month"
