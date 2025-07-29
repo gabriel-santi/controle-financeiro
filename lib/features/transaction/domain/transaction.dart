@@ -7,7 +7,6 @@ abstract class Transaction {
   final DateTime? lastUpdate;
   final MonetaryValue value;
 
-  @override
   int get id => _id;
 
   String get createdAtFormatted => "${createdAt.day.toString().padLeft(2, '0')}/${createdAt.month.toString().padLeft(2, '0')}/${createdAt.year}";
