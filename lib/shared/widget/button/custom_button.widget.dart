@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 class CustomButtonWidget extends StatelessWidget {
   final String label;
   final Widget? icon;
+  final Widget? suffixIcon;
   final Color? color;
   final Border? border;
   final double? borderRadius;
@@ -17,6 +18,7 @@ class CustomButtonWidget extends StatelessWidget {
       {super.key,
       required this.label,
       this.icon,
+      this.suffixIcon,
       this.color,
       this.border,
       this.borderRadius,
@@ -51,6 +53,11 @@ class CustomButtonWidget extends StatelessWidget {
                 size: fontSize,
                 color: textColor ?? Theme.of(context).colorScheme.onPrimary,
               ),
+              if (suffixIcon != null)
+                Padding(
+                  padding: const EdgeInsets.only(right: Sizes.p8),
+                  child: suffixIcon,
+                ),
             ],
           ),
         ),
