@@ -1,3 +1,4 @@
+import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:finapp/features/category/interfaces/widgets/category_selector.widget.dart';
 import 'package:finapp/features/transaction/interfaces/widgets/transaction_form.widget.dart';
 import 'package:finapp/shared/constants/app_sizes.dart';
@@ -20,17 +21,8 @@ class EditTransactionPage extends StatefulWidget {
 class _EditTransactionPageState extends State<EditTransactionPage> {
   final TextEditingController _valueController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
-
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  void update() {
-    if (mounted) setState(() {});
-  }
+  final _formatter = CurrencyTextInputFormatter(locale: "pt-br", minValue: 0, symbol: "R\$");
 
   @override
   Widget build(BuildContext context) {
@@ -65,6 +57,7 @@ class _EditTransactionPageState extends State<EditTransactionPage> {
                 TransactionFormWidget(
                   valueController: _valueController,
                   descriptionController: _descriptionController,
+                  formatter: _formatter,
                   formKey: _formKey,
                 ),
                 const SizedBox(height: Sizes.p32),
