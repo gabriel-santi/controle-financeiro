@@ -6,6 +6,7 @@ import 'package:finapp/route/routes.dart';
 import 'package:finapp/shared/constants/app_sizes.dart';
 import 'package:finapp/shared/extensions/localization.dart';
 import 'package:finapp/shared/theme/theme.dart';
+import 'package:finapp/shared/widget/background_widget.dart';
 import 'package:finapp/shared/widget/button/add_button.widget.dart';
 import 'package:finapp/shared/widget/text.widget.dart';
 import 'package:flutter/material.dart';
@@ -31,19 +32,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Container(
-          decoration: const BoxDecoration(
-            gradient: RadialGradient(
-              center: Alignment.bottomCenter,
-              radius: 1.1,
-              colors: [
-                Color(0xFF752ABC),
-                Color(0xFF37285B),
-                Color(0xFF140F24),
-              ],
-              stops: [0.01, 0.4, 1],
-            ),
-          ),
+        body: BackgroundWidget(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: Sizes.p16),
             child: CustomScrollView(
