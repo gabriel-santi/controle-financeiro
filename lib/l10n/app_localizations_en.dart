@@ -120,9 +120,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get spent => 'Expense';
 
   @override
-  String welcome(Object username) {
-    return 'Welcome, $username';
-  }
+  String get welcome => 'Welcome, ';
 
   @override
   String get moves => 'Transactions';

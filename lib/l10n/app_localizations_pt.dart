@@ -120,9 +120,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get spent => 'Gasto';
 
   @override
-  String welcome(Object username) {
-    return 'Seja bem-vindo(a), $username';
-  }
+  String get welcome => 'Seja bem-vindo(a), ';
 
   @override
   String get moves => 'Movimentações';
