@@ -13,7 +13,14 @@ class PrimaryButtonWidget extends StatelessWidget {
     return CustomButtonWidget(
       label: label,
       color: Theme.of(context).colorScheme.primary.withOpacity(loading ? .38 : 1),
-      suffixIcon: loading ? const SizedBox(width: 8, height: 8, child: CircularProgressIndicator()) : null,
+      suffixIcon: loading
+          ? const SizedBox(
+              width: 16,
+              height: 16,
+              child: CircularProgressIndicator(
+                strokeWidth: 2,
+              ))
+          : null,
       onClick: onClick,
     );
   }

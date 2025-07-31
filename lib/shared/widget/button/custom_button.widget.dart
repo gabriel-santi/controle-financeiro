@@ -55,7 +55,7 @@ class CustomButtonWidget extends StatelessWidget {
               ),
               if (suffixIcon != null)
                 Padding(
-                  padding: const EdgeInsets.only(right: Sizes.p8),
+                  padding: const EdgeInsets.only(left: Sizes.p8),
                   child: suffixIcon,
                 ),
             ],
