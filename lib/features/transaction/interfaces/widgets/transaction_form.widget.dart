@@ -47,7 +47,7 @@ class TransactionFormWidget extends StatelessWidget {
               FocusScope.of(context).unfocus();
             },
             decoration: InputDecoration(
-              label: TextWidget(text: context.translatedString.deleteCategory),
+              label: TextWidget(text: context.translatedString.description),
               alignLabelWithHint: true,
               border: UnderlineInputBorder(borderSide: BorderSide(color: Theme.of(context).colorScheme.primary)),
               enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Theme.of(context).colorScheme.primary)),
