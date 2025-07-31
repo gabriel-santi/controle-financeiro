@@ -1,9 +1,12 @@
 import 'package:finapp/features/category/interfaces/category.page.dart';
 import 'package:finapp/features/language/interfaces/language.page.dart';
+import 'package:finapp/features/transaction/data/transaction_repository.dart';
 import 'package:finapp/features/transaction/interfaces/add_transaction.page.dart';
+import 'package:finapp/features/transaction/interfaces/bloc/add_transaction_bloc.dart';
 import 'package:finapp/features/transaction/interfaces/edit_transaction.page.dart';
 import 'package:finapp/features/transaction/interfaces/home.page.dart';
 import 'package:finapp/features/user/interfaces/username.page.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 enum AppRoute {
@@ -30,7 +33,10 @@ final GoRouter appRouter = GoRouter(
         GoRoute(
           path: 'transaction/new',
           name: AppRoute.transactionCreate.name,
-          builder: (context, state) => const AddTransactionPage(),
+          builder: (context, state) => BlocProvider(
+            create: (_) => AddTransactionBloc(TransactionSqfliteRepo.instance),
+            child: const AddTransactionPage(),
+          ),
         ),
         GoRoute(
           path: 'transaction/:id',

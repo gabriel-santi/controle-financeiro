@@ -1,6 +1,5 @@
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:finapp/features/category/interfaces/widgets/category_selector.widget.dart';
-import 'package:finapp/features/transaction/data/transaction_repository.dart';
 import 'package:finapp/features/transaction/domain/monetary_value.dart';
 import 'package:finapp/features/transaction/interfaces/bloc/add_transaction_bloc.dart';
 import 'package:finapp/features/transaction/interfaces/widgets/transaction_form.widget.dart';
@@ -28,45 +27,48 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => AddTransactionBloc(TransactionSqfliteRepo.instance),
-      child: SafeArea(
-        child: Scaffold(
-          extendBody: true,
-          body: Padding(
-            padding: const EdgeInsets.all(Sizes.p16).copyWith(bottom: 0),
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(height: Sizes.p16),
-                  const BackButtonWidget(),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: Sizes.p16),
-                    child: Center(
-                      child: TextWidget(text: context.translatedString.newTransaction, size: MainTheme.fontSizeLarge, weight: FontWeight.w400),
-                    ),
+    final addTransactionBloc = BlocProvider.of<AddTransactionBloc>(context);
+    return SafeArea(
+      child: Scaffold(
+        extendBody: true,
+        body: Padding(
+          padding: const EdgeInsets.all(Sizes.p16).copyWith(bottom: 0),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: Sizes.p16),
+                const BackButtonWidget(),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: Sizes.p16),
+                  child: Center(
+                    child: TextWidget(text: context.translatedString.newTransaction, size: MainTheme.fontSizeLarge, weight: FontWeight.w400),
                   ),
-                  TransactionFormWidget(
-                    valueController: _valueController,
-                    descriptionController: _descriptionController,
-                    formatter: _formatter,
-                    formKey: _formKey,
-                  ),
-                  const SizedBox(height: Sizes.p32),
-                  CategorySelectorWidget(),
-                  const SizedBox(height: Sizes.p64),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: PrimaryButtonWidget(
-                      label: context.translatedString.save,
-                      loading: false,
-                      onClick: _onSave,
-                    ),
-                  ),
-                  const SizedBox(height: Sizes.p16),
-                ],
-              ),
+                ),
+                TransactionFormWidget(
+                  valueController: _valueController,
+                  descriptionController: _descriptionController,
+                  formatter: _formatter,
+                  formKey: _formKey,
+                ),
+                const SizedBox(height: Sizes.p32),
+                CategorySelectorWidget(),
+                const SizedBox(height: Sizes.p64),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: BlocBuilder<AddTransactionBloc, AddTransactionState>(
+                      bloc: addTransactionBloc,
+                      builder: (context, state) {
+                        final loading = state is AddTransactionLoading;
+                        return PrimaryButtonWidget(
+                          label: context.translatedString.save,
+                          loading: loading,
+                          onClick: _onSave,
+                        );
+                      }),
+                ),
+                const SizedBox(height: Sizes.p16),
+              ],
             ),
           ),
         ),
