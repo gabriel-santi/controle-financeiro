@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:finapp/features/transaction/data/transaction_repository.dart';
 import 'package:finapp/features/transaction/domain/monetary_value.dart';
 import 'package:finapp/features/transaction/domain/payment.dart';

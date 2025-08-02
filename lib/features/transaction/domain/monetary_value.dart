@@ -7,6 +7,8 @@ class MonetaryValue {
 
   static MonetaryValue get zero => MonetaryValue(0);
 
+  static MonetaryValue get one => MonetaryValue(1);
+
   String formattedValue({String symbol = 'R\$', String locale = 'pt_BR'}) {
     final formatter = NumberFormat.currency(locale: locale, symbol: symbol);
     return formatter.format(value);
