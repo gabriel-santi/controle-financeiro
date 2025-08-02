@@ -17,7 +17,7 @@ void main() {
   const categoryId = 123;
 
   setUp(() {
-    repository = MockTransactionRepository();
+    repository = MockTransactionRepo();
     bloc = AddTransactionBloc(repository);
   });
 
