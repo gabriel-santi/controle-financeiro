@@ -1,7 +1,7 @@
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:finapp/features/category/interfaces/widgets/category_selector.widget.dart';
+import 'package:finapp/features/transaction/application/add_transaction_bloc.dart';
 import 'package:finapp/features/transaction/domain/monetary_value.dart';
-import 'package:finapp/features/transaction/interfaces/bloc/add_transaction_bloc.dart';
 import 'package:finapp/features/transaction/interfaces/widgets/transaction_form.widget.dart';
 import 'package:finapp/route/routes.dart';
 import 'package:finapp/shared/constants/app_sizes.dart';

@@ -1,8 +1,8 @@
 import 'package:bloc_test/bloc_test.dart';
+import 'package:finapp/features/transaction/application/add_transaction_bloc.dart';
 import 'package:finapp/features/transaction/data/transaction_repository.dart';
 import 'package:finapp/features/transaction/domain/monetary_value.dart';
 import 'package:finapp/features/transaction/domain/payment.dart';
-import 'package:finapp/features/transaction/interfaces/bloc/add_transaction_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
