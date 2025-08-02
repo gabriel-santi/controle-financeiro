@@ -39,7 +39,7 @@ class PopupDeleteCategory extends StatelessWidget {
           width: 150,
           child: CustomButtonWidget(
               color: Theme.of(context).colorScheme.error,
-              textColor: Theme.of(context).colorScheme.onSecondary,
+              textColor: Theme.of(context).colorScheme.onPrimary,
               label: context.translatedString.delete,
               onClick: () => Navigator.pop(context, true)),
         ),

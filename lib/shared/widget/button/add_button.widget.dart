@@ -10,7 +10,7 @@ class AddButtonWidget extends StatelessWidget {
     return FloatingActionButton(
       backgroundColor: Theme.of(context).colorScheme.primary,
       onPressed: onClick,
-      child: Icon(Icons.add, color: Theme.of(context).colorScheme.onSecondary),
+      child: Icon(Icons.add, color: Theme.of(context).colorScheme.onPrimary),
     );
   }
 }

@@ -41,7 +41,7 @@ class PopupSelectColor extends StatelessWidget {
             width: 150,
             child: CustomButtonWidget(
                 label: context.translatedString.select,
-                textColor: Theme.of(context).colorScheme.onSecondary,
+                textColor: Theme.of(context).colorScheme.onPrimary,
                 onClick: () => Navigator.pop(context, editingColor))),
       ],
     );

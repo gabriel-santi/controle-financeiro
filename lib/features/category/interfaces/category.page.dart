@@ -115,22 +115,20 @@ class _CategoryPageState extends State<CategoryPage> {
                           CustomButtonWidget(
                               label: context.translatedString.cancel,
                               color: Theme.of(context).colorScheme.error,
-                              textColor: Theme.of(context).colorScheme.onSecondary,
+                              textColor: Theme.of(context).colorScheme.onPrimary,
                               onClick: _cancelEditing),
                           const SizedBox(width: Sizes.p8),
                           SizedBox(
                             width: 200,
                             child: CustomButtonWidget(
-                                label: context.translatedString.save, textColor: Theme.of(context).colorScheme.onSecondary, onClick: _saveCategory),
+                                label: context.translatedString.save, textColor: Theme.of(context).colorScheme.onPrimary, onClick: _saveCategory),
                           ),
                         ]
                       : [
                           SizedBox(
                               width: 150,
                               child: CustomButtonWidget(
-                                  label: context.translatedString.create,
-                                  textColor: Theme.of(context).colorScheme.onSecondary,
-                                  onClick: _saveCategory))
+                                  label: context.translatedString.create, textColor: Theme.of(context).colorScheme.onPrimary, onClick: _saveCategory))
                         ],
                 ),
                 const SizedBox(height: Sizes.p32),

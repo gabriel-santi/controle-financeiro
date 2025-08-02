@@ -123,15 +123,17 @@ class NotificationWidgetState extends State<NotificationWidget> with TickerProvi
                       _iconNotification,
                       const SizedBox(width: Sizes.p8),
                       Expanded(
-                          child: TextWidget(
-                        text: currentNotification?.message ?? '',
-                        size: MainTheme.fontSizeSmall,
-                        maxLines: 2,
-                        weight: FontWeight.w500,
-                      )),
+                        child: TextWidget(
+                          text: currentNotification?.message ?? '',
+                          size: MainTheme.fontSizeSmall,
+                          maxLines: 2,
+                          weight: FontWeight.w500,
+                          color: Theme.of(context).colorScheme.onSecondary,
+                        ),
+                      ),
                       const SizedBox(width: Sizes.p8),
                       IconButton(
-                        icon: const Icon(Icons.close),
+                        icon: Icon(Icons.close, color: Theme.of(context).colorScheme.onSecondary),
                         onPressed: _removeNotification,
                       ),
                     ],

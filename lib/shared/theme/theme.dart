@@ -17,7 +17,7 @@ class MainTheme {
         brightness: Brightness.light,
         onPrimary: Color(0xFFFFFFFF),
         primary: Color(0xFF7152EE),
-        onSecondary: Color(0xFFDFF5FF),
+        onSecondary: Color(0xFF1B0035),
         secondary: Color(0xFFFCFCFC),
         onSecondaryContainer: Color(0xFF402E6B),
         error: Color(0xFFF68576),

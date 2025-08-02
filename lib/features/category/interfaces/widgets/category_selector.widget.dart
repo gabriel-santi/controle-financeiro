@@ -45,9 +45,9 @@ class CategorySelectorWidget extends StatelessWidget {
                   FittedBox(
                     child: CustomButtonWidget(
                       label: context.translatedString.create,
-                      textColor: Theme.of(context).colorScheme.onSecondary,
+                      textColor: Theme.of(context).colorScheme.onPrimary,
                       fontSize: MainTheme.fontSizeSmall,
-                      icon: Icon(Icons.add, size: 16, color: Theme.of(context).colorScheme.onSecondary),
+                      icon: Icon(Icons.add, size: 16, color: Theme.of(context).colorScheme.onPrimary),
                       onClick: () {
                         // TODO
                       },

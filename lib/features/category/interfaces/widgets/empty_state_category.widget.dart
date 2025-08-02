@@ -28,9 +28,9 @@ class EmptyStateCategoryWidget extends StatelessWidget {
             width: 200,
             child: CustomButtonWidget(
               label: context.translatedString.create,
-              textColor: Theme.of(context).colorScheme.onSecondary,
+              textColor: Theme.of(context).colorScheme.onPrimary,
               fontSize: MainTheme.fontSizeSmall,
-              icon: Icon(Icons.add, color: Theme.of(context).colorScheme.onSecondary),
+              icon: Icon(Icons.add, color: Theme.of(context).colorScheme.onPrimary),
               onClick: () => context.goNamed(AppRoute.category.name),
               color: Theme.of(context).colorScheme.primary,
             ),

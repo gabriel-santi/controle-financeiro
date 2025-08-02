@@ -86,7 +86,7 @@ class _MonthSelectorOverlayState extends State<MonthSelectorOverlay> {
                   child: TextWidget(
                     text: months[i],
                     size: MainTheme.fontSizeSmall,
-                    color: _selectedMonth == i + 1 ? Theme.of(context).colorScheme.onSecondary : Theme.of(context).colorScheme.primary,
+                    color: _selectedMonth == i + 1 ? Theme.of(context).colorScheme.onPrimary : Theme.of(context).colorScheme.primary,
                   ),
                 ),
               ),
@@ -97,7 +97,7 @@ class _MonthSelectorOverlayState extends State<MonthSelectorOverlay> {
               label: context.translatedString.select,
               borderRadius: MainTheme.radiusBig,
               padding: const EdgeInsets.all(Sizes.p16),
-              textColor: Theme.of(context).colorScheme.onSecondary,
+              textColor: Theme.of(context).colorScheme.onPrimary,
               onClick: () {
                 Navigator.of(context).pop();
                 widget.onSelect(_selectedMonth);
