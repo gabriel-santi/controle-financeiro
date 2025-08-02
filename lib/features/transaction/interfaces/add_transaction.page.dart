@@ -77,8 +77,10 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
   }
 
   void _onSave() {
-    //todo read the cubit of category
-    int category = 0;
+    final fieldsFilled = _formKey.currentState!.validate();
+    if (!fieldsFilled) return;
+
+    int category = 0; //todo read the cubit of category
     MonetaryValue value = MonetaryValue(_formatter.getUnformattedValue() as double);
     BlocProvider.of<AddTransactionBloc>(context).add(CreationRequested(
       description: _descriptionController.text.trim(),
