@@ -22,16 +22,16 @@ class CategoryDao {
     return category;
   }
 
-  Future<void> addCategory(Category category) async {
+  Future<Category> addCategory(Category category) async {
     db ??= await DatabaseConfig.instance.getDatabase();
-    await db!.rawQuery(CategoryQueries.createCategoryQuery, [category.description, category.color.value.toString()]);
-    return;
+    final id = await db!.rawInsert(CategoryQueries.createCategoryQuery, [category.description, category.color.value.toString()]);
+    return category.copyWith(id: id);
   }
 
-  Future<void> updateCategory(Category category) async {
+  Future<Category> updateCategory(Category category) async {
     db ??= await DatabaseConfig.instance.getDatabase();
     await db!.rawQuery(CategoryQueries.updateCategoryQuery, [category.description, category.color.value.toString(), category.id]);
-    return;
+    return category;
   }
 
   Future<void> deleteCategory(int idCategory) async {

@@ -6,7 +6,7 @@ abstract class CategoryRepo {
 
   Future<Category> getCategory(int idCategory);
 
-  Future<void> saveCategory(Category category);
+  Future<Category> saveCategory(Category category);
 
   Future<void> deleteCategory(int idCategory);
 }
@@ -35,7 +35,7 @@ class CategorySqfliteRepo extends CategoryRepo {
   }
 
   @override
-  Future<void> saveCategory(Category category) {
+  Future<Category> saveCategory(Category category) {
     if (category.id == -1) {
       return _dao.addCategory(category);
     } else {

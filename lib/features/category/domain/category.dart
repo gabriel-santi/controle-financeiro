@@ -23,4 +23,12 @@ class Category {
   int get id => _id;
 
   Color get color => Color(int.parse(_color));
+
+  Category copyWith({String? description, String? color, int? id}) {
+    return Category.load(
+      id ?? _id,
+      description ?? this.description,
+      color ?? _color,
+    );
+  }
 }
