@@ -24,7 +24,7 @@ void main() {
     registerFallbackValue(Category.create(description, color));
   });
 
-  group("Category Bloc Test", () {
+  group("On load", () {
     //  initial state
     test("Initial state", () {
       expect(bloc.state, CategoryInitial());
@@ -53,7 +53,9 @@ void main() {
         verify: (_) {
           verify(categoryRepo.getCategories).called(1);
         });
+  });
 
+  group("Create", () {
     blocTest<CategoryBloc, CategoryState>("When add with InitialState, try to fetch the categories and then add ",
         build: () {
           when(() => categoryRepo.saveCategory(any())).thenAnswer((_) => Future.value(categorySaved));
@@ -110,6 +112,44 @@ void main() {
           verifyNever(() => categoryRepo.getCategories());
           verify(() => categoryRepo.saveCategory(any())).called(1);
         });
+  });
+
+  group("Remove", () {
+    blocTest<CategoryBloc, CategoryState>(
+      "When remove with CategoriesLoaded, removes successfully without fetching",
+      build: () {
+        when(() => categoryRepo.deleteCategory(any())).thenAnswer((_) async => {});
+        return bloc;
+      },
+      seed: () => CategoriesLoaded([categorySaved]),
+      act: (bloc) => bloc.add(RemoveCategory(categorySaved.id)),
+      expect: () => [
+        CategoriesLoaded(const []),
+      ],
+      verify: (_) {
+        verify(() => categoryRepo.deleteCategory(categorySaved.id)).called(1);
+        verifyNever(() => categoryRepo.getCategories());
+      },
+    );
+
+    blocTest<CategoryBloc, CategoryState>(
+      "When remove fails, shows error and performs rollback",
+      build: () {
+        when(() => categoryRepo.deleteCategory(any())).thenThrow(Exception("Failed to remove"));
+        return bloc;
+      },
+      seed: () => CategoriesLoaded([categorySaved]),
+      act: (bloc) => bloc.add(RemoveCategory(categorySaved.id)),
+      expect: () => [
+        CategoriesLoaded(const []), // optimistic state
+        isA<CategoryError>(),
+        CategoriesLoaded([categorySaved]), // rollback
+      ],
+      verify: (_) {
+        verify(() => categoryRepo.deleteCategory(categorySaved.id)).called(1);
+        verifyNever(() => categoryRepo.getCategories());
+      },
+    );
 
     blocTest<CategoryBloc, CategoryState>(
       "When remove with InitialState, fetch categories then remove successfully",
@@ -129,40 +169,4 @@ void main() {
       },
     );
   });
-
-  blocTest<CategoryBloc, CategoryState>(
-    "When remove with CategoriesLoaded, removes successfully without fetching",
-    build: () {
-      when(() => categoryRepo.deleteCategory(any())).thenAnswer((_) async => {});
-      return bloc;
-    },
-    seed: () => CategoriesLoaded([categorySaved]),
-    act: (bloc) => bloc.add(RemoveCategory(categorySaved.id)),
-    expect: () => [
-      CategoriesLoaded(const []),
-    ],
-    verify: (_) {
-      verify(() => categoryRepo.deleteCategory(categorySaved.id)).called(1);
-      verifyNever(() => categoryRepo.getCategories());
-    },
-  );
-
-  blocTest<CategoryBloc, CategoryState>(
-    "When remove fails, shows error and performs rollback",
-    build: () {
-      when(() => categoryRepo.deleteCategory(any())).thenThrow(Exception("Failed to remove"));
-      return bloc;
-    },
-    seed: () => CategoriesLoaded([categorySaved]),
-    act: (bloc) => bloc.add(RemoveCategory(categorySaved.id)),
-    expect: () => [
-      CategoriesLoaded(const []), // optimistic state
-      isA<CategoryError>(),
-      CategoriesLoaded([categorySaved]), // rollback
-    ],
-    verify: (_) {
-      verify(() => categoryRepo.deleteCategory(categorySaved.id)).called(1);
-      verifyNever(() => categoryRepo.getCategories());
-    },
-  );
 }
