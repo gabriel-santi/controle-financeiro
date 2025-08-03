@@ -1,6 +1,7 @@
+import 'package:equatable/equatable.dart';
 import 'package:finapp/features/category/data/category_repository.dart';
 import 'package:finapp/features/category/domain/category.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'category_event.dart';
@@ -17,30 +18,35 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
 
   final CategoryRepo _repo;
 
-  void _onLoadCategories(LoadCategories event, Emitter<CategoryState> emit) async {
+  Future<void> _onLoadCategories(LoadCategories event, Emitter<CategoryState> emit) async {
     try {
-      final categories = await _repo.getCategories();
-      emit(CategoriesLoaded(categories));
+      await _fetchCategories(emit);
     } catch (e) {
       emit(CategoryError(e.toString()));
     }
   }
 
+  Future<void> _fetchCategories(Emitter<CategoryState> emit) async {
+    final categories = await _repo.getCategories();
+    emit(CategoriesLoaded(categories));
+  }
+
   void _addCategory(AddCategory event, Emitter<CategoryState> emit) async {
     if (state is! CategoriesLoaded) {
-      add(LoadCategories());
-      return;
+      await _fetchCategories(emit);
     }
 
+    final categoryCreated = Category.create(event.description, event.color);
     final current = (state as CategoriesLoaded).categories;
-    final optimisticList = List<Category>.from(current)..add(event.category);
+    final optimisticList = List<Category>.from(current)..add(categoryCreated);
     emit(CategoriesLoaded(optimisticList));
 
     try {
-      await _repo.saveCategory(event.category);
+      final categorySaved = await _repo.saveCategory(categoryCreated);
+      emit(CategoriesLoaded(List<Category>.from(current)..add(categorySaved)));
     } catch (e) {
       // rollback
-      final reverted = optimisticList.where((c) => c.id != event.category.id).toList();
+      final reverted = optimisticList.where((c) => c.id != categoryCreated.id).toList();
       emit(CategoryError(e.toString()));
       emit(CategoriesLoaded(reverted));
     }
@@ -48,8 +54,7 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
 
   void _removeCategory(RemoveCategory event, Emitter<CategoryState> emit) async {
     if (state is! CategoriesLoaded) {
-      add(LoadCategories());
-      return;
+      await _fetchCategories(emit);
     }
 
     final current = (state as CategoriesLoaded).categories;
