@@ -6,9 +6,10 @@ sealed class CategoryEvent {}
 class LoadCategories extends CategoryEvent {}
 
 class AddCategory extends CategoryEvent {
-  final Category category;
+  final String description;
+  final String color;
 
-  AddCategory(this.category);
+  AddCategory(this.description, this.color);
 }
 
 class RemoveCategory extends CategoryEvent {

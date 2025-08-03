@@ -31,4 +31,10 @@ class Category {
       color ?? _color,
     );
   }
+
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is Category && runtimeType == other.runtimeType && _id == other._id;
+
+  @override
+  int get hashCode => _id.hashCode;
 }
