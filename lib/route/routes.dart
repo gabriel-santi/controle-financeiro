@@ -1,6 +1,6 @@
 import 'package:finapp/features/category/interfaces/category.page.dart';
 import 'package:finapp/features/language/interfaces/language.page.dart';
-import 'package:finapp/features/transaction/application/add_transaction_bloc.dart';
+import 'package:finapp/features/transaction/application/add_transaction/add_transaction_bloc.dart';
 import 'package:finapp/features/transaction/data/transaction_repository.dart';
 import 'package:finapp/features/transaction/interfaces/add_transaction.page.dart';
 import 'package:finapp/features/transaction/interfaces/edit_transaction.page.dart';

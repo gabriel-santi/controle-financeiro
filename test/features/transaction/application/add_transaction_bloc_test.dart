@@ -1,5 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:finapp/features/transaction/application/add_transaction_bloc.dart';
+import 'package:finapp/features/transaction/application/add_transaction/add_transaction_bloc.dart';
 import 'package:finapp/features/transaction/data/transaction_repository.dart';
 import 'package:finapp/features/transaction/domain/monetary_value.dart';
 import 'package:finapp/features/transaction/domain/payment.dart';
