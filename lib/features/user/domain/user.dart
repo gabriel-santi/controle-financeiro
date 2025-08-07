@@ -5,10 +5,7 @@ class User {
   User._(this.id, this.name);
 
   factory User.create(int id, String name) {
-    return User._(
-      id,
-      name,
-    );
+    return User._(-1, name);
   }
 
   factory User.fromMap(Map<String, dynamic> map) {
