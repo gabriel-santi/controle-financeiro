@@ -15,12 +15,6 @@ class User {
     return User._(map['id'], map['name']);
   }
 
-  Map<String, dynamic> toMap() {
-    return {
-      'name': name,
-    };
-  }
-
   User copyWith({int? id, String? name}) {
     return User._(id ?? this.id, name ?? this.name);
   }
