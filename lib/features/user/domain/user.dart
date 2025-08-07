@@ -1,21 +1,27 @@
 class User {
+  final int id;
   final String name;
 
-  User._(this.name);
+  User._(this.id, this.name);
 
-  factory User.create(String name) {
+  factory User.create(int id, String name) {
     return User._(
+      id,
       name,
     );
   }
 
   factory User.fromMap(Map<String, dynamic> map) {
-    return User._(map['name']);
+    return User._(map['id'], map['name']);
   }
 
   Map<String, dynamic> toMap() {
     return {
       'name': name,
     };
+  }
+
+  User copyWith({int? id, String? name}) {
+    return User._(id ?? this.id, name ?? this.name);
   }
 }
