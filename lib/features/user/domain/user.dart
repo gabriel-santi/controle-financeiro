@@ -4,7 +4,7 @@ class User {
 
   User._(this.id, this.name);
 
-  factory User.create(int id, String name) {
+  factory User.create(String name) {
     return User._(-1, name);
   }
 
@@ -14,5 +14,9 @@ class User {
 
   User copyWith({int? id, String? name}) {
     return User._(id ?? this.id, name ?? this.name);
+  }
+
+  factory User.load(int id, String name) {
+    return User._(id, name);
   }
 }
