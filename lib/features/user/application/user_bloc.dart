@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:finapp/features/user/data/user_repo.dart';
 import 'package:finapp/features/user/domain/user.dart';
 import 'package:flutter/cupertino.dart';

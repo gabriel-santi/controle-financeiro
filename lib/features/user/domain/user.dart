@@ -16,7 +16,7 @@ class User {
     return User._(id ?? this.id, name ?? this.name);
   }
 
-  factory User.load(int id, String name) {
+  factory User.load({required int id, required String name}) {
     return User._(id, name);
   }
 }
